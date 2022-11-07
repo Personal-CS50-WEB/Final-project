@@ -69,6 +69,12 @@ ENV/
 env.bak/ 
 venv.bak/ 
 
+
+
+/env
+*.env
+.vscode
+
 # mkdocs documentation 
 /site 
 
