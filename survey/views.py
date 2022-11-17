@@ -10,6 +10,11 @@ class CreateSurveyView(viewsets.ModelViewSet):
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
 
+
+class SubmitionView(viewsets.ModelViewSet):
+    serializer_class = SubmitionSerializer
+    queryset = Submition.objects.all()
+
 class QuestionOptionView(viewsets.ModelViewSet):
     serializer_class = QuestionOptionSerializer
     queryset = QuestionOption.objects.all()

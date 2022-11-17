@@ -53,12 +53,12 @@ class OptionAnswer(models.Model):
 
 
 class TextAnswer(models.Model):
-    answer = models.ForeignKey("Answer", on_delete=models.CASCADE, related_name="text_answers")
+    answer = models.OneToOneField("Answer", on_delete=models.CASCADE, related_name="text_answers")
     text = models.TextField()
 
 
 class IntegerAnswer(models.Model):
-    answer = models.ForeignKey("Answer", on_delete=models.CASCADE, related_name="integer_answers")
+    answer = models.OneToOneField("Answer", on_delete=models.CASCADE, related_name="integer_answers")
     integer = models.IntegerField()
     
 

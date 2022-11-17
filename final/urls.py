@@ -20,8 +20,8 @@ from survey import views
 from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
-router.register(r'Survey', views.SurveytView, 'Survey')
-router.register(r'QuestionOption', views.QuestionOptionView, 'QuestionOption')
+router.register(r'Question', views.QuestionView, 'Question')
+router.register(r'Submition', views.SubmitionView, 'Submition')
 router.register(r'createsurvey', views.CreateSurveyView, 'createsurvey')
 
 urlpatterns = [
