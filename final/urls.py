@@ -20,9 +20,12 @@ from survey import views
 from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
-router.register(r'Question', views.QuestionView, 'Question')
-router.register(r'Submition', views.SubmitionView, 'Submition')
-router.register(r'createsurvey', views.CreateSurveyView, 'createsurvey')
+
+router.register(r'submition', views.SubmitionView, 'submition')
+router.register(r'survey', views.SurveyView, 'survey')
+router.register(r'usersurveys', views.UserSurveyView, 'usersurveys')
+router.register(r'usersubmitions', views.UserSubmitionView, 'usersubmitions')
+router.register(r'surveysubmtion', views.SurveySubmtionView, 'surveysubmtion')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

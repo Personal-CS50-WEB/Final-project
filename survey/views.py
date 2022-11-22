@@ -1,62 +1,36 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import *
+from survey.serializers import surveyserializer, submitionserializer
 from .models import *
-from rest_framework.decorators import action
 from rest_framework.response import Response
 
 # Create your views here.
-class CreateSurveyView(viewsets.ModelViewSet):
-    serializer_class = SurveySerializer
-    queryset = Survey.objects.all()
+class SurveyView(viewsets.ModelViewSet):
+    serializer_class = surveyserializer.SurveySerializer
+    queryset = Survey.objects.all().order_by('-timecreated')
 
 
 class SubmitionView(viewsets.ModelViewSet):
-    serializer_class = SubmitionSerializer
-    queryset = Submition.objects.all()
+    serializer_class = submitionserializer.SubmitionSerializer
+    queryset = Submition.objects.all().order_by('-timecreated')
 
-class QuestionOptionView(viewsets.ModelViewSet):
-    serializer_class = QuestionOptionSerializer
-    queryset = QuestionOption.objects.all()
 
-class SurveytView(viewsets.ModelViewSet):
-    serializer_class = SurveySerializer
-    queryset = Survey.objects.filter(is_active=True)
+class UserSubmitionView(viewsets.ModelViewSet):
+    serializer_class = submitionserializer.UserSubmitionSerializer
+    queryset = User.objects.all()
 
-    @action(methods=['GET'], detail=False)
-    def new(self, request):
-        newest = self.get_queryset().order_by('timecreated').last()
-        serializers = self.get_serializer_class()(newest)
-        return Response(serializers.data)
-    
 
-class QuestionView(viewsets.ModelViewSet):
-    serializer_class = QuestionSerializer
-    queryset = Question.objects.all()
-    def create(self, request, *args, **kwargs):
+class UserSurveyView(viewsets.ModelViewSet):
+    serializer_class = surveyserializer.UserSurveySerializer
+    queryset = User.objects.all()
 
-        question_data = request.data
-        new_question = Question.objects.create(
-            survey=Survey.objects.get(id=question_data['survey']),
-            type=question_data['type'],
-            text=question_data['text']
-        )
-        new_question.save()
-        if question_data['type'] == 'Radio' or 'Checkbox':
-            for eachoption in question_data['options']:
-                option =  QuestionOption.objects.create(
-                    question=new_question,
-                    option=eachoption
-                )
-                option.save()
-        
-        serializer =  QuestionSerializer(new_question)
-        return Response(serializer.data)
+class SurveySubmtionView(viewsets.ModelViewSet):
+    serializer_class = submitionserializer.SurveySubmitionSerializer
+    queryset = Survey.objects.all()
 
-    def retrieve(self, request, *args, **kwargs):
-        questions = Question.objects.filter(survey=kwargs['pk'])
-        serializer =  QuestionSerializer(questions, many=True)
-        return Response(serializer.data)
+
+
+
 
     
 
