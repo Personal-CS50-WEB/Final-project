@@ -22,10 +22,17 @@ class SurveySerializer(dynamicserializer.DynamicFieldsModelSerializer):
                     QuestionOption.objects.create(question=question, **option_data)
     
         return survey
-
+    
+    def update(self, instance, validated_data):
+        instance.deadline = validated_data.get('deadline', instance.deadline)
+        # do nothing to instance other fileds
+        instance.save()
+        return instance
+        
 
 class UserSurveySerializer(dynamicserializer.DynamicFieldsModelSerializer):
-    user_surveys = SurveySerializer(many=True, required=False, fields=['name', 'id'])
+    user_surveys = SurveySerializer(many=True, required=False, fields=['name', 'id', 'deadline'])
     class Meta:
         model = User
         fields=['id', 'username', 'user_surveys',]
+

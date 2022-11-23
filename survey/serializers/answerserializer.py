@@ -32,5 +32,5 @@ class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = '__all__'
-        read_only_fields = ('submition',)
+        read_only_fields = ('submission',)
         

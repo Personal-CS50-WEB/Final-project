@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from survey.models import Question, QuestionOption
-from . import answerserializer
 
 
 class QuestionOptionSerializer(serializers.ModelSerializer):
@@ -12,8 +11,7 @@ class QuestionOptionSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     options = QuestionOptionSerializer(required=False, many=True)
-    answers = answerserializer.AnswerSerializer(required=False, many=True)
-    
+
     class Meta:
         model = Question
         fields = '__all__'

@@ -14,13 +14,6 @@ class Survey(models.Model):
     timecreated = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField(default=datetime.now() + timedelta(days=14))
 
-    @property
-    def is_expired(self):
-        if datetime.now > self.deadline:
-        
-            return True
-        return False
-
 
 class Question(models.Model):
 
@@ -42,14 +35,14 @@ class QuestionOption(models.Model):
     option = models.TextField()
 
 
-class Submition(models.Model):
-    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="user_submitions")
-    survey = models.ForeignKey("Survey", on_delete=models.CASCADE, related_name="submitions")
+class Submission(models.Model):
+    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="user_submissions")
+    survey = models.ForeignKey("Survey", on_delete=models.CASCADE, related_name="submissions")
     timecreated = models.DateTimeField(auto_now_add=True)
 
 
 class Answer(models.Model):
-    submition = models.ForeignKey("Submition", on_delete=models.CASCADE, related_name="submition_answers")
+    submission  = models.ForeignKey("Submission", on_delete=models.CASCADE, related_name="submission_answers")
     question = models.ForeignKey("Question", on_delete=models.CASCADE, related_name="answers")   
 
 
