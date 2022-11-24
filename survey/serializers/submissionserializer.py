@@ -1,6 +1,7 @@
 from survey.models import *
 from . import userserializer, surveyserializer, answerserializer, dynamicserializer
 from django.core.exceptions import PermissionDenied
+from datetime import timezone
 
 
 class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
@@ -15,11 +16,11 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
         answers_data = validated_data.pop('submission_answers')
         user = validated_data.get('user')
         survey = validated_data.get('survey')
-
-        # check that user can't submit the same survey more than once
-        if Submission.objects.filter(survey=survey, user=user):
+    
+        # check that user can't submit the same survey more than once or survey is expired
+        if Submission.objects.filter(survey=survey, user=user) or survey.deadline <= datetime.now(tz=timezone.utc):
             raise PermissionDenied()
-
+    
         # create submtion record
         submission = Submission.objects.create(**validated_data)
         for answer_data in answers_data:
@@ -54,17 +55,4 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
                         OptionAnswer.objects.create(answer=answer, **option_data)
 
         return submission 
-
-
-class SurveySubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
-    submissions = SubmissionSerializer(many=True, required=False, fields=['id', 'timecreated', 'user_data'])
-    class Meta:
-        model = Survey
-        fields = ['id', 'submissions']
-
-
-class UserSubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
-    user_submissions = SubmissionSerializer(many=True, required=False, fields=['id', 'timecreated', 'survey_data'])
-    class Meta:
-        model = User
-        fields = ['id', 'username','user_submissions']
+    

@@ -25,7 +25,7 @@ router.register(r'submission', views.SubmissionView, 'submission')
 router.register(r'survey', views.SurveyView, 'survey')
 router.register(r'usersurveys', views.UserSurveyView, 'usersurveys')
 router.register(r'usersubmissions', views.UserSubmissionView, 'usersubmissions')
-router.register(r'surveysubmissions', views.SurveySubmissionView, 'surveysubmissions')
+
 router.register(r'expiredSurvey', views.ExpiredSurveyViewSet, 'expiredsurvey')
 
 
