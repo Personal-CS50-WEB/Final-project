@@ -1,5 +1,4 @@
 from survey.models.survey_model import Survey
-from ..models import *
 from . import questionserializer, dynamicserializer, submissionserializer
 from rest_framework import serializers
 

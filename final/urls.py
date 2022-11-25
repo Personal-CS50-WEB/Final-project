@@ -15,17 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from rest_framework import routers
-from survey import views
+from survey.routers import router
 from django.views.generic import TemplateView
-
-router = routers.DefaultRouter()
-
-router.register(r'submission/user', views.UserSubmissionView, 'usersubmissions')
-router.register(r'submission', views.SubmissionView, 'submission')
-router.register(r'survey/user', views.UserSurveyView, 'usersurveys')
-router.register(r'survey', views.SurveyView, 'survey')
-router.register(r'expiredSurvey', views.ExpiredSurveyViewSet, 'expiredsurvey')
 
 
 urlpatterns = [
