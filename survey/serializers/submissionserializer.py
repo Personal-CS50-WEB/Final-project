@@ -1,20 +1,32 @@
-from survey.models import *
+import datetime
+from survey.models.answer_model import Answer, IntegerAnswer, OptionAnswer, TextAnswer
+from survey.models.submission_model import Submission
 from . import userserializer, surveyserializer, answerserializer, dynamicserializer
 from django.core.exceptions import PermissionDenied
 from datetime import timezone
 
 
 class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
-    survey_data = surveyserializer.SurveySerializer(source='survey', read_only=True, fields=['name', 'id'])
-    user_data= userserializer.UserSerializer(source='user', read_only=True)
-    submission_answers = answerserializer.AnswerSerializer(many=True, required=True)
+    survey_data = surveyserializer.SurveySerializer(
+        source='survey', 
+        read_only=True, 
+        fields=['name', 'id']
+        )
+    user_data= userserializer.UserSerializer(
+        source='user', 
+        read_only=True
+        )
+    submission_answers = answerserializer.AnswerSerializer(
+        many=True, 
+        required=True
+        )
     class Meta:
         model = Submission
         fields = '__all__'
-    
+        
     def create(self, validated_data):
         answers_data = validated_data.pop('submission_answers')
-        user = validated_data.get('user')
+        user = validated_data.get('user') 
         survey = validated_data.get('survey')
     
         # check that user can't submit the same survey more than once or survey is expired

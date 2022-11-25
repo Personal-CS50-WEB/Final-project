@@ -1,4 +1,4 @@
-from survey.models import User
+from survey.models.user_model import User
 from . import dynamicserializer
 
 

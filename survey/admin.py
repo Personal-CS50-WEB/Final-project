@@ -1,8 +1,12 @@
 from django.contrib import admin
-from .models import *
+from survey.models.answer_model import Answer, IntegerAnswer, OptionAnswer, TextAnswer
+from survey.models.question_model import Question, QuestionOption
+from survey.models.submission_model import Submission
+from survey.models.survey_model import Survey
+from survey.models.user_model import User
+
 
 # Register your models here.
-
 admin.site.register(Survey)
 admin.site.register(Question)
 admin.site.register(QuestionOption)

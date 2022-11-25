@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from survey.models import Answer, TextAnswer, IntegerAnswer, OptionAnswer
+from survey.models.answer_model import Answer, IntegerAnswer, OptionAnswer, TextAnswer
 
 
 class TextAnswerSerializer(serializers.ModelSerializer):
@@ -7,21 +7,18 @@ class TextAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = TextAnswer
         fields = ('text',)
-        read_only_fields = ('answer',)
 
 
 class OptionAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = OptionAnswer
-        fields = '__all__'
-        read_only_fields = ('answer',)
-
+        fields = ('option',)
+    
 
 class IntegerAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = IntegerAnswer
-        fields = '__all__'
-        read_only_fields = ('answer',)
+        fields = ('integer')
 
 
 class AnswerSerializer(serializers.ModelSerializer):
@@ -31,6 +28,5 @@ class AnswerSerializer(serializers.ModelSerializer):
     integer_answers = IntegerAnswerSerializer(required=False)
     class Meta:
         model = Answer
-        fields = '__all__'
-        read_only_fields = ('submission',)
+        fields = ['integer_answers', 'text_answers', 'options_answers']
         

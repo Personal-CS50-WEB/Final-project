@@ -21,11 +21,10 @@ from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 
+router.register(r'submission/user', views.UserSubmissionView, 'usersubmissions')
 router.register(r'submission', views.SubmissionView, 'submission')
+router.register(r'survey/user', views.UserSurveyView, 'usersurveys')
 router.register(r'survey', views.SurveyView, 'survey')
-router.register(r'usersurveys', views.UserSurveyView, 'usersurveys')
-router.register(r'usersubmissions', views.UserSubmissionView, 'usersubmissions')
-
 router.register(r'expiredSurvey', views.ExpiredSurveyViewSet, 'expiredsurvey')
 
 
@@ -35,4 +34,3 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
 ]
-
