@@ -128,7 +128,9 @@ GitHub.sublime-settings
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
-
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
