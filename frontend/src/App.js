@@ -1,26 +1,31 @@
-import logo from './logo.svg';
-import axios from "axios";
-import './App.css';
 
+import axios from "axios";
+import Navbar from "./navbar";
+import './App.css';
+import UserSurveys from "./pages/user_surveys";
+import {Route, Routes} from "react-router-dom"
+import ListSurveys from "./pages/home";
+import UserSubmissions from "./pages/user_submissions";
+import CreateSurvey from "./pages/create_survey";
 
 function App() {
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    
+    <Navbar />
+    <div className="container">
+      <Routes>
+        <Route path="/" element= {<ListSurveys />}></Route>
+        <Route path="/user_surveys" element= {<UserSurveys />}></Route>
+        <Route path="/user_submissions" element= {<UserSubmissions />}></Route>
+        <Route path="/create_survey" element= {<CreateSurvey />}></Route>
+      </Routes>
     </div>
+    
+    </>
+  
   );
 }
 

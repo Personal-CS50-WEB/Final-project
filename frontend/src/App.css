@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #042056ac;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,58 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+*{
+  box-sizing: border-box;
+}
+
+bod{
+  margin: 0;
+}
+.container {
+  margin: 1rem;
+  text-align: center;
+}
+
+
+.nav {
+  background-color: rgb(108, 111, 123);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+  text-decoration: none;
+}
+
+.site-title{
+  font-size: 2rem;
+}
+
+
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  color: inherit;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: .25rem;
+}
+
+.nav li.active{
+  background-color: grey;
+}
+
+.nav li:hover{
+  background-color: black;
 }
