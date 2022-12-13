@@ -7,6 +7,7 @@ class QuestionOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestionOption
         fields = ['id', 'option']
+        
 
 
 class QuestionSerializer(dynamicserializer.DynamicFieldsModelSerializer):

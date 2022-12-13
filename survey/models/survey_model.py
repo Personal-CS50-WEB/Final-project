@@ -8,6 +8,4 @@ class Survey(models.Model):
     description = models.TextField()
     name = models.CharField(max_length=64)
     timecreated = models.DateTimeField(auto_now_add=True)
-    deadline = models.DateTimeField(default=datetime.now() + timedelta(days=14))
-
-
+    deadline = models.DateTimeField(default=(datetime.now() + timedelta(days=14)))

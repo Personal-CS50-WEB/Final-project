@@ -15,6 +15,6 @@ class SurveyResultSerializer(dynamicserializer.DynamicFieldsModelSerializer):
     total_submissions = serializers.IntegerField(read_only=True)
     class Meta:
         model = Survey
-        fields = ['name', 'description','deadline', 'questions','total_submissions', 'submissions' ]
+        fields = ['id','name', 'description','deadline', 'questions','total_submissions', 'submissions' ]
 
     

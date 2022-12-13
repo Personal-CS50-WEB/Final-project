@@ -11,11 +11,11 @@ class UserSubmissionView(viewsets.ReadOnlyModelViewSet):
     """
     serializer_class = submissionserializer.SubmissionSerializer
     queryset = Submission.objects.all()
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
         query = self.queryset
-        queryset = query.filter(user=1) # self.request.user
+        queryset = query.filter(user=self.request.user) # self.request.user
         serializer = self.get_serializer(
             queryset, 
             many=True, 

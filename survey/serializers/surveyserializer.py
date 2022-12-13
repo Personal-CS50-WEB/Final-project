@@ -13,13 +13,14 @@ class SurveySerializer(dynamicserializer.DynamicFieldsModelSerializer):
     class Meta:
         model = Survey
         fields = ['id', 'name', 'description','owner','timecreated', 'deadline', 'questions']
+        read_only_fields = ('owner',)
         
     def create(self, validated_data):
         questions_data = validated_data.pop('questions')
         if questions_data:
-            #owner = ??
-            #print(owner)
-            survey = Survey.objects.create(**validated_data) #owner=owner
+            owner = self.context['request'].user
+            print(owner)
+            survey = Survey.objects.create(owner=owner, **validated_data)
             for question_data in questions_data:
                 options_data = question_data.pop('options', None)
                 question = Question.objects.create(survey=survey, **question_data) 

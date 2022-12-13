@@ -26,7 +26,7 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
         
     def create(self, validated_data):
         answers_data = validated_data.pop('submission_answers')
-        user = validated_data.get('user') 
+        user = self.context['request'].user
         survey = validated_data.get('survey')
     
         # check that user can't submit the same survey more than once or survey is expired
@@ -39,7 +39,7 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
             question = answer_data.pop('question')
 
             # if question type is text
-            if int(question.type) == 1:
+            if question.type == 'TEXT-ANSWER':
                 text_answers = answer_data.pop('text_answers', None)
                 if text_answers:
                     # create record in Answer model for each question
@@ -48,7 +48,7 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
                     TextAnswer.objects.create(answer=answer, **text_answers)
             
             # if question type is integer or score
-            elif int(question.type) == 4 or int(question.type) == 5:
+            elif question.type == 'INTEGER' or question.type == 'SCORE':
                 
                 integer_answers = answer_data.pop('integer_answers', None)
                 if integer_answers:

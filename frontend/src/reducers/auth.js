@@ -9,6 +9,7 @@ import{
     SIGNUP_FAIL,
     ACTIVATION_SUCCESS,
     ACTIVATION_FAIL,
+    UPDATE_TOKEN_SUCCESS,
     LOGOUT
     
 } from '../actions/types';
@@ -38,6 +39,15 @@ export default function(state = initalState, action) {
                 isAuthenticated: true,
                 access: payload.access,
                 refresh: payload.refresh
+            }
+        case UPDATE_TOKEN_SUCCESS:
+            
+            localStorage.setItem('access', payload.access)
+            return{
+                ...state,
+                access: payload.access,
+                refresh:  localStorage.getItem('refresh'),  
+                isAuthenticated: true      
             }
         case USER_LOADDED_SUCCESS:
             return {

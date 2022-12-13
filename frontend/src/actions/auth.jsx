@@ -10,6 +10,7 @@ import{
     SIGNUP_FAIL,
     ACTIVATION_SUCCESS,
     ACTIVATION_FAIL,
+    UPDATE_TOKEN_SUCCESS,
     LOGOUT
     
 } from './types';
@@ -22,28 +23,39 @@ export const checkAuthenticated = () => async dispatch => {
                 'Accept': 'application/json'
             }
         }; 
-
         const body = JSON.stringify({ token: localStorage.getItem('access') });
-        console.log(body);
-
         try {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/verify/`, body, config)
-            console.log(res.data.code);
+            console.log(res)
             if (res.data.code !== 'token_not_valid') {
                 dispatch({
                     type: AUTHENTICATED_SUCCESS
                 });
-            } else {
-                dispatch({
-                    type: AUTHENTICATED_FAIL
-                });
-            }
+            } else{
+                    dispatch({
+                        type: AUTHENTICATED_FAIL
+                    });
+                }
         } catch (err) {
+            console.log(err)
+            try{
+                const data = JSON.stringify({ refresh: localStorage.getItem('refresh') });
+                const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/refresh/`, 
+                data, config)
+                
+                if (res.data.code !== 'token_not_valid') {
+                    dispatch({
+                        type:UPDATE_TOKEN_SUCCESS,
+                        payload: res.data
+                    });
+                    dispatch(loud_user());
+                }
+            }catch(err){
             dispatch({
                 type: AUTHENTICATED_FAIL
             });
         }
-
+    }
     } else {
         dispatch({
             type: AUTHENTICATED_FAIL
@@ -52,18 +64,15 @@ export const checkAuthenticated = () => async dispatch => {
 };
 
 export const loud_user = () => async dispatch => {
-
     if (localStorage.getItem('access')){
         const config = {
             headers: {
-                
                 'Authorization': `JWT  ${localStorage.getItem('access')}`,
-                
             }
         };
         try {
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config)
-            
+    
             dispatch({
                 type: USER_LOADDED_SUCCESS,
                 payload: res.data
@@ -72,19 +81,14 @@ export const loud_user = () => async dispatch => {
         } catch(err){
             dispatch({
                 type: USER_LOADDED_FAIL
-            
-    
             });
         }
-       
     }
     else {
         dispatch({
             type: USER_LOADDED_FAIL
-        
         });
     }
-
 };
 
 export const login = (email, password) => async dispatch => {
@@ -96,7 +100,6 @@ export const login = (email, password) => async dispatch => {
     const body = JSON.stringify({ email, password })
     try {
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/create`, body, config)
-
         dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data
@@ -105,8 +108,6 @@ export const login = (email, password) => async dispatch => {
     } catch(err){
         dispatch({
             type: LOGIN_FAIL
-        
-
         });
     }
 };
@@ -116,9 +117,7 @@ export const signup = (username, email, password, re_password) => async dispatch
             'Content-Type': 'application/json'
         }
     };
-
     const body = JSON.stringify({ username, email, password, re_password });
-
     try {
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body, config);
 
@@ -139,9 +138,7 @@ export const verify = (uid, token) => async dispatch => {
             'Authorization': `JWT  ${localStorage.getItem('access')}`,
         }
     };
-
     const body = JSON.stringify({ uid, token });
-
     try {
         await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/activation/`, body, config);
 
