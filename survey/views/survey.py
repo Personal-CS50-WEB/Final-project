@@ -11,14 +11,15 @@ class SurveyView(viewsets.ReadOnlyModelViewSet):
     ViewSet for creating/viewing surveys.
     """
     serializer_class = surveyserializer.SurveySerializer
-    queryset = Survey.objects.exclude(
-        deadline__lte=datetime.now(tz=timezone.utc)).order_by('-timecreated'
-    )
-
+    queryset = Survey.objects.all()
+    
     def list(self, request, *args, **kwargs):
         # when listing surveys return name, id, deadline and description
+        queryset = self.queryset.all().exclude(
+        deadline__lte=datetime.now(tz=timezone.utc)).order_by('-timecreated'
+    )
         serializer = self.get_serializer(
-            self.queryset,
+            queryset,
             many=True, 
             fields=['id', 'name', 'description', 'deadline']
         )

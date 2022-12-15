@@ -13,8 +13,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
         </Fragment>
     );
     const authLinks = () => (
-        <a className="nav-item nav-link mr-sm-2" href="#"onClick={logout}>Logout</a>
-        
+        <Link className="nav-item nav-link mr-sm-2" to="/login" onClick={logout}>Logout</Link>
     );
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

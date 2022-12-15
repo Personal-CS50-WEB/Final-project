@@ -4,12 +4,13 @@ import "react-datetime/css/react-datetime.css";
 import axios from 'axios';
 import { connect } from "react-redux";
 import  { create } from "../actions/survey";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate  } from "react-router-dom";
 
 const CreateSurvey = ({ create, isAuthenticated  }) => {
     if(!isAuthenticated){
         return <Navigate to='/login' />
     }
+    let history = useNavigate ();
     // set the questio;n types
     const [questionsType, setData] = useState([]);
     const config = {
@@ -79,7 +80,7 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
         event.preventDefault();
         let data = [...questions[index].options];
         data.splice(i, 1);
-        setQuestions( [...questions])
+        setQuestions([...questions])
     }
      // survey deadline
     const [deadline, setDeadline] = useState(new Date());
@@ -89,16 +90,13 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
     });
     //survey name and description
     const { name, description } = inputFields;
-    let {result, setResult } = useState(false);
     const onChange = e => setInputFields({ ...inputFields, [e.target.name]: e.target.value});
     const onSubmit = e => {
         e.preventDefault();
-        create(name, description, deadline, questions);
-        setResult(true);
+        create(name, description, deadline, questions, history);
     };
     return (
         <div className="container mt-5">
-            {result? (<Navigate to='/' />): null}
         <h1>Create survey</h1>
             <form onSubmit={e => onSubmit(e)}>
                 <div className="form-group">

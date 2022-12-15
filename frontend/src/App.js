@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import UserSurveys from "./container/user_surveys";
-import { Router , Route, Routes} from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import ListSurveys from "./container/home";
 import UserSubmissions from "./container/user_submissions";
 import CreateSurvey from "./container/create_survey";
@@ -27,7 +27,7 @@ const App = () => (
           <Route  path="/create_survey" element={<CreateSurvey />} />
           <Route  path="/survey/:id" element={<TakeSurvey />} />
           <Route  path="/submission" element={<CreateSubmission />} />
-          <Route  path="/survey/user/:id" element={<EditSurvey />} />
+          <Route  path="/survey/edit/:id" element={<EditSurvey />} />
           <Route exact path='/activate/:uid/:token' compoelementnent={<Activate />} />
         </Routes>
     </Layout>

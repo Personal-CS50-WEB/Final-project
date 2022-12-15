@@ -14,7 +14,7 @@ class UserSurveyView(mixins.ListModelMixin,
     ViewSet for viewing all surveys for users.
     """
     serializer_class = surveyserializer.SurveySerializer
-    queryset =  queryset = Survey.objects.exclude(
+    queryset = Survey.objects.all().exclude(
         deadline__lte=datetime.now(tz=timezone.utc)).order_by('-timecreated'
     )
     http_method_names = ['get', 'post', 'head', 'patch']
@@ -26,7 +26,10 @@ class UserSurveyView(mixins.ListModelMixin,
         return super().get_permissions()
 
     def list(self, request, *args, **kwargs):
-        query = self.queryset
+        query = self.queryset.all().exclude(
+        deadline__lte=datetime.now(tz=timezone.utc)).order_by('-timecreated'
+    )
+        
         queryset = query.filter(owner=self.request.user) # self.request.user
         serializer = self.get_serializer(
             queryset, 

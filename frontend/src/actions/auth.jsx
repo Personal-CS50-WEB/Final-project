@@ -26,7 +26,6 @@ export const checkAuthenticated = () => async dispatch => {
         const body = JSON.stringify({ token: localStorage.getItem('access') });
         try {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/verify/`, body, config)
-            console.log(res)
             if (res.data.code !== 'token_not_valid') {
                 dispatch({
                     type: AUTHENTICATED_SUCCESS
@@ -37,7 +36,6 @@ export const checkAuthenticated = () => async dispatch => {
                     });
                 }
         } catch (err) {
-            console.log(err)
             try{
                 const data = JSON.stringify({ refresh: localStorage.getItem('refresh') });
                 const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/refresh/`, 
@@ -157,3 +155,5 @@ export const logout = () => dispatch => {
         type: LOGOUT
     });
 };
+
+

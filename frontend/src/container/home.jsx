@@ -24,15 +24,16 @@ export default function ListSurveys(){
             {surveys.length > 0 ?
             (
                 <div className="container">
-                    {surveys.map((survey) =>(
-                    
+                    {surveys.map((survey, i) =>(
+                        <div className="container" key={i}>
                         <SurveyCard  survey={survey}/>
-                       
+                        <br></br>
+                        </div>
                     ))}
                 </div> 
             ):(
             <div className="empty">
-                <h2> No Surveys found</h2>
+            
             </div>
             )}
         </div>
