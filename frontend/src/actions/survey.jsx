@@ -1,8 +1,8 @@
 
 import axios from 'axios';
-import { checkAuthenticated} from "./auth"
+import { checkAuthenticated } from "./auth"
 
-export  const create = (name, description, deadline, questions, history, userSurveys, index) => async dispatch => {
+export  const create = (name, description, deadline, questions, history) => async dispatch => {
     await dispatch(checkAuthenticated());
     let config = {
         headers: {
@@ -15,7 +15,7 @@ export  const create = (name, description, deadline, questions, history, userSur
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/survey/user/`, body, config)
             if (res.data) {
 
-                history("/survey/user", {state: userSurveys[index] = res.data});
+                history("/survey/user", {state: res.data});
             }
         }catch(err){
             alert(err);

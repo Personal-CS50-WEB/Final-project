@@ -10,7 +10,7 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
     if(!isAuthenticated){
         return <Navigate to='/login' />
     }
-    let history = useNavigate ();
+    let history = useNavigate();
     // set the questio;n types
     const [questionsType, setData] = useState([]);
     const config = {
@@ -23,6 +23,7 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/types/`, config)
         .then(res => setData(res.data))
+        .catch(console.error)
     },[]);
 
     // set questions
@@ -37,7 +38,6 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
         let data = [...questions];
         data[index][event.target.name] = event.target.value;
         if (event.target.value ==='CHECKBOX' || event.target.value ==='RADIO' ){
-            console.log(event.target.name,event.target.value) ;
             let options = [{option:''}];
         questions[index].options = options ;
         }

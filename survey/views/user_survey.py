@@ -1,9 +1,11 @@
 from rest_framework import viewsets, mixins, permissions
+from survey.models.submission_model import Submission
 from survey.models.survey_model import Survey
 from survey.serializers import surveyserializer
 from rest_framework.response import Response
 from survey.permissions import IsOwner
 from datetime import datetime, timezone
+from django.db.models import Count
 
 
 class UserSurveyView(mixins.ListModelMixin,
@@ -28,12 +30,14 @@ class UserSurveyView(mixins.ListModelMixin,
     def list(self, request, *args, **kwargs):
         query = self.queryset.all().exclude(
         deadline__lte=datetime.now(tz=timezone.utc)).order_by('-timecreated'
-    )
+    ).annotate(
+            total_submissions=Count('submissions')
+        )
         
         queryset = query.filter(owner=self.request.user) # self.request.user
         serializer = self.get_serializer(
             queryset, 
             many=True, 
-            fields=['id', 'name', 'deadline']
+            fields=['id', 'name', 'deadline', 'total_submissions']
         )
         return Response(serializer.data)

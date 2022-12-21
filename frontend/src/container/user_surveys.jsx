@@ -6,6 +6,8 @@ import {  Navigate, useNavigate } from "react-router-dom";
 import { edit } from "../actions/survey";
 import Modal from 'react-modal';
 import Datetime from 'react-datetime';
+import { style } from "../helper/style";
+import { Table } from "../helper/surveys";
 
 const UserSurveys = ({ isAuthenticated , edit , checkAuthenticated })  =>{
     //if not authenticated return to login page
@@ -14,20 +16,22 @@ const UserSurveys = ({ isAuthenticated , edit , checkAuthenticated })  =>{
     }
     let history = useNavigate ();
     const [ userSurveys, setUserSurvey ] = useState([]);
-    
-    // check token
-    useEffect(()  =>  {
-    checkAuthenticated();
-    },[]);
-    // call api for user surveys
-    useEffect(()  => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/survey/user/`, {headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': `JWT  ${localStorage.getItem('access')}`,
-        }})
-        .then(res => setUserSurvey(res.data))
-    },[checkAuthenticated]);
+        
+    useEffect(() => {
+        async function fetchData() {
+            // check token
+            await checkAuthenticated();
+            // call api for user surveys
+            await axios.get(`${process.env.REACT_APP_API_URL}/api/survey/user/`, {headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `JWT  ${localStorage.getItem('access')}`,
+            }})
+            .then(res => setUserSurvey(res.data))
+            .catch(console.error)
+        }
+        fetchData();
+    }, []);    
 
     const [surveyId, setId] = useState();
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -57,11 +61,11 @@ const UserSurveys = ({ isAuthenticated , edit , checkAuthenticated })  =>{
 
     //when user click save changes
     const editDeadline = (event, modalIndex) => {
+        console.log(newDate)
         event.preventDefault();
         closeModal();
         edit(newDate, surveyId, modalIndex , history, userSurveys);
     }
-
     return (<>
         <div className="jumbotron">
             <h2>Your active surveys</h2>
@@ -69,51 +73,13 @@ const UserSurveys = ({ isAuthenticated , edit , checkAuthenticated })  =>{
         <div className="container">
             {userSurveys.length > 0 ?
             (
-                <div className="container">
-            <table className="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Survey</th>
-                        <th scope="col">Deadline</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col"></th>    
-                    </tr>
-                </thead>
-                <tbody>
-                    {userSurveys.map((survey, index) =>(  
-                    <tr key= {index}>
-                        <th scope="row">{survey.name}</th>
-                        <td>{survey.deadline}</td>
-                        <td>
-                        <button className="btn btn-primary"   
-                        onClick={e=> openModal(e, survey.id, index)}
-                        >Edit survey's deadline</button>
-                        </td>
-                        <td>
-                            <button className="btn btn-primary"
-                            onClick={(event) => endSurvy(event, survey.id, index)} 
-                            >Close survey</button>
-                        </td>
-                    </tr> 
-                    ))}    
-                </tbody>
-            </table>
+            <div className="table-responsive">
+            <Table userSurveys= {userSurveys}
+            openModal={openModal}
+            endSurvy={endSurvy} />
             <Modal
             modalIndex={modalIndex}
-            style={{
-                content: {
-                    position: 'absolute',
-                    top: '100px',
-                    left: '40px',
-                    right: '40px',
-                    bottom: '100px',
-                    overflow: 'auto',
-                    WebkitOverflowScrolling: 'touch',
-                    borderRadius: '4px',
-                    outline: 'none',
-                    padding: '20px',
-                    border: 'none'
-                }}}
+            style={style}
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             ariaHideApp={false}
@@ -153,7 +119,7 @@ const UserSurveys = ({ isAuthenticated , edit , checkAuthenticated })  =>{
         </div>
     </>)
 }
-export const mapStateToProps = state => ({
+const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 export default connect(mapStateToProps, {  edit, checkAuthenticated })(UserSurveys); 

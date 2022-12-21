@@ -2,6 +2,7 @@ from survey.models.question_model import Question, QuestionOption
 from survey.models.survey_model import Survey
 from . import questionserializer, dynamicserializer
 from django.core.exceptions import ObjectDoesNotExist
+from rest_framework import serializers
 
 
 class SurveySerializer(dynamicserializer.DynamicFieldsModelSerializer):
@@ -9,10 +10,10 @@ class SurveySerializer(dynamicserializer.DynamicFieldsModelSerializer):
         many=True, 
         fields = ['id', 'type', 'text', 'options']
         )
-    
+    total_submissions = serializers.IntegerField(read_only=True)
     class Meta:
         model = Survey
-        fields = ['id', 'name', 'description','owner','timecreated', 'deadline', 'questions']
+        fields = ['id', 'name', 'description','owner','timecreated', 'deadline', 'questions', 'total_submissions']
         read_only_fields = ('owner',)
         
     def create(self, validated_data):

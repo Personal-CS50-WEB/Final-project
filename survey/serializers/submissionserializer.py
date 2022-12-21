@@ -4,7 +4,7 @@ from survey.models.submission_model import Submission
 from . import userserializer, surveyserializer, answerserializer, dynamicserializer
 from django.core.exceptions import PermissionDenied
 from datetime import timezone
-
+from django.core.exceptions import ObjectDoesNotExist
 
 class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
     survey_data = surveyserializer.SurveySerializer(
@@ -23,21 +23,21 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
     class Meta:
         model = Submission
         fields = '__all__'
+        read_only_fields = ('user',)
         
     def create(self, validated_data):
         answers_data = validated_data.pop('submission_answers')
         user = self.context['request'].user
         survey = validated_data.get('survey')
-    
+
         # check that user can't submit the same survey more than once or survey is expired
-        if Submission.objects.filter(survey=survey, user=user) or survey.deadline <= datetime.now(tz=timezone.utc):
+        if Submission.objects.filter(survey=survey, user=user) or survey.deadline <= datetime.datetime.now(tz=timezone.utc):
             raise PermissionDenied()
     
-        # create submtion record
-        submission = Submission.objects.create(**validated_data)
+        # # create submtion record
+        submission = Submission.objects.create(user=user, **validated_data)
         for answer_data in answers_data:
             question = answer_data.pop('question')
-
             # if question type is text
             if question.type == 'TEXT-ANSWER':
                 text_answers = answer_data.pop('text_answers', None)
@@ -65,6 +65,5 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
                         # create Answer record for each choise
                         answer = Answer.objects.create(submission=submission, question=question)
                         OptionAnswer.objects.create(answer=answer, **option_data)
-
         return submission 
     

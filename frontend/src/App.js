@@ -8,12 +8,13 @@ import CreateSurvey from "./container/create_survey";
 import Login from "./container/Login";
 import Signup from "./container/Signup";
 import Layout from "./hocs/layout";
-import CreateSubmission from "./container/create_submission";
+import ViewSubmission from "./container/submission";
 import Activate from "./container/Activate";
 import { Provider } from "react-redux";
 import store from "./store";
 import TakeSurvey from "./container/take_survey";
 import EditSurvey from "./container/edit";
+import SurveySubmissions from "./container/surveysubmissions";
 
 const App = () => (
   <Provider store={store}>
@@ -24,9 +25,10 @@ const App = () => (
           <Route  path="/signup" element={<Signup />} />
           <Route  path="/survey/user" element={<UserSurveys />} />
           <Route  path="/submission/user" element={<UserSubmissions />} />
+          <Route  path="/survey/submission/" element={<SurveySubmissions />} />
           <Route  path="/create_survey" element={<CreateSurvey />} />
           <Route  path="/survey/:id" element={<TakeSurvey />} />
-          <Route  path="/submission" element={<CreateSubmission />} />
+          <Route  path="/submission/:id" element={<ViewSubmission />} />
           <Route  path="/survey/edit/:id" element={<EditSurvey />} />
           <Route exact path='/activate/:uid/:token' compoelementnent={<Activate />} />
         </Routes>

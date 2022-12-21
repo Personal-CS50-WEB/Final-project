@@ -14,6 +14,7 @@ export default function ListSurveys(){
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/survey/`, config)
         .then(res => setSurvey(res.data))
+        .catch(console.error)
     },[]);
 
     return (<>

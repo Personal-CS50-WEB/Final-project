@@ -18,15 +18,14 @@ class OptionAnswerSerializer(serializers.ModelSerializer):
 class IntegerAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = IntegerAnswer
-        fields = ('integer')
+        fields = ('integer',)
 
 
 class AnswerSerializer(serializers.ModelSerializer):
-    
     options_answers = OptionAnswerSerializer(required=False, many=True)
     text_answers = TextAnswerSerializer(required=False)
     integer_answers = IntegerAnswerSerializer(required=False)
     class Meta:
         model = Answer
-        fields = ['integer_answers', 'text_answers', 'options_answers']
+        fields = ['integer_answers', 'text_answers', 'options_answers','question']
         
