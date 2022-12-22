@@ -59,17 +59,17 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
         }
         submissionAnswers[index].question = question.id
         if (question.type === 'TEXT-ANSWER'){
-            let text_answers = {
+            let text_answer = {
                 "text": ''
             }
-            submissionAnswers[index].text_answers = text_answers ;
-            submissionAnswers[index].text_answers.text = event.target.value;
+            submissionAnswers[index].text_answer = text_answer ;
+            submissionAnswers[index].text_answer.text = event.target.value;
         } else if (question.type === 'INTEGER' || question.type === 'SCORE'){
-            let integer_answers = {
+            let integer_answer = {
                 integer: null
             };
-            submissionAnswers[index].integer_answers = integer_answers;
-            submissionAnswers[index].integer_answers.integer = parseInt(event.target.value)
+            submissionAnswers[index].integer_answer = integer_answer;
+            submissionAnswers[index].integer_answer.integer = parseInt(event.target.value)
         } else if (question.type === 'RADIO'){
             let options_answers = [radio]
             console.log(options_answers)

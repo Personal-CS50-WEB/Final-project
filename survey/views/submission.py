@@ -20,7 +20,6 @@ class SubmissionView(mixins.CreateModelMixin,
         if self.action != "create":
             survey = self.request.GET.get('survey')
             survey_data = Survey.objects.get(pk=survey) 
-            print(survey_data.owner)
             if survey_data.owner != self.request.user:
                 raise PermissionDenied()
         return super().get_permissions()

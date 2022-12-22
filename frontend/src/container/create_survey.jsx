@@ -75,6 +75,9 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
         questions[index]['options'] = questions[index]['options'].concat(newO);
         setQuestions([...questions ]);
     }
+    const isValidDate = (date) =>{
+        return date > new Date();
+    }
     
     const removeOption = (event, index, i) => {
         event.preventDefault();
@@ -122,6 +125,9 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                 <div className="form-group">
                 <label>Deadline</label>
                 <Datetime
+                value={deadline}
+                isValidDate={isValidDate}
+                utc={true}
                 name ='deadline'
                 onChange={setDeadline}
                 />

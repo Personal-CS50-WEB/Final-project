@@ -14,7 +14,7 @@ class UserSubmissionView(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
-        query = self.queryset
+        query = self.queryset.all()
         queryset = query.filter(user=self.request.user) # self.request.user
         serializer = self.get_serializer(
             queryset, 
@@ -25,6 +25,6 @@ class UserSubmissionView(viewsets.ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = self.get_serializer(instance, fields= ['submission_answers'])
+        serializer = self.get_serializer(instance, fields= ['submission_answers', 'survey_data'])
         return Response(serializer.data)
     

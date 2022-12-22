@@ -10,15 +10,16 @@ class ExpiredSurveyViewSet(viewsets.ReadOnlyModelViewSet):
     """
     A simple ViewSet for viewing expired surveys.
     """
-    queryset = Survey.objects.all().filter(
-        deadline__lte=datetime.now(tz=timezone.utc)
-        ).annotate(
-            total_submissions=Count('submissions')
-        )
+    queryset = Survey.objects.all()
     serializer_class = surveyresultserializer.SurveyResultSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset =  self.queryset.all()
+        queryset =  self.queryset.all().filter(
+        deadline__lte=datetime.now(tz=timezone.utc)
+        ).annotate(
+            total_submissions=Count('submissions')
+        ).order_by('-deadline'
+    )
         serializer = self.get_serializer(
         queryset, 
             many=True, 

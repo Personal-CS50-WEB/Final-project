@@ -15,6 +15,8 @@ import store from "./store";
 import TakeSurvey from "./container/take_survey";
 import EditSurvey from "./container/edit";
 import SurveySubmissions from "./container/surveysubmissions";
+import Results from "./container/results";
+import Result from "./container/result";
 
 const App = () => (
   <Provider store={store}>
@@ -29,6 +31,8 @@ const App = () => (
           <Route  path="/create_survey" element={<CreateSurvey />} />
           <Route  path="/survey/:id" element={<TakeSurvey />} />
           <Route  path="/submission/:id" element={<ViewSubmission />} />
+          <Route  path="/results" element={<Results />} />
+          <Route  path="/survey/result/:id" element={<Result />} />
           <Route  path="/survey/edit/:id" element={<EditSurvey />} />
           <Route exact path='/activate/:uid/:token' compoelementnent={<Activate />} />
         </Routes>

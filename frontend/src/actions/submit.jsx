@@ -18,6 +18,7 @@ export  const submit = (survey, submission_answers, history) => async dispatch =
                 history("/submission/user", {state: res.data});
             }
         }catch(err){
+            console.log(err)
             alert(err);
         }
 };

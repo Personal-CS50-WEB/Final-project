@@ -9,7 +9,7 @@ import Datetime from 'react-datetime';
 import { style } from "../helper/style";
 import { Table } from "../helper/surveys";
 
-const UserSurveys = ({ isAuthenticated , edit , checkAuthenticated })  =>{
+const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
     //if not authenticated return to login page
     if (!isAuthenticated){
             return <Navigate to='/login' />
@@ -42,19 +42,19 @@ const UserSurveys = ({ isAuthenticated , edit , checkAuthenticated })  =>{
         setIsOpen(true);
         setId(id);
         setIndex(index);
+        setNewDate(userSurveys[index].deadline)
     }
     
     function closeModal() {
         setIsOpen(false);
     }
 
-    const endDate = new Date();
     const [newDate, setNewDate] = useState(new Date());
 
     // when user click end survey
     const endSurvy = (event, id, i) => {
         event.preventDefault();
-        edit(endDate, id);
+        edit(new Date(), id);
         userSurveys.splice(i, 1);
         setUserSurvey( [...userSurveys]);
     }
@@ -97,6 +97,11 @@ const UserSurveys = ({ isAuthenticated , edit , checkAuthenticated })  =>{
                     <div className="modal-body">
                         <label>Deadline</label>
                         <Datetime
+                        minDate={newDate}
+                        utc={true}
+                        isValidDate ={(date) =>{
+                            return date > new Date();
+                        }}
                         name ='newDate'
                         value={newDate}
                         onChange={ setNewDate }

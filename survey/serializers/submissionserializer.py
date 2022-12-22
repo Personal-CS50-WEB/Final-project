@@ -4,22 +4,22 @@ from survey.models.submission_model import Submission
 from . import userserializer, surveyserializer, answerserializer, dynamicserializer
 from django.core.exceptions import PermissionDenied
 from datetime import timezone
-from django.core.exceptions import ObjectDoesNotExist
+
 
 class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
     survey_data = surveyserializer.SurveySerializer(
         source='survey', 
         read_only=True, 
         fields=['name', 'id']
-        )
+    )
     user_data= userserializer.UserSerializer(
         source='user', 
         read_only=True
-        )
+    )
     submission_answers = answerserializer.AnswerSerializer(
         many=True, 
         required=True
-        )
+    )
     class Meta:
         model = Submission
         fields = '__all__'
@@ -40,7 +40,7 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
             question = answer_data.pop('question')
             # if question type is text
             if question.type == 'TEXT-ANSWER':
-                text_answers = answer_data.pop('text_answers', None)
+                text_answers = answer_data.pop('text_answer', None)
                 if text_answers:
                     # create record in Answer model for each question
                     answer = Answer.objects.create(submission=submission, question=question)
@@ -50,7 +50,7 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
             # if question type is integer or score
             elif question.type == 'INTEGER' or question.type == 'SCORE':
                 
-                integer_answers = answer_data.pop('integer_answers', None)
+                integer_answers = answer_data.pop('integer_answer', None)
                 if integer_answers:
                     # create record in Answer model for each question
                     answer = Answer.objects.create(submission=submission, question=question)
@@ -61,9 +61,9 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
             else:
                 options_answer = answer_data.pop('options_answers', None)
                 if options_answer:
+                    answer = Answer.objects.create(submission=submission, question=question)
                     for option_data in options_answer:
                         # create Answer record for each choise
-                        answer = Answer.objects.create(submission=submission, question=question)
                         OptionAnswer.objects.create(answer=answer, **option_data)
         return submission 
     

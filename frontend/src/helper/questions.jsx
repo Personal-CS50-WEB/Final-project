@@ -49,8 +49,7 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
                         placeholder='Write your answer' 
                         onChange ={onChange}
                         />
-                        </div>
-                    )
+                    </div>)
                 } else if (['SCORE', 'INTEGER'].indexOf(question.type)> -1) {
                     return (<div className="form-group" key={i}>
                         <p className="font-weight-bold" value= {question.id}>{question.text}</p>
@@ -62,17 +61,17 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
                         onChange ={onChange} 
                         required
                         />
-                        </div>
-                    )
+                    </div>)
                 } else if (question.type ==="RADIO") {
                     return (<>
                         <p className="font-weight-bold" value= {question.id}>{question.text}</p>
                         {question.options.length > 0 ?(
                             question['options'].map((option, index) => {
                                 return(
-                                <div className="radio"key={option.id} >
-                                <label>
+                                <div className="form-check" key={option.id} >
+                                <label className="form-check-label">
                                     <input
+                                    className="form-check-input"
                                     checked={option.id == options.option}
                                     type="radio"
                                     value={option.id}
@@ -84,8 +83,7 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
                             })
                         ):(
                             <p></p>
-                        )}
-                        </>                   
+                        )} </>                   
                     )
                 } else {
                     return (<>
@@ -93,9 +91,10 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
                         {question.options.length > 0 ?(
                             question['options'].map((option, optionIndex) => {
                                 return(
-                                <div className="radio"key={optionIndex}>
-                                <label>
+                                <div className="form-check" key={optionIndex}>
+                                <label className="form-check-label">
                                     <input
+                                    className="form-check-input" 
                                     type="checkbox"
                                     value={option.id}
                                     checked={checkedState[optionIndex]}
@@ -107,8 +106,7 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
                             })
                         ):(
                             <p></p>
-                        )}
-                        </>
+                        )}</>
                     )
                 }
             })()  

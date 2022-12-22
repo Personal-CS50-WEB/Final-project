@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 
 const Navbar = ({ logout, isAuthenticated }) => {
-    
-
     const guestLinks = () => (
         <Fragment>
             <Link className="nav-item nav-link mr-sm-2" to="/login">Login</Link>
@@ -18,21 +16,15 @@ const Navbar = ({ logout, isAuthenticated }) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link className="navbar-brand" to="/">Survey</Link>
-            <button 
-            className="navbar-toggler" type="button" 
-            data-toggle="collapse" data-target="#navbarNavAltMarkup" 
-            aria-controls="navbarNavAltMarkup" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-        </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-            <Link className="nav-item nav-link" to="create_survey">Create survey</Link>
-            <Link className="nav-item nav-link" to="/survey/user">Your surveys</Link>
-            <Link className="nav-item nav-link mr-sm-2" to="/submission/user">Your submissions</Link>
-            {isAuthenticated ? authLinks() : guestLinks()}
+                <Link className="nav-item nav-link" to="create_survey">Create survey</Link>
+                <Link className="nav-item nav-link" to="/survey/user">Your surveys</Link>
+                <Link className="nav-item nav-link" to="/submission/user">Your submissions</Link>
+                <Link className="nav-item nav-link" to="/results/">See results</Link>               
             </div>
         </div>
+        {isAuthenticated ? authLinks() : guestLinks()}
     </nav>
     );
 }

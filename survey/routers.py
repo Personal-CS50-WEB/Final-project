@@ -3,7 +3,7 @@ from survey.views import result, user_survey, user_submission, submission, surve
 
 router = routers.DefaultRouter()
 
-router.register(r'submission/user', user_submission.UserSubmissionView, 'usersubmissions')
+router.register(r'user/submission', user_submission.UserSubmissionView, 'usersubmissions')
 router.register(r'submission', submission.SubmissionView, 'submission')
 router.register(r'survey/user', user_survey.UserSurveyView, 'usersurveys')
 router.register(r'survey', survey.SurveyView, 'survey')

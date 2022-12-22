@@ -14,11 +14,11 @@ class OptionAnswer(models.Model):
 
 
 class TextAnswer(models.Model):
-    answer = models.OneToOneField("Answer", on_delete=models.CASCADE, related_name="text_answers")
+    answer = models.OneToOneField("Answer", on_delete=models.CASCADE, related_name="text_answer")
     text = models.TextField()
 
 
 class IntegerAnswer(models.Model):
-    answer = models.OneToOneField("Answer", on_delete=models.CASCADE, related_name="integer_answers")
+    answer = models.OneToOneField("Answer", on_delete=models.CASCADE, related_name="integer_answer")
     integer = models.IntegerField()
     
