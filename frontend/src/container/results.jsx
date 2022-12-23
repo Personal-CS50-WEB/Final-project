@@ -20,22 +20,19 @@ export default function Results(){
     return (<>
         <div className="jumbotron">
             <h2>Closed surveys</h2>
-            </div>
+        </div>
         <div className="container">
             {results.length > 0 ?
-            (
-                <div className="container">
-                    {results.map((survey, i) =>(
-                        <div className="container" key={i}>
-                        <SurveyCard  survey={survey}/>
+            (<div className="container">
+                {results.map((survey, i) =>(
+                    <div className="container" key={i}>
+                        <SurveyCard survey={survey}/>
                         <br></br>
-                        </div>
-                    ))}
-                </div> 
+                    </div>
+                ))}
+            </div> 
             ):(
-            <div className="empty">
-            
-            </div>
+            <div className="empty"></div>
             )}
         </div>
     </>)

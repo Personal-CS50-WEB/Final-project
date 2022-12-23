@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import UserSurveys from "./container/user_surveys";
 import { Route, Routes } from "react-router-dom"
 import ListSurveys from "./container/home";

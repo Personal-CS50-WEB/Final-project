@@ -72,7 +72,7 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
                                 <label className="form-check-label">
                                     <input
                                     className="form-check-input"
-                                    checked={option.id == options.option}
+                                    checked={option.id === parseInt(options.option)}
                                     type="radio"
                                     value={option.id}
                                     onChange={(e=> handleRadio(e))}

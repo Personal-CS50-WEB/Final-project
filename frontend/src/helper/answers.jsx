@@ -22,8 +22,7 @@ export const Answer = ({answer}) => {
                     <h5 className="card-title">Answer:</h5>
                     <p className="card-text">{answer.options_answers[0].option}</p>
                 </>)
-            }
-            else {
+            } else {
                 return (<>
                     <h5 className="card-title">Answers:</h5>
                     <ul className="list-group list-group-flush"> 
@@ -33,8 +32,7 @@ export const Answer = ({answer}) => {
                     </ul>
                 </>)
             }
-        })()  
-    }    
-    </div>
+        })()}    
+        </div>
     </div>);
 }

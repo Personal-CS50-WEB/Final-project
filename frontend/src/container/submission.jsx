@@ -24,7 +24,7 @@ const ViewSubmission = ({ isAuthenticated,  checkAuthenticated }) => {
                 'Accept': 'application/json',
                 'Authorization': `JWT  ${localStorage.getItem('access')}`,
             }})
-            .then(res => (setSubmission(res.data), console.log(res.data)))
+            .then(res => setSubmission(res.data))
             .catch(console.error)
         }
         fetchData();
