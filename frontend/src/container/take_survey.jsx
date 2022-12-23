@@ -37,56 +37,66 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
         SetSubmissionAnswers(submissionAnswers.push(newfield));
     }
     let radio;
-    const handleCallback = (childData) =>{
-        console.log(childData);
-        radio = childData
     
+    // function to get radio question  data from child
+    const handleCallback = (childData) =>{
+        radio = childData
     }
+
     let checkbox;
+     // function to get checkbox question  data from child
     const  handleCallbackCheckbox = (childData) =>{
-        console.log(childData);
         checkbox = childData;
     }
 
     const handleFormChange = (i, event, question) => {
         let index;
-        if (submissionAnswers.findIndex(answer => answer.question === question.id) === -1 && submissionAnswers[0]['question'] !== ''){
+        // if not first record or question id exist in submission answers 
+        // : add new answer to submissionAnswers, set data index
+        if (submissionAnswers.findIndex(answer => answer.question === question.id) === -1 
+        && submissionAnswers[0]['question'] !== ''){
             addAnswer();
             index = submissionAnswers.length -1;
+
+        // if answer exist get the index
         } else {
             index = submissionAnswers.findIndex(answer => answer.question === question.id)
             if(index === -1){ index = 0;}
         }
         submissionAnswers[index].question = question.id
+
+        // handle text answer
         if (question.type === 'TEXT-ANSWER'){
             let text_answer = {
                 "text": ''
             }
             submissionAnswers[index].text_answer = text_answer ;
             submissionAnswers[index].text_answer.text = event.target.value;
+
+        // handle number answer
         } else if (question.type === 'INTEGER' || question.type === 'SCORE'){
             let integer_answer = {
                 integer: null
             };
             submissionAnswers[index].integer_answer = integer_answer;
-            submissionAnswers[index].integer_answer.integer = parseInt(event.target.value)
+            submissionAnswers[index].integer_answer.integer = parseInt(event.target.value);
+
+        // handle radio answer
         } else if (question.type === 'RADIO'){
-            let options_answers = [radio]
-            console.log(options_answers)
-            submissionAnswers[index].options_answers = options_answers;
+            let options_answers = [radio];
+            submissionAnswers[index].options_answers = [radio];
+
+        // handle checkbox answer
         } else {
-            let options_answers = checkbox
-            submissionAnswers[index].options_answers = options_answers; 
+            let options_answers = checkbox;
+            submissionAnswers[index].options_answers = checkbox; 
         }
-        SetSubmissionAnswers([...submissionAnswers])
-        console.log(submissionAnswers)
+        SetSubmissionAnswers([...submissionAnswers]);
     }
 
     const onSubmit = e => {
         e.preventDefault();
-        console.log(submissionAnswers)
         submit(id, submissionAnswers, history);
-        console.log(Survey)
     }
     return (
     <div className="container mt-5">
@@ -111,9 +121,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
                                 i={i} />
                             </div>)
                         })
-                    ):(
-                        <p>No questions found.</p>
-                    )}
+                    ):(<p>No questions found.</p>)}
                 <button 
                 className="btn btn-primary" 
                 type="submit">
@@ -122,10 +130,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
                 </form>
                 <p className="font-weight-light">Expires at: {Survey.deadline}</p>
             </div>
-            ):(
-            <div className="empty">
-            </div>
-            )}
+            ):(<div className="empty"></div>)}
         </div>
     </div>)
 }

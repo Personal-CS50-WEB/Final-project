@@ -11,6 +11,7 @@ export default function Results(){
         }
     };
 
+    // call api to get closed surveys
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/expiredSurvey/`, config)
         .then(res => setResults(res.data))

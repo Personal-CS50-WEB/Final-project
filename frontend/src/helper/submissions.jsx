@@ -31,7 +31,6 @@ export const Table = ({submissions}) => {
                         >{submission.survey_data.name}
                         </Link>
                     </td>)}
-                    
                     <td >{submission.timecreated}</td>
                 </tr> 
                 ))}    

@@ -16,6 +16,7 @@ import{
 } from './types';
 
 export const checkAuthenticated = () => async dispatch => {
+    // if access token call api to verify
     if (localStorage.getItem('access')) {
         const config = {
             headers: {
@@ -35,6 +36,7 @@ export const checkAuthenticated = () => async dispatch => {
                         type: AUTHENTICATED_FAIL
                     });
                 }
+        // if token expired call api to refresh token
         } catch (err) {
             try{
                 const data = JSON.stringify({ refresh: localStorage.getItem('refresh') });
@@ -62,6 +64,7 @@ export const checkAuthenticated = () => async dispatch => {
 };
 
 export const loud_user = () => async dispatch => {
+    // call api to get user data
     if (localStorage.getItem('access')){
         const config = {
             headers: {

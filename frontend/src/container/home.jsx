@@ -11,6 +11,7 @@ export default function ListSurveys(){
         }
     };
 
+    // call api for active surveys
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/survey/`, config)
         .then(res => setSurvey(res.data))

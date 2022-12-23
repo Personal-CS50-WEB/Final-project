@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { TextQuestion } from "./text_question";
+import { RadioQuestion, CheckboxQuestion } from "./choice_question";
+import { NumQuestion } from "./num_question";
 
 export const Question = ({question , i, onChange, parentCallback, handleCallbackCheckbox  }) => {
 
@@ -41,72 +44,26 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
         <div className="form-group">
             {(() => {
                 if(question.type ==="TEXT-ANSWER") {
-                    return (<div className="form-group" key={i}>
-                        <p className="font-weight-bold" value= {question.id}>{question.text}</p>
-                        <textarea className='form-control'
-                        name='text'
-                        required
-                        placeholder='Write your answer' 
-                        onChange ={onChange}
-                        />
-                    </div>)
+                    return (
+                    <TextQuestion question={question}
+                    onChange={onChange} i={i}/>
+                    )
                 } else if (['SCORE', 'INTEGER'].indexOf(question.type)> -1) {
-                    return (<div className="form-group" key={i}>
-                        <p className="font-weight-bold" value= {question.id}>{question.text}</p>
-                        <input className='form-control'
-                        type="number"
-                        min={question.type ==="SCORE" ? (1): (null)}
-                        max={question.type ==="SCORE" ? (10): (null)}
-                        name='integer_answers'
-                        onChange ={onChange} 
-                        required
-                        />
-                    </div>)
+                    return (
+                        <NumQuestion question={question}
+                        onChange={onChange} i={i} />
+                    )
                 } else if (question.type ==="RADIO") {
-                    return (<>
-                        <p className="font-weight-bold" value= {question.id}>{question.text}</p>
-                        {question.options.length > 0 ?(
-                            question['options'].map((option, index) => {
-                                return(
-                                <div className="form-check" key={option.id} >
-                                <label className="form-check-label">
-                                    <input
-                                    className="form-check-input"
-                                    checked={option.id === parseInt(options.option)}
-                                    type="radio"
-                                    value={option.id}
-                                    onChange={(e=> handleRadio(e))}
-                                    />
-                                {option.option}
-                                </label>
-                                </div>)
-                            })
-                        ):(
-                            <p></p>
-                        )} </>                   
+                    return (
+                        <RadioQuestion question={question}
+                        handleRadio={handleRadio}
+                        options={options}/>                  
                     )
                 } else {
-                    return (<>
-                        <p className="font-weight-bold" value= {question.id}>{question.text}</p>
-                        {question.options.length > 0 ?(
-                            question['options'].map((option, optionIndex) => {
-                                return(
-                                <div className="form-check" key={optionIndex}>
-                                <label className="form-check-label">
-                                    <input
-                                    className="form-check-input" 
-                                    type="checkbox"
-                                    value={option.id}
-                                    checked={checkedState[optionIndex]}
-                                    onChange={((e) => handleChecked(e, optionIndex))}
-                                    />
-                                {option.option}
-                                </label>
-                                </div>)
-                            })
-                        ):(
-                            <p></p>
-                        )}</>
+                    return (
+                        <CheckboxQuestion question={question}
+                        handleChecked={handleChecked}
+                        checkedState={checkedState}/>
                     )
                 }
             })()  

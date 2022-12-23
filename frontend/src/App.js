@@ -14,7 +14,6 @@ import Activate from "./container/Activate";
 import { Provider } from "react-redux";
 import store from "./store";
 import TakeSurvey from "./container/take_survey";
-import EditSurvey from "./container/edit";
 import SurveySubmissions from "./container/surveysubmissions";
 import Results from "./container/results";
 import Result from "./container/result";
@@ -34,13 +33,11 @@ const App = () => (
           <Route  path="/submission/:id" element={<ViewSubmission />} />
           <Route  path="/results" element={<Results />} />
           <Route  path="/survey/result/:id" element={<Result />} />
-          <Route  path="/survey/edit/:id" element={<EditSurvey />} />
           <Route exact path='/activate/:uid/:token' compoelementnent={<Activate />} />
         </Routes>
     </Layout>
   </Provider>
 
   );
-
 
 export default App;

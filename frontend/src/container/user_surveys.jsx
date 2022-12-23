@@ -7,7 +7,7 @@ import { edit } from "../actions/survey";
 import Modal from 'react-modal';
 import Datetime from 'react-datetime';
 import { style } from "../helper/style";
-import { Table } from "../helper/surveys";
+import { Table } from "../helper/user_surveys";
 
 const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
     //if not authenticated return to login page
@@ -61,7 +61,6 @@ const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
 
     //when user click save changes
     const editDeadline = (event, modalIndex) => {
-        console.log(newDate)
         event.preventDefault();
         closeModal();
         edit(newDate, surveyId, modalIndex , history, userSurveys);

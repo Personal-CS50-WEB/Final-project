@@ -7,6 +7,7 @@ import { Table } from "../helper/submissions";
 
 const  SurveySubmissions = ({ isAuthenticated, checkAuthenticated })  => {
 
+    // redirect user tto login page if not authenticated
     if (!isAuthenticated){
         return <Navigate to='/login' />
     }
