@@ -3,7 +3,7 @@ import axios from 'axios';
 import { checkAuthenticated } from "../actions/auth"
 import { connect } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
-import { Answer } from "../helper/answers";
+import { Answer } from "../helper/submissions/answers";
 
 const ViewSubmission = ({ isAuthenticated,  checkAuthenticated }) => {
     const { id } = useParams();

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import {SurveyCard} from "../helper/surveys";
+import {SurveyCard} from "../helper/list_surveys/surveys";
 
 export default function ListSurveys(){
     const [ surveys, setSurvey ] = useState([]);
@@ -24,19 +24,14 @@ export default function ListSurveys(){
             </div>
         <div className="container">
             {surveys.length > 0 ?
-            (
-                <div className="container">
-                    {surveys.map((survey, i) =>(
-                        <div className="container" key={i}>
+            (<div className="container">
+                {surveys.map((survey, i) =>(
+                    <div className="container" key={i}>
                         <SurveyCard  survey={survey}/>
                         <br></br>
-                        </div>
-                    ))}
-                </div> 
-            ):(
-            <div className="empty">
-            
-            </div>
+                    </div>
+                ))}
+            </div> ):(<div className="empty"></div>
             )}
         </div>
     </>)

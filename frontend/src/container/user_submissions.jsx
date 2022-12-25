@@ -3,7 +3,7 @@ import axios from 'axios';
 import { checkAuthenticated } from "../actions/auth"
 import { connect } from "react-redux";
 import {  Navigate  } from "react-router-dom";
-import { Table } from "../helper/submissions";
+import { Table } from "../helper/submissions/submissions";
 
 const  SurveySubmissions = ({ isAuthenticated, checkAuthenticated })  => {
 

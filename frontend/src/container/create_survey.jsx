@@ -5,13 +5,15 @@ import axios from 'axios';
 import { connect } from "react-redux";
 import  { create } from "../actions/survey";
 import { Navigate, useNavigate  } from "react-router-dom";
+import { QuestionFields } from "../helper/create_survey/question_fields";
+import { SurveyInfoFields } from "../helper/create_survey/survey_info";
 
 const CreateSurvey = ({ create, isAuthenticated  }) => {
     if(!isAuthenticated){
         return <Navigate to='/login' />
     }
     let history = useNavigate();
-    // set the questio;n types
+    // set the question types
     const [questionsType, setData] = useState([]);
     const config = {
         headers: {
@@ -26,7 +28,7 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
         .catch(console.error)
     },[]);
 
-    // set questions
+    // set questions type and text
     const [questions, setQuestions] = useState([
         { text: '',
         type: '',
@@ -44,17 +46,14 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
         else if (['TEXT-ANSWER', 'INTEGER', 'SCORE'].indexOf(event.target.value)> -1){
             delete questions[index].options;
         }
-        
         setQuestions([...questions]);
     }
     // handle options 
     const handleOptionChange = (index,i, event) => {
-        questions[index]['options'].text =  event.target.value;
-        let questionOptions = questions[index]['options'];
-        questionOptions[i][event.target.name] = event.target.value ;
+        questions[index].options[i].option =  event.target.value;
         setQuestions([...questions]);
     }
-
+    // add question to questions
     const addQuestion = () => {
         let newfield = { 
             text: '', 
@@ -63,29 +62,32 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
         setQuestions([...questions, newfield]);
     }
 
-    const removeQuestion = (index) => {
+    // remove question from questions
+    const removeQuestion = (e, index) => {
         let data = [...questions];
         data.splice(index, 1);
-        setQuestions(data);
+        setQuestions([...data]);
     }
-
+    // add option from question options
     const addOption = (event, index) => {
         event.stopPropagation();
         let newO = {option:''};
         questions[index]['options'] = questions[index]['options'].concat(newO);
         setQuestions([...questions ]);
     }
+
+    // remove option from question options
+    const removeOption = (event, index, i) => {
+        event.preventDefault();
+        questions[index].options.splice(i, 1);
+        setQuestions([...questions])
+    }
+
     const isValidDate = (date) =>{
         return date > new Date();
     }
-    
-    const removeOption = (event, index, i) => {
-        event.preventDefault();
-        let data = [...questions[index].options];
-        data.splice(i, 1);
-        setQuestions([...questions])
-    }
-     // survey deadline
+
+    // handle survey deadline
     const [deadline, setDeadline] = useState(new Date());
     const [inputFields, setInputFields] = useState({
         name: '',
@@ -98,30 +100,12 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
         e.preventDefault();
         create(name, description, deadline, questions, history);
     };
-    return (
-        <div className="container mt-5">
+    return (<div className="container mt-5">
         <h1>Create survey</h1>
             <form onSubmit={e => onSubmit(e)}>
-                <div className="form-group">
-                <label>Survey name</label>
-                    <input className="form-control"
-                    type='text'
-                    name='name'
-                    placeholder='Survey name'
-                    value={name}
-                    onChange={e => onChange(e)}
-                    required
-                />
-                </div>
-                <div className="form-group">
-                    <label>Description</label>
-                    <textarea className='form-control'
-                    name='description'
-                    placeholder='Description' 
-                    value={description} 
-                    onChange={e => onChange(e)}
-                    />
-                </div>
+                <SurveyInfoFields name={name}
+                description={description}
+                onChange={onChange} />
                 <div className="form-group">
                 <label>Deadline</label>
                 <Datetime
@@ -133,81 +117,16 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                 />
                 </div>
                 {questions.map((input, index) => {
-                    return (
-                        <div className="form" key={index}>
-                            <div className="form-row">
-                            <div className="col">
-                            <select
-                            className="custom-select mr-sm-2" 
-                            id="inlineFormCustomSelect"
-                            name='type'
-                            defaultValue="Select"
-                            onChange={event =>(handleFormChange(index, event))}>
-                                <option
-                                value="Select" 
-                                disabled
-                                >Select type</option>
-                                {questionsType.length !== 0 ? (questionsType.map((option) => {
-                                    return(<option key={option.key}
-                                        name='type' value={option.key}>
-                                        {option.value}
-                                        </option>)
-                                }))
-                                :
-                                ( <option>Data Loading...</option>)}
-                            </select>
-                        </div>
-                        <div className="col-7">
-                            <input
-                            className='form-control'
-                            
-                            name='text'
-                            placeholder='Question'
-                            onChange={event => handleFormChange(index, event)}
-                            />
-                        </div>
-                        <button 
-                        className="btn btn-outline-primary mb-2"
-                        type="button"
-                        onClick={() => removeQuestion(index)}>Remove
-                        </button>
-                        </div>
-                        { ['CHECKBOX', 'RADIO'].indexOf(input.type)> -1 ? (<>
-                        <div className="form-group">
-                            {input['options'].map((option, i) => {
-                                return (
-                                    <div className="form-row" key={i}>
-                                    
-                                        <div className=" col">
-                                            <input
-                                            className="form-control"
-                                            type='text'
-                                            name='option'
-                                            placeholder='Question option'
-                                            onChange={event =>(handleOptionChange(index,i, event))}
-                                            required />
-                                            <br></br>
-                                        </div>
-                                        <button 
-                                        className="btn btn-outline-primary mb-2"
-                                        type="button"
-                                        onClick={(event) => removeOption(event, index, i )}
-                                        >Remove option</button>
-                                    </div>)
-                                })
-                            }
-                        </div>
-                            <button 
-                            className="btn btn-outline-primary mb-2" 
-                            type="button"
-                            onClick={(event) => addOption(event, index )}
-                            >Add option..</button>
-                        </>
-                        )
-                        : 
-                        (console.log(input)) }
-                        </div> 
-                    )
+                    return (<div key={index}>
+                        <QuestionFields input={input}
+                        index={index}
+                        handleFormChange={handleFormChange}
+                        questionsType={questionsType}
+                        removeQuestion={removeQuestion}
+                        handleOptionChange={handleOptionChange}
+                        removeOption={removeOption}
+                        addOption={addOption}/> 
+                    </div>)
                     })}
                     <button 
                     className="btn btn-outline-primary" 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { submit } from "../actions/submit";
 import { Navigate, useParams, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { Question } from "../helper/questions";
+import { Question } from "../helper/take_survey/questions";
 
 const  TakeSurvey = ({ isAuthenticated, submit }) => {
     const { id } = useParams();
@@ -83,12 +83,10 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
 
         // handle radio answer
         } else if (question.type === 'RADIO'){
-            let options_answers = [radio];
             submissionAnswers[index].options_answers = [radio];
 
         // handle checkbox answer
         } else {
-            let options_answers = checkbox;
             submissionAnswers[index].options_answers = checkbox; 
         }
         SetSubmissionAnswers([...submissionAnswers]);

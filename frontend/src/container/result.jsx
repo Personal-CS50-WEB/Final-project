@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import { Question } from "../helper/result";
+import { Question } from "../helper/result/result";
 
 export default function Result(){
     const { id } = useParams();
@@ -23,23 +23,20 @@ export default function Result(){
 
     return (<div className="container mt-5">
         {result? (<>
-        <div className="container">
-            <h1>{result.name}</h1>
-            <p className="font-weight-normal">{result.description}</p>
-            <h3 className="font-weight-normal">Total submissions: {result.submissions.length}</h3>
-            <p className="font-weight-light">closed at: {result.deadline}</p>
-        </div >
-        <div className="container">
-        {result.questions.map((question, i) =>(
-            <div className="container" key={i}>
-                <Question question={question} />
-                <br></br>
+            <div className="container">
+                <h1>{result.name}</h1>
+                <p className="font-weight-normal">{result.description}</p>
+                <h3 className="font-weight-normal">Total submissions: {result.submissions.length}</h3>
+                <p className="font-weight-light">closed at: {result.deadline}</p>
+            </div >
+            <div className="container">
+            {result.questions.map((question, i) =>(
+                <div className="container" key={i}>
+                    <Question question={question} />
+                    <br></br>
+                </div>
+            ))}
             </div>
-        ))}
-        </div>
-        </>
-        ):(
-            null
-        )}
+        </>):(null)}
     </div>)
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import {SurveyCard} from "../helper/surveys";
+import {SurveyCard} from "../helper/list_surveys/surveys";
 
 export default function Results(){
     const [ results, setResults ] = useState([]);

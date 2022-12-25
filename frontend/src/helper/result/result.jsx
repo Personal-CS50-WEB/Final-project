@@ -19,8 +19,9 @@ export const Question = ({question}) => {
                         <NumberAnswer question={question} key={question.id} />
                     )
                 } else {
-                    return (
-                    <ChoiceAnswer question={question}/>)
+                    return (<div key={question.id}>
+                    <ChoiceAnswer question={question}/>
+                    </div>)
                 }
             })()}
         </div>

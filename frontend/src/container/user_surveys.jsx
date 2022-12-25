@@ -6,8 +6,9 @@ import {  Navigate, useNavigate } from "react-router-dom";
 import { edit } from "../actions/survey";
 import Modal from 'react-modal';
 import Datetime from 'react-datetime';
-import { style } from "../helper/style";
-import { Table } from "../helper/user_surveys";
+import { style } from "../helper/user_surveys/style";
+import { Table } from "../helper/user_surveys/user_surveys";
+import { ModalForm } from "../helper/user_surveys/modal_form";
 
 const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
     //if not authenticated return to login page
@@ -83,37 +84,11 @@ const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
             onRequestClose={closeModal}
             ariaHideApp={false}
             >
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title">Edit deadline</h5>       
-                        <button type="button"
-                        className="close"   
-                        data-dismiss="modal" aria-label="Close"
-                        onClick={closeModal}>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        <label>Deadline</label>
-                        <Datetime
-                        minDate={newDate}
-                        utc={true}
-                        isValidDate ={(date) =>{
-                            return date > new Date();
-                        }}
-                        name ='newDate'
-                        value={newDate}
-                        onChange={ setNewDate }
-                        />
-                    </div>
-                    <div className="modal-footer">
-                        <button 
-                        onClick={e => editDeadline(e, modalIndex) }
-                        className="btn btn-primary">
-                            Save changes
-                        </button>
-                    </div>
-                </div>
+                <ModalForm closeModal={closeModal}
+                newDate={newDate}
+                setNewDate={setNewDate}
+                editDeadline={editDeadline}
+                modalIndex={modalIndex}/>
             </Modal>
             </div>
             ):(

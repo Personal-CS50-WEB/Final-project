@@ -47,7 +47,7 @@ export const ChoiceAnswer = ({question }) => {
                                     variant="info"/>
                                 </div>
                                 <div className="col">
-                                    {option.option} : 0
+                                    (0)
                                 </div>
                             </div>
                         </div>
