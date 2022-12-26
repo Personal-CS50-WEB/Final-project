@@ -69,7 +69,12 @@
 ### **UI:**
  ### **react** : 
 
+## Possible improvements
 
+- Have categories for the survey that could sort surveys.
+-  Do pagination.
+- Add unit tests for the project.
+- Notificaitons to survey creator by sending email about survey result when survey closes.
 
 ## How to launch application
 
