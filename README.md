@@ -28,7 +28,9 @@
 
 **The project consists of:**
 #### **Database layer**:
- Using django models this project has nine models:
+
+ **Using django models this project has nine models:**
+ 
  - User model : Contains user information like id, username, password, email.
  - Survey model: Contains survey information like id, survey creator, name and description of the survey, time created and deadline.
  - Question model : Has survey as foreign key, type of the question and the question text.
@@ -52,7 +54,6 @@
    - SubmissionSerializer:  Contains serializer class for submission model wich is nested dynamic serializer contains submission answers field as a child,     SubmissionSerializer contains create function that handels create new record in Submission model and it's child Answer model and depending on question type (radio, checkbox, text, integer or score) new record in TextAnswer or IntegerAnswer or OptionAnswer will be created.
    
 
-
 - **views files**: Containts the views files.
 
   - SurveyView: using DRF viewset class SurveyView is read only class that allows to list active surveys or retrive one survey using surveyserializer as              serializer_class.
@@ -65,6 +66,12 @@
 
 - **urls.py file** : Containts the APIs paths.
 - **routers.py file** : Containts the routes for every view.
+
+
+- **Authentication**:
+   - using djoser for Django Rest Framework views to handle basic actions such as registration, login, logout and account activation by using endpoints djoser provides.
+   - using JSON Web Token Authentication .
+   - users login or reqister by email instead on username.
 
 ### **UI:**
  ### **react** : 
