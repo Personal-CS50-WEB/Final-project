@@ -55,9 +55,16 @@
 
 - **views files**: Containts the views files.
 
+  - SurveyView: using DRF viewset class SurveyView is read only class that allows to list active surveys or retrive one survey using surveyserializer as              serializer_class.
+  - SubmissionView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, class that allows to create new record in Submission model      and list submissions for one survey using SubmissionSerializer as serializer_class.
+  - ExpiredSurveyViewSet: using DRF viewset class SurveyView is read only class that allows to list closed surveys or retrive one survey using surveyresultserializer      as serializer_class.
+  - UserSubmissionView: using DRF mixins class SubmissionView is read only class that allows to  list submissions for surveys the user submit and  retrive one    submission  using SubmissionSerializer as serializer_class and IsAuthenticated as permission_classes.
+  - UserSurveyView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, class that allows user who is   Authenticated to create new  record in Survet model, list that user surveys and update deadline for surveys (using IsOwner permission class) using SurveySerializer as serializer_class.
+  - TypesAPIView : view allows to get question types.
 
-the Api used to get/delete/update information from models.py file.
-- urls.py file : Containts the routes and apis paths.
+
+- **urls.py file** : Containts the APIs paths.
+- **routers.py file** : Containts the routes for every view.
 
 ### **UI:**
  ### **react** : 
