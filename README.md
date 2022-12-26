@@ -40,8 +40,21 @@
  - OptionAnswer model : Has Answer as foreign key and the option answers.
 
 ### **Business Layer:**
-- views folder: Containts the views files.
-- serializers : Containts serializers files for the models.
+- **serializers files** : Containts serializers files for the models:
+
+   - UserSerializer: Contains serializer class for user model.
+   - AnswerSerializer: Containts serializers classes for the answer types, text, integer and option answer in addition to answer serializers for answer model wich           contains the text answer, integer answer, option answers and question as childs in the nested serializer.
+   - QuestionSerialezer: Containts serializers classes for option question and question class wich is nested daynamic serializer contains all question model fields           plus options and answers as childs.
+   - SurveySerializer: Contains serializer class for survey model wich is nested dynamic serializer contains questions field as a child and total submissions as a read       only field.
+     SurveySerializer used in survey view and user survey view as it is dynamic and each view could use the fields that serve each purpose.
+     SurveySerializer contains create function that handels create new record in Survey model and it's child (Question model and  QuestionOption if the type of the         question require that). SurveySerializer also containt update function that allows to update just the survey deadline field.
+   - SurveyResultSerializer: Contains serializer class for survey model wich is nested dynamic serializer contains submissions and questions fileds as childs of the         parent class, using that serializer in result view to represent the closed survey data.
+   - SubmissionSerializer:  Contains serializer class for submission model wich is nested dynamic serializer contains submission answers field as a child,     SubmissionSerializer contains create function that handels create new record in Submission model and it's child Answer model and depending on question type (radio, checkbox, text, integer or score) new record in TextAnswer or IntegerAnswer or OptionAnswer will be created.
+   
+
+
+- **views files**: Containts the views files.
+
 
 the Api used to get/delete/update information from models.py file.
 - urls.py file : Containts the routes and apis paths.
