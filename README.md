@@ -76,13 +76,13 @@
 ### **UI:**
  ### **react** : 
  **src folder**:
-      - **app.js**: Has all main componants as routes.
-      - **app.css**: Contains style for the pages.
-      - **Container folder**: has jsx files for main componants.
-      -  **Helper folder:** has helper jsx files that used in main componants.
-      -  **actions folder**: has jsx files that contains functions used in main componants.
-      -  **Componants folder**: has jsx file for navbar componant.
-      -  **hocs folder:** Contains layout function that do authentication check.
+- **app.js**: Has all main componants as routes.
+- **app.css**: Contains style for the pages.
+- **Container folder**: has jsx files for main componants.
+-  **Helper folder:** has helper jsx files that used in main componants.
+-  **actions folder**: has jsx files that contains functions used in main componants.
+-  **Componants folder**: has jsx file for navbar componant.
+-  **hocs folder:** Contains layout function that do authentication check.
 
 
 ## Possible improvements
