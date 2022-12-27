@@ -1,4 +1,5 @@
 # Survey
+
 ## Description:
 
  A DRF single app survey website for making, viewing, taking surveys, and seeing results.
@@ -47,7 +48,7 @@
    - UserSerializer: Contains serializer class for user model.
    - AnswerSerializer: Contains serializers classes for the answer types, text, integer and option answer in addition to answer serializers for answer model which           contains the text answer, integer answer, option answers and question as childs in the nested serializer.
    - QuestionSerialezer: Contains serializers classes for option question and question class which is nested dynamic serializer contains all question model fields           plus options and answers as childs.
-   - SurveySerializer: Contains serializer class for survey model which is a nested dynamic serializer containing questions field as a child and total submissions as a read       only field.
+   - SurveySerializer: Contains serializer class for survey model which is a nested dynamic serializer containing questions field as a child and total submissions as a read only field.
      SurveySerializer used in survey view and user survey view as it is dynamic and each view could use the fields that serve each purpose.
      SurveySerializer contains create function that handles creating new records in Survey model and its child (Question model and  QuestionOption if the type of the         question requires that). SurveySerializer also contains update function that allows to update just the survey deadline field.
    - SurveyResultSerializer: Contains serializer class for survey model wich is nested dynamic serializer contains submissions and questions fields as childs of the         parent class, using that serializer in result view to represent the closed survey data.
@@ -92,10 +93,15 @@
     - activate.jsx: Has a form for activate the new users.
  
 -  **Helper folder:** Has helper jsx files that are used in main components.
+   - create survey folder: Has two child components: SurveyInfoFields in survey_info.jsx for survey information fields and QuestionFields in question_info.jsx for each question fields.
+   -  List survey folder: Has a child component: SurveyCard in surveys.jsx that renders survey.
+   -  User surveys folder:  Has two child components: Table in user_surveys.jsx for survey information and ModalForm in modal_form.jsx that enables the user to update each survey deadline.
 -  **actions folder**: Has jsx files that contain functions used in main components.
    - survey.jsx: 
+       - Has create function that call API and make post request with data as the body and access token in the header.
 -  **Components folder**: Has jsx file for the navbar component which has the main pages links and login/signup or logout depending on if the user is authenticated or not.
 -  **Hocs folder:** Contains a layout function that does authentication check.
+-  **reducers folder:** Has function that returns state depending on the type.
 
 
 ## Possible improvements
