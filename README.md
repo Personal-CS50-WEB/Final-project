@@ -32,7 +32,7 @@
    
    #### Frontend:
    
-   Javascript:
+   the web application is mobile-responsive Javascript:
    - React js.
 
 ### Starting the app
@@ -84,13 +84,34 @@ Then, Django REST Framework was used to model those entities, apply business rul
   - Add DB diagram.
    
   ### **Serializers**
-  Serializers allow complex data such as querysets and model instances to be converted to native Python datatypes that can then be easily rendered into JSON
-   What are DRF serializers? Why do we use them?
-   How did you map entities to serializers? one to one or one to many and why?
+  
+  - Using DRF that provides a Serializer class which gives a way to control the output of your responses, as well as a ModelSerializer class which provides a useful shortcut for creating serializers that deal with model instances and querysets.
+  - Using serializers classes to convert model instances into JSON and adding the requiered logic.
+  - Each entity needs one serializer to convert model instances into JSON.
+  - Survey Entity needed two serializers one to handle viewing, updating,and creating survey questions and the other to handle viewing the submissions of that survey.
+  - The serializers used in this project:
+   - UserSerializer: Contains serializer class for user model.
+   - AnswerSerializer: Contains serializers classes for the answer types, text, integer and option answer in addition to answer serializers for answer model which           contains the text answer, integer answer, option answers and question as childs in the nested serializer.
+   - QuestionSerialezer: Contains serializers classes for option question and question class which is nested dynamic serializer containing all question model fields           plus options and answers as childs.
+   - SurveySerializer: Contains serializer class for survey model which is a nested dynamic serializer containing questions field as a child and total submissions as a read only field.
+     SurveySerializer used in survey view and user survey view as it is dynamic and each view could use the fields that serve each purpose.
+     SurveySerializer contains create function that handles creating new records in Survey model and its child (Question model and  QuestionOption if the type of the         question requires that). SurveySerializer also contains update function that allows updating just the survey deadline field.
+   - SurveyResultSerializer: Contains serializer class for survey model which is nested dynamic serializer contains submissions and questions fields as childs of the         parent class, using that serializer in result view to represent the closed survey data.
+   - SubmissionSerializer:  Contains serializer class for submission model wich is nested dynamic serializer contains submission answers field as a child,     SubmissionSerializer contains create function that handles create new record in Submission model and it's child Answer model and depending on question type (radio, checkbox, text, integer or score) new record in TextAnswer or IntegerAnswer or OptionAnswer will be created.
+   
   
   ### **Views**
-  What are DRF views? Why do we use them?
-  How did you map entities or may be "operations" to views?
+  A ModelViewSet class is simply a type of class-based View,The actions provided by the ModelViewSet class are .list(), .retrieve(), .create(), .update(), .partial_update(), and .destroy().
+  - DRF provides Custom ViewSet base classes that do not have the full set of ModelViewSet actions which is used in this project.
+  To create a base viewset class that provides create, list and retrieve operations, inherit from GenericViewSet, and mixin the required actions.
+  - maping operations on entities to view:
+     - SurveyView: using DRF viewset class SurveyView is read only class that allows to list active surveys or retrieve one survey using  SurveySerializer as              serializer_class.
+     - SubmissionView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, class that allows to create new record in Submission model and list submissions for one survey using SubmissionSerializer as serializer_class.
+     - ExpiredSurveyViewSet: using DRF viewset class SurveyView is read only class that allows to list closed surveys or retrieve one survey using SurveyResultSerializer   as serializer_class.
+     - UserSubmissionView: using DRF mixins class SubmissionView is read only class that allows to  list submissions for surveys the user submit and  retrieve one    submission using SubmissionSerializer as serializer_class and IsAuthenticated as permission_classes.
+     - UserSurveyView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, class that allows user who is   Authenticated to create new  record in Survey model, list that user surveys and update deadline for surveys (using IsOwner permission class) using SurveySerializer as serializer_class.
+     - TypesAPIView : view allows users to get question types.
+
   
   ### **Securing the backend**
   I used Djoser for Django Rest Framework views to handle basic actions. I used JSON Web Token Authentication to secure the APIs.
@@ -104,12 +125,11 @@ Finally, APIs were defined on on top of those views using the following files:
 
 The following is the list of exposed APIs for the frontend to use:
 
-    - "user/submission": "http://127.0.0.1:8000/api/user/submission/",
-    - "submission": "http://127.0.0.1:8000/api/submission/",
-    - "survey/user": "http://127.0.0.1:8000/api/survey/user/",
-    - "survey": "http://127.0.0.1:8000/api/survey/",
+    - "user/submission": "http://127.0.0.1:8000/api/user/submission/"
+    - "submission": "http://127.0.0.1:8000/api/submission/"
+    - "survey/user": "http://127.0.0.1:8000/api/survey/user/"
+    - "survey": "http://127.0.0.1:8000/api/survey/"
     - "expiredSurvey": "http://127.0.0.1:8000/api/expiredSurvey/"
-
 
 ### **Business Layer:**
 - **serializers files** : Contains serializers files for the models:
@@ -123,20 +143,6 @@ The following is the list of exposed APIs for the frontend to use:
    - SurveyResultSerializer: Contains serializer class for survey model which is nested dynamic serializer contains submissions and questions fields as childs of the         parent class, using that serializer in result view to represent the closed survey data.
    - SubmissionSerializer:  Contains serializer class for submission model wich is nested dynamic serializer contains submission answers field as a child,     SubmissionSerializer contains create function that handles create new record in Submission model and it's child Answer model and depending on question type (radio, checkbox, text, integer or score) new record in TextAnswer or IntegerAnswer or OptionAnswer will be created.
    
-
-- **views files**: Contains the views files.
-
-  - SurveyView: using DRF viewset class SurveyView is read only class that allows to list active surveys or retrieve one survey using  SurveySerializer as              serializer_class.
-  - SubmissionView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, class that allows to create new record in Submission model      and list submissions for one survey using SubmissionSerializer as serializer_class.
-  - ExpiredSurveyViewSet: using DRF viewset class SurveyView is read only class that allows to list closed surveys or retrieve one survey using SurveyResultSerializer   as serializer_class.
-  - UserSubmissionView: using DRF mixins class SubmissionView is read only class that allows to  list submissions for surveys the user submit and  retrieve one    submission  using SubmissionSerializer as serializer_class and IsAuthenticated as permission_classes.
-  - UserSurveyView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, class that allows user who is   Authenticated to create new  record in Survey model, list that user surveys and update deadline for surveys (using IsOwner permission class) using SurveySerializer as serializer_class.
-  - TypesAPIView : view allows users to get question types.
-
-
-- **urls.py file** : Contains the APIs paths.
-- **routers.py file** : Contains the routes for every view.
-
 ### **The Frontend:**
  ### **React** : 
  **src folder**:
