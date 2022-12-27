@@ -78,7 +78,9 @@
  ### **react** : 
  **src folder**:
 - **app.js**: Has all main components as routes.
+
 - **app.css**: Contains style for the pages.
+
 - **Container folder**: Has jsx files for main components.
    - create_survey.jsx: Has a form with the survey fields and when it is submitted create function from actions folder will be called to call API in a post request to create a record for that new survey.
     - home.jsx: Has the home page component that calls API to get the active surveys and render a list of those surveys using SuveyCard components from the helper folder.
@@ -96,12 +98,21 @@
    - create survey folder: Has two child components: SurveyInfoFields in survey_info.jsx for survey information fields and QuestionFields in question_info.jsx for each question fields.
    -  List survey folder: Has a child component: SurveyCard in surveys.jsx that renders survey.
    -  User surveys folder:  Has two child components: Table in user_surveys.jsx for survey information and ModalForm in modal_form.jsx that enables the user to update each survey deadline.
--  **actions folder**: Has jsx files that contain functions used in main components.
+   -  Submissions folder: Has two child components: Answer in answer.jsx for one submission answers and Table in submissions.jsx for the submissions information.
+   -  Take survey folder: Has Question components in question.jsx file that has TextQuestion in text_question.jsx file, NumQuestion in num_question.jsx file, CheckboxQuestion and RadioQuestion  in choice_question.jsx file as childs components.
+   - Result folder: Has result components in result.jsx file that has TextAnswer in text_answer.jsx file, NumberAnswer in num_answer.jsx file and ChoiceAnswer in choice_answer.jsx file as childs components.
+
+-  **actions folder**: Has  jsx files that contain functions used in main components.
    - survey.jsx: 
-       - Has create function that call API and make post request with data as the body and access token in the header.
--  **Components folder**: Has jsx file for the navbar component which has the main pages links and login/signup or logout depending on if the user is authenticated or not.
--  **Hocs folder:** Contains a layout function that does authentication check.
--  **reducers folder:** Has function that returns state depending on the type.
+       - create function that checks the access token and refresh it if needed then calls API and make a post request with data as the body and access token in the header.
+       -  edit function that checks the access token and refreshes it if needed then calls API and makes patch request with the new deadline and access token in the header.
+    - submit.jsx : Has a submit  function that checks the access token and refresh it if needed then calls API and makes a post request with the submission data as the body and access token in the header.
+    - types.js: Has types for authentication.
+    - auth.jsx: Has functions used in authentication:
+       checkAuthenticated,  loud_user,  Login,  signup, verify and  logout functions
+-  **Components folder**: Has a jsx file for the navbar component which has the main pages links and login/signup or log out depending on if the user is authenticated or not.
+-  **Hocs folder:** Contains a layout function that does authentication checks.
+-  **reducers folder:** Has a function that returns state depending on the type.
 
 
 ## Possible improvements
