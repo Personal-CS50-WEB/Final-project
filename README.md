@@ -90,15 +90,15 @@ Then, Django REST Framework was used to model those entities, apply business rul
   - Each entity needs one serializer to convert model instances into JSON.
   - Survey Entity needed two serializers one to handle viewing, updating,and creating survey questions and the other to handle viewing the submissions of that survey.
   - The serializers used in this project:
-   - UserSerializer: Contains serializer class for user model.
-   - AnswerSerializer: Contains serializers classes for the answer types, text, integer and option answer in addition to answer serializers for answer model which           contains the text answer, integer answer, option answers and question as childs in the nested serializer.
-   - QuestionSerialezer: Contains serializers classes for option question and question class which is nested dynamic serializer containing all question model fields           plus options and answers as childs.
-   - SurveySerializer: Contains serializer class for survey model which is a nested dynamic serializer containing questions field as a child and total submissions as a read only field.
-     SurveySerializer used in survey view and user survey view as it is dynamic and each view could use the fields that serve each purpose.
-     SurveySerializer contains create function that handles creating new records in Survey model and its child (Question model and  QuestionOption if the type of the         question requires that). SurveySerializer also contains update function that allows updating just the survey deadline field.
-   - SurveyResultSerializer: Contains serializer class for survey model which is nested dynamic serializer contains submissions and questions fields as childs of the         parent class, using that serializer in result view to represent the closed survey data.
-   - SubmissionSerializer:  Contains serializer class for submission model wich is nested dynamic serializer contains submission answers field as a child,     SubmissionSerializer contains create function that handles create new record in Submission model and it's child Answer model and depending on question type (radio, checkbox, text, integer or score) new record in TextAnswer or IntegerAnswer or OptionAnswer will be created.
-   
+      - UserSerializer: Contains serializer class for user model.
+      - AnswerSerializer: Contains serializers classes for the answer types, text, integer and option answer in addition to answer serializers for answer model which           contains the text answer, integer answer, option answers and question as childs in the nested serializer.
+      - QuestionSerialezer: Contains serializers classes for option question and question class which is nested dynamic serializer containing all question model fields           plus options and answers as childs.
+      - SurveySerializer: Contains serializer class for survey model which is a nested dynamic serializer containing questions field as a child and total submissions as a read only field.
+        SurveySerializer used in survey view and user survey view as it is dynamic and each view could use the fields that serve each purpose.
+        SurveySerializer contains create function that handles creating new records in Survey model and its child (Question model and  QuestionOption if the type of the         question requires that). SurveySerializer also contains update function that allows updating just the survey deadline field.
+      - SurveyResultSerializer: Contains serializer class for survey model which is nested dynamic serializer contains submissions and questions fields as childs of the         parent class, using that serializer in result view to represent the closed survey data.
+      - SubmissionSerializer:  Contains serializer class for submission model wich is nested dynamic serializer contains submission answers field as a child,     SubmissionSerializer contains create function that handles create new record in Submission model and it's child Answer model and depending on question type (radio, checkbox, text, integer or score) new record in TextAnswer or IntegerAnswer or OptionAnswer will be created.
+
   
   ### **Views**
   A ModelViewSet class is simply a type of class-based View,The actions provided by the ModelViewSet class are .list(), .retrieve(), .create(), .update(), .partial_update(), and .destroy().
