@@ -32,7 +32,7 @@
    
    #### Frontend:
    
-   the web application is mobile-responsive Javascript:
+   The web application is mobile-responsive using Javascript:
    - React js.
 
 ### Starting the app
