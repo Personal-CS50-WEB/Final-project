@@ -145,6 +145,7 @@ The following is the list of exposed APIs for the frontend to use:
    
 ### **The Frontend:**
  ### **React** : 
+ React is a flexible JavaScript library for building user interfaces.
  **src folder**:
 - **app.js**: Has all main components as routes.
 
