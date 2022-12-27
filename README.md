@@ -1,7 +1,7 @@
 # Survey
 
 ## Distinctiveness and Complexity
- A Django REST Framework (DRF) single app website for creating, viewing, participating in surveys, and viewing the results.
+ A Django REST Framework (DRF) single app plateform for creating, viewing, participating in surveys, and viewing the results.
 
 ### - Explaining the project:
   - It is a single page application that allows users to toggle navbar and see list of active surveys and list of closed surveys by calling specific API.
@@ -114,18 +114,12 @@
 -  **Hocs folder:** Contains a layout function that does authentication checks.
 -  **reducers folder:** Has a function that returns state depending on the type.
 
+## How to start the app
 
-## Possible improvements
+### Prerequisits:
+Python 3.6 or later installed.
 
-- Have categories for the survey that could sort surveys.
--  Do pagination.
-- Add unit tests for the project.
-- Notifications to survey creators by sending email about survey results when survey closes.
-
-## Prerequisits:
-
-## How to launch application
-
+### Steps to run it:
 1. Clone the code : https://github.com/Personal-CS50-WEB/Final-project.git
 2. pip install -r requirements.txt
 3. In the terminal, python manage.py makemigrations network to make migrations for the network app.
@@ -134,4 +128,9 @@
 6. in frontend directory, npm install 
 7. npm start
 
+## Future work and improvements
 
+- Have categories for the survey that could sort surveys.
+-  Do pagination.
+- Add unit tests for the project.
+- Notifications to survey creators by sending email about survey results when survey closes.
