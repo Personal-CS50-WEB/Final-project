@@ -45,7 +45,7 @@
 - **serializers files** : Containts serializers files for the models:
 
    - UserSerializer: Contains serializer class for user model.
-   - AnswerSerializer: Containts serializers classes for the answer types, text, integer and option answer in addition to answer serializers for answer model wich           contains the text answer, integer answer, option answers and question as childs in the nested serializer.
+   - AnswerSerializer: Containts serializers classes for the answer types, text, integer and option answer in addition to answer serializers for answer model which           contains the text answer, integer answer, option answers and question as childs in the nested serializer.
    - QuestionSerialezer: Containts serializers classes for option question and question class wich is nested daynamic serializer contains all question model fields           plus options and answers as childs.
    - SurveySerializer: Contains serializer class for survey model wich is nested dynamic serializer contains questions field as a child and total submissions as a read       only field.
      SurveySerializer used in survey view and user survey view as it is dynamic and each view could use the fields that serve each purpose.
@@ -75,6 +75,15 @@
 
 ### **UI:**
  ### **react** : 
+ **src folder**:
+      - **app.js**: Has all main componants as routes.
+      - **app.css**: Contains style for the pages.
+      - **Container folder**: has jsx files for main componants.
+      -  **Helper folder:** has helper jsx files that used in main componants.
+      -  **actions folder**: has jsx files that contains functions used in main componants.
+      -  **Componants folder**: has jsx file for navbar componant.
+      -  **hocs folder:** Contains layout function that do authentication check.
+
 
 ## Possible improvements
 
