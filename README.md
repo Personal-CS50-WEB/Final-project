@@ -79,9 +79,22 @@
 - **app.js**: Has all main components as routes.
 - **app.css**: Contains style for the pages.
 - **Container folder**: Has jsx files for main components.
--  **Helper folder:**Has helper jsx files that are used in main components.
+   - create_survey.jsx: Has a form with the survey fields and when it is submitted create function from actions folder will be called to call API in a post request to create a record for that new survey.
+    - home.jsx: Has the home page component that calls API to get the active surveys and render a list of those surveys using SuveyCard components from the helper folder.
+    - user_surveys.jsx:  Contains a component that calls API to get the users surveys and render those surveys using Table components from the helper folder and allows the user to edit each survey deadline or close the survey by clicking a specific button and call edit function from actions folder that calls API in a patch request to update the data.
+    - user_submissions.jsx:  Contains component that calls API to get the users submissions on the surveys and render those surveys using Table components from the helper folder.
+    - survey_submissions.jsx:  Contains a component that calls API to get the submissions on specific surveys and render those surveys using Table components from the helper folder.
+    - submission.jsx:  Contains a component that calls API to get a submission by its id and render it using Answer components from the helper folder.
+    - results.jsx: Has the results component that calls API to get the closed surveys and render a list of those surveys using SuveyCard components from the helper folder.
+    - result.jsx: Has the result component that calls API to get a closed survey  by its id and render a result of each question in that survey using question components from the helper folder.
+    - login.jsx: Has a form for login thatcalls login function from actions folder and allows user to login.
+    - signup.jsx: Has a form for signup that calls login componant when account created to let users login.
+    - activate.jsx: Has a form for activate the new users.
+ 
+-  **Helper folder:** Has helper jsx files that are used in main components.
 -  **actions folder**: Has jsx files that contain functions used in main components.
--  **Components folder**:Has jsx file for the navbar component.
+   - survey.jsx: 
+-  **Components folder**: Has jsx file for the navbar component which has the main pages links and login/signup or logout depending on if the user is authenticated or not.
 -  **Hocs folder:** Contains a layout function that does authentication check.
 
 
