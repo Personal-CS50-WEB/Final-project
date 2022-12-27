@@ -10,6 +10,7 @@
   - The user who is authenticated could take survey and call API  to store the submission in database, users could see their submissions on the surveys. 
   - The survey creator can see a list of his active surveys information like number of submissions, every submission answers and close or edit the deadline of the survey.
   - Users can see closed survey results question by question.
+  - The web page  is mobile-responsive.
 
 ### - Technologies used:
 
