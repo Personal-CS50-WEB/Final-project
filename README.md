@@ -26,7 +26,7 @@
    - React js.
 
 
-**The project consists of:**
+## **The project consists of:**
 #### **Database layer**:
 
  **Using django models this project has nine models:**
