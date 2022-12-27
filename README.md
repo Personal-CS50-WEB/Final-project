@@ -1,7 +1,7 @@
 # Survey
 
 ## Distinctiveness and Complexity
- A DRF single app survey website for making, viewing, taking surveys, and seeing results.
+ A Django REST Framework (DRF) single app website for creating, viewing, participating in surveys, and viewing the results.
 
 ### - Explaining the project:
   - It is a single page application that allows users to toggle navbar and see list of active surveys and list of closed surveys by calling specific API.
@@ -32,13 +32,13 @@
 
  **Using django models this project has nine models:**
  
- - User model : Contains user information like id, username, password, email.
- - Survey model: Contains survey information like id, survey creator, name and description of the survey, time created and deadline.
- - Question model : Has  survey as foreign key, type of the question and the question text.
- - QuestionOption model : Has question as foreign key and the option for that question.
- - Submission model : Has survey as foreign key and the submission creator.
- - Answer model : Has submission and question as foreign keys.
- - TextAnswer model : Has Answer as foreign key and the text answer.
+ - User model : Contains users information: id, username, password, email.
+ - Survey model: Contains surveys information: id, survey creator, name and description of the survey, time created and deadline.
+ - Question model : Contains questions information and it refernces the survey as foreign key, type of the question and the question text.
+ - QuestionOption model : Represents a single option out of multiple options. It's used when the question type is sinlge or multiselect. It has question as foreign key.
+ - Submission model : Represents a single submission to a survey by a specific user. It has the survey as foreign key and the submission creator.
+ - Answer model : Represents a single answer to a question. It has the submission and the question as foreign keys.
+ - TextAnswer model : Represents a text answer to a question when the question type is Text. It has the Answer as foreign key and the text answer.
  - IntegerAnswer model : Has Answer as foreign key and the integer answer.
  - OptionAnswer model : Has Answer as foreign key and the option answers.
 
@@ -121,6 +121,8 @@
 -  Do pagination.
 - Add unit tests for the project.
 - Notifications to survey creators by sending email about survey results when survey closes.
+
+## Prerequisits:
 
 ## How to launch application
 
