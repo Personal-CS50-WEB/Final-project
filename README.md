@@ -27,7 +27,7 @@
 
 
 ## **The project consists of:**
-#### **Database layer**:
+### **Database layer**:
 
  **Using django models this project has nine models:**
  
