@@ -1,31 +1,29 @@
 # Survey
 
 ## Distinctiveness and Complexity
-## Description:
-
  A DRF single app survey website for making, viewing, taking surveys, and seeing results.
 
-## Explaining the project:
-- It is a single page application that allows users to toggle navbar and see list of active surveys and list of closed surveys by calling specific API.
-- When a user logs in or registers, users can create surveys with different question types by calling API and selecting each question type.
-- When a user submits a create survey form a specific API will be called to store the new record in the database and the user will redirect to a page of the user's surveys.
-- The user who is authenticated could take survey and call API  to store the submission in database, users could see their submissions on the surveys. 
-- The survey creator can see a list of his active surveys information like number of submissions, every submission answers and close or edit the deadline of the survey.
-- Users can see closed survey results question by question.
+## - Explaining the project:
+  - It is a single page application that allows users to toggle navbar and see list of active surveys and list of closed surveys by calling specific API.
+  - When a user logs in or registers, users can create surveys with different question types by calling API and selecting each question type.
+  - When a user submits a create survey form a specific API will be called to store the new record in the database and the user will redirect to a page of the user's surveys.
+  - The user who is authenticated could take survey and call API  to store the submission in database, users could see their submissions on the surveys. 
+  - The survey creator can see a list of his active surveys information like number of submissions, every submission answers and close or edit the deadline of the survey.
+  - Users can see closed survey results question by question.
 
-## Technologies used:
+## - Technologies used:
 
-### Backend:
+   ### Backend:
 
-#### Django REST framework:
-- Python.
-- Django models.
-- Djoser.
-- postgreSQL.
+   #### Django REST framework:
+   - Python.
+   - Django models.
+   - Djoser.
+   - postgreSQL.
 
-### Frontend:
-#### Javascript:
-- React js.
+   ### Frontend:
+   #### Javascript:
+   - React js.
 
 
 **The project consists of:**
