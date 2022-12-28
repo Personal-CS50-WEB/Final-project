@@ -1,7 +1,7 @@
 import React from "react";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
-export const ChoiceAnswer = ({question }) => {
+export const ChoiceAnswer = ({ question }) => {
     const options = question.answers.map((answer) => answer.options_answers).flat();
     var optionOccurence = {};
     
@@ -18,7 +18,7 @@ export const ChoiceAnswer = ({question }) => {
         <h5  className="card-title">Answers:</h5>
             <div className="list-group list-group-flush"> 
                 {question.answers.length > 0 ? (question.options.map((option,i) =>(<>
-                    { options.some(el => el.option == option.id) ? (
+                    { options.some(el => parseInt(el.option) === parseInt(option.id)) ? (
                         <div className="list-group-item" key={option.id}>
                             <div className="row gy-2 gx-3 align-items-center" >
                                 <div className="col">

@@ -13,8 +13,6 @@ const Layout = (props) => {
             <Navbar />
             {props.children}
         </div>
-
-);  
+    );  
 }   
-
 export default connect(null, { checkAuthenticated, loud_user })(Layout);

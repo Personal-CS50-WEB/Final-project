@@ -37,7 +37,6 @@ const App = () => (
         </Routes>
     </Layout>
   </Provider>
-
   );
 
 export default App;

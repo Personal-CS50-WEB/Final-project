@@ -20,14 +20,14 @@ export const Answer = ({answer}) => {
             } else if (answer.question_data.type ==="RADIO") {
                 return (<>
                     <h5 className="card-title">Answer:</h5>
-                    <p className="card-text">{answer.options_answers[0].option}</p>
+                    <p className="card-text">{answer.options_answers[0].option_data.option}</p>
                 </>)
             } else {
                 return (<>
                     <h5 className="card-title">Answers:</h5>
                     <ul className="list-group list-group-flush"> 
                     {answer.options_answers.map((option, i) =>(
-                        <li className="list-group-item" key={i}>{option.option}</li>
+                        <li className="list-group-item" key={i}>{option.option_data.option}</li>
                     ))}
                     </ul>
                 </>)

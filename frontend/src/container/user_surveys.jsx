@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import {  Navigate, useNavigate } from "react-router-dom";
 import { edit } from "../actions/survey";
 import Modal from 'react-modal';
-import Datetime from 'react-datetime';
 import { style } from "../helper/user_surveys/style";
 import { Table } from "../helper/user_surveys/user_surveys";
 import { ModalForm } from "../helper/user_surveys/modal_form";

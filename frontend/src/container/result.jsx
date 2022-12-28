@@ -15,7 +15,7 @@ export default function Result(){
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }})
-        .then(res => (setResult(res.data), console.log(res.data)))
+        .then(res => setResult(res.data) )
         .catch(console.error)
     }
     fetchData();

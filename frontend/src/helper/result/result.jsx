@@ -12,16 +12,18 @@ export const Question = ({question}) => {
             <div className="card-body">
             {(() => {
                 if(question.type ==="TEXT-ANSWER") {
-                    return (<TextAnswer question={question}/>)
+                    return (
+                        <TextAnswer question={question}/>
+                    )
 
                 } else if (['SCORE', 'INTEGER'].indexOf(question.type)> -1) {
                     return (
-                        <NumberAnswer question={question} key={question.id} />
+                        <NumberAnswer question={question} />
                     )
                 } else {
-                    return (<div key={question.id}>
-                    <ChoiceAnswer question={question}/>
-                    </div>)
+                    return (
+                        <ChoiceAnswer question={question} />
+                    )
                 }
             })()}
         </div>
