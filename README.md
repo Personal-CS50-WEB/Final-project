@@ -69,7 +69,7 @@ Then, Django REST Framework was used to model those entities, apply business rul
    ### **Models**
  - Django Models are a level of abstraction on top of SQL that works with databases using Python classes and objects rather than direct SQL queries. Generally, each model maps to a single database table.Each attribute of the model represents a database field.
   - By using the ` python manage.py makemigrations ` command create some Python files that will create or edit our database to be able to store what is in the models and apply these migrations to our database by running `python manage.py migrate`  command.
-  - Using django models this project has nine models one model for each entitie:
+  - Using django models this project has nine models one model for each entity:
      - User model : Contains users information: id, username, password, email.
      - Survey model: Contains surveys information: id, survey creator, name and description of the survey, time created and deadline.
      - Question model : Contains questions information and it references the survey as foreign key, type of the question and the question text.
@@ -85,18 +85,18 @@ Then, Django REST Framework was used to model those entities, apply business rul
    
   ### **Serializers**
   
-  - Using DRF that provides a Serializer class which gives a way to control the output the responses, as well as a ModelSerializer class which provides a useful shortcut for creating serializers that deal with model instances and querysets.
-  - Using serializers classes to convert model instances into JSON and adding the requiered logic.
+  - Using DRF provides a Serializer class which gives a way to control the output the responses, as well as a ModelSerializer class which provides a useful shortcut for creating serializers that deal with model instances and querysets.
+  - Using serializers classes to convert model instances into JSON and adding the required logic.
   - Each entity needs at least one serializer to convert model instances into JSON.
-  - Survey Entity needed two serializers one to handle viewing, updating,and creating survey questions and the other to handle viewing the submissions of that survey.
+  - Survey Entity needed two serializers, one to handle viewing, updating,and creating survey questions and the other to handle viewing the submissions of that survey.
   - The serializers used in this project:
       - UserSerializer: Contains serializer class for user model.
       - AnswerSerializer: Contains serializers classes for the answer types, text, integer and option answer in addition to answer serializers for answer model which           contains the text answer, integer answer, option answers and question as childs in the nested serializer.
-      - QuestionSerialezer: Contains serializers classes for option question and question class which is nested dynamic serializer containing all question model fields           plus options and answers as childs.
+      - QuestionSerialezer: Contains serializers classes for option question and question class which is a nested dynamic serializer containing all question model fields           plus options and answers as childs.
       - SurveySerializer: Contains serializer class for survey model which is a nested dynamic serializer containing questions field as a child and total submissions as a read only field.
         SurveySerializer used in survey view and user survey view as it is dynamic and each view could use the fields that serve each purpose.
-        SurveySerializer contains create function that handles creating new records in Survey model and its child (Question model and  QuestionOption if the type of the question requires that). SurveySerializer also contains update function that allows updating just the survey deadline field.
-      - SurveyResultSerializer: Contains serializer class for survey model which is nested dynamic serializer contains submissions and questions fields as childs of the parent class, using that serializer in result view to represent the closed survey data.
+        SurveySerializer contains a  create function that handles creating new records in Survey model and its child (Question model and  QuestionOption if the type of the question requires that). SurveySerializer also contains an update function that allows updating just the survey deadline field.
+      - SurveyResultSerializer: Contains serializer class for survey model which is a nested dynamic serializer contains submissions and questions fields as childs of the parent class, using that serializer in result view to represent the closed survey data.
       - SubmissionSerializer:  Contains serializer class for submission model wich is nested dynamic serializer contains submission answers field as a child,     SubmissionSerializer contains create function that handles create new record in Submission model and it's child Answer model and depending on question type (radio, checkbox, text, integer or score) new record in TextAnswer or IntegerAnswer or OptionAnswer will be created.
 
   
@@ -104,8 +104,8 @@ Then, Django REST Framework was used to model those entities, apply business rul
   A ModelViewSet class is simply a type of class-based View, The actions provided by the ModelViewSet class are .list(), .retrieve(), .create(), .update(), .partial_update(), and .destroy().
   - DRF provides Custom ViewSet base classes that do not have the full set of ModelViewSet actions which is used in this project.
   - To create a base viewset class that provides create, list and retrieve operations, inherit from GenericViewSet, and mixin the required actions.
-  - Maping operations on entities to views:
-     - SurveyView: using DRF viewset class SurveyView is read only class that allows to list active surveys or retrieve one survey using  SurveySerializer as              serializer_class.
+  - Mapping operations on entities to views:
+     - SurveyView: using DRF viewset class SurveyView is read only class that allows to list active surveys or retrieve one survey using  SurveySerializer as serializer_class.
      - SubmissionView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, class that allows to create new record in Submission model and list submissions for one survey using SubmissionSerializer as serializer_class.
      - ExpiredSurveyViewSet: using DRF viewset class SurveyView is read only class that allows to list closed surveys or retrieve one survey using SurveyResultSerializer   as serializer_class.
      - UserSubmissionView: using DRF mixins class SubmissionView is read only class that allows to  list submissions for surveys the user submit and  retrieve one    submission using SubmissionSerializer as serializer_class and IsAuthenticated as permission_classes.
@@ -143,20 +143,20 @@ The following is the list of exposed APIs for the frontend to use:
 
 - **Container folder**: Has jsx files for main components.
    - create_survey.jsx: Has a form with the survey fields and when it is submitted create function from actions folder will be called to call API in a post request to create a record for that new survey.
-    - home.jsx: Has the home page component that calls API to get the active surveys and render a list of those surveys using SuveyCard components from the helper folder.
+    - home.jsx: Has the home page component that calls API to get the active surveys and render a list of those surveys using SurveyCard components from the helper folder.
     - user_surveys.jsx:  Contains a component that calls API to get the users surveys and render those surveys using Table components from the helper folder and allows the user to edit each survey deadline or close the survey by clicking a specific button and call edit function from actions folder that calls API in a patch request to update the data.
     - user_submissions.jsx:  Contains a component that calls API to get the users submissions on the surveys and render those surveys using Table components from the helper folder.
     - survey_submissions.jsx:  Contains a component that calls API to get the submissions on specific surveys and render those surveys using Table components from the helper folder.
     - submission.jsx:  Contains a component that calls API to get a submission by its id and render it using Answer components from the helper folder.
-    - results.jsx: Has the results component that calls API to get the closed surveys and render a list of those surveys using SuveyCard components from the helper folder.
+    - results.jsx: Has the results component that calls API to get the closed surveys and render a list of those surveys using SurveyCard components from the helper folder.
     - result.jsx: Has the result component that calls API to get a closed survey  by its id and render a result of each question in that survey using question components from the helper folder.
     - login.jsx: Has a form for login thatcalls login function from actions folder and allows the user to login.
-    - signup.jsx: Has a form for signup that calls login component when account created to let users login.
+    - signup.jsx: Has a form for signup that calls the login component when account created to let users login.
     - activate.jsx: Has a form for activating new users.
  
 -  **Helper folder:** Has helper jsx files that are used in main components.
    - create survey folder: Has two child components: SurveyInfoFields in survey_info.jsx for survey information fields and QuestionFields in question_info.jsx for each question fields.
-   -  List survey folder: Has a child component: SurveyCard in surveys.jsx that renders survey.
+   -  List survey folder: Has a child component: SurveyCard in surveys.jsx that renders surveys.
    -  User surveys folder:  Has two child components: Table in user_surveys.jsx for survey information and ModalForm in modal_form.jsx that enables the user to update each survey deadline.
    -  Submissions folder: Has two child components: Answer in answer.jsx for one submission answers and Table in submissions.jsx for the submissions information.
    -  Take survey folder: Has Question components in question.jsx file that has TextQuestion in text_question.jsx file, NumQuestion in num_question.jsx file, CheckboxQuestion and RadioQuestion  in choice_question.jsx file as childs components.
