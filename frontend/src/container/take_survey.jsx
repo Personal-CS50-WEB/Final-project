@@ -121,6 +121,8 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
                         })
                     ):(<p>No questions found.</p>)}
                 <button 
+                disabled={submissionAnswers.length !== Survey.questions.length
+                || !submissionAnswers[0]['question']}
                 className="btn btn-primary" 
                 type="submit">
                 Submit
