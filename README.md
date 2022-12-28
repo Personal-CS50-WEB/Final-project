@@ -117,7 +117,7 @@ Then, Django REST Framework was used to model those entities, apply business rul
   ### **Securing the backend**
   I used Djoser for Django Rest Framework views to handle basic actions. I used JSON Web Token Authentication to secure the APIs.
   Djoser provides endpoints to enable the following:
-   - Register and activate an account by email.
+   - Register by email and activate an account.
    - Verify and refresh the access token.
    - Login, logout.
   
