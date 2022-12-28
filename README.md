@@ -82,7 +82,7 @@ Then, Django REST Framework was used to model those entities, apply business rul
      - OptionAnswer model : Has Answer as foreign key and the option answers.
 
  
-  - Add DB diagram.
+  	![alt text](image.jpg)
    
   ### **Serializers**
   
