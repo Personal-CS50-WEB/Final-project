@@ -133,7 +133,7 @@ The following is the list of exposed APIs for the frontend to use:
     - "expiredSurvey": "http://127.0.0.1:8000/api/expiredSurvey/"
 
    
-### **The Frontend:**
+## **The Frontend:**
  ### **React** : 
  React is a flexible JavaScript library for building user interfaces.
  **src folder**:
