@@ -35,7 +35,7 @@
    The web application is mobile-responsive using Javascript:
    - React js.
 
-### Starting the app
+## Starting the app
 
 #### Prerequisites
 Python 3.6 or later installed.
