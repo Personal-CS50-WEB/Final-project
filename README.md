@@ -49,7 +49,7 @@ Python 3.6 or later installed.
 7. npm start
 
 ## **The Backend**
-It is developed using Django REST Framework (DRF), which is an application used for rapidly building RESTful APIs based on Django models and Postgres DB. It was developed completely separate from the frontend. I was able to complete the backend and test it before starting the frontend development.
+It is developed using Django REST Framework (DRF) which is an application used for rapidly building RESTful APIs based on Django models and Postgres DB. It was developed completely separate from the frontend. I was able to complete the backend and test it before starting the frontend development.
 
 But first, Let's define the entities of the system.
   
@@ -85,7 +85,7 @@ Then, Django REST Framework was used to model those entities, apply business rul
    
   ### **Serializers**
   
-  - Using DRF that provides a Serializer class which gives a way to control the output of your responses, as well as a ModelSerializer class which provides a useful shortcut for creating serializers that deal with model instances and querysets.
+  - Using DRF that provides a Serializer class which gives a way to control the output the responses, as well as a ModelSerializer class which provides a useful shortcut for creating serializers that deal with model instances and querysets.
   - Using serializers classes to convert model instances into JSON and adding the requiered logic.
   - Each entity needs at least one serializer to convert model instances into JSON.
   - Survey Entity needed two serializers one to handle viewing, updating,and creating survey questions and the other to handle viewing the submissions of that survey.
@@ -101,10 +101,10 @@ Then, Django REST Framework was used to model those entities, apply business rul
 
   
   ### **Views**
-  A ModelViewSet class is simply a type of class-based View,The actions provided by the ModelViewSet class are .list(), .retrieve(), .create(), .update(), .partial_update(), and .destroy().
+  A ModelViewSet class is simply a type of class-based View, The actions provided by the ModelViewSet class are .list(), .retrieve(), .create(), .update(), .partial_update(), and .destroy().
   - DRF provides Custom ViewSet base classes that do not have the full set of ModelViewSet actions which is used in this project.
-  To create a base viewset class that provides create, list and retrieve operations, inherit from GenericViewSet, and mixin the required actions.
-  - maping operations on entities to view:
+  - To create a base viewset class that provides create, list and retrieve operations, inherit from GenericViewSet, and mixin the required actions.
+  - Maping operations on entities to views:
      - SurveyView: using DRF viewset class SurveyView is read only class that allows to list active surveys or retrieve one survey using  SurveySerializer as              serializer_class.
      - SubmissionView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, class that allows to create new record in Submission model and list submissions for one survey using SubmissionSerializer as serializer_class.
      - ExpiredSurveyViewSet: using DRF viewset class SurveyView is read only class that allows to list closed surveys or retrieve one survey using SurveyResultSerializer   as serializer_class.
@@ -117,6 +117,7 @@ Then, Django REST Framework was used to model those entities, apply business rul
   I used Djoser for Django Rest Framework views to handle basic actions. I used JSON Web Token Authentication to secure the APIs.
   Djoser provides endpoints to enable the following:
    - Register and activate an account by email.
+   - Verify and refresh the access token.
    - Login, logout.
   
 Finally, APIs were defined on on top of those views using the following files:
