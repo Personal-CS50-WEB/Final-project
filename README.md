@@ -38,7 +38,8 @@
 ## Starting the app
 
 #### Prerequisites
-Python 3.6 or later installed.
+- Python 3.6 or later installed.
+- Node.js latest version.
 #### Steps
 1. Clone the code : https://github.com/Personal-CS50-WEB/Final-project.git
 2. Run: `pip install -r requirements.txt`
