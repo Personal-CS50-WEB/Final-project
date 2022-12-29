@@ -12,7 +12,7 @@ export const Answer = ({answer}) => {
                     <h5 className="card-title">Answer:</h5>
                     <p className="card-text">{answer.text_answer.text}</p>
                 </>)
-            } else if (answer.question_data.type ==="INTEGER") {
+            } else if (answer.question_data.type ==="INTEGER" ||answer.question_data.type ==="SCORE" ) {
                 return (<>
                     <h5 className="card-title">Answer:</h5>
                     <p className="card-text">{answer.integer_answer.integer}</p>
