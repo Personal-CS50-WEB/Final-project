@@ -17,7 +17,7 @@ export const ChoiceAnswer = ({ question }) => {
     return (<>
         <h5  className="card-title">Answers:</h5>
             <div className="list-group list-group-flush"> 
-                {question.answers.length > 0 ? (question.options.map((option,i) =>(<>
+                {question.answers.length > 0 ? (question.options.map((option,i) =>(< div key={i}>
                     { options.some(el => parseInt(el.option) === parseInt(option.id)) ? (
                         <div className="list-group-item" key={option.id}>
                             <div className="row gy-2 gx-3 align-items-center" >
@@ -52,7 +52,7 @@ export const ChoiceAnswer = ({ question }) => {
                             </div>
                         </div>
                     )}
-                    </>
+                    </div>
                 ))):( <div className="list-group-item" >No answers</div>)}
             </div>
         </>);

@@ -20,7 +20,7 @@ export const NumberAnswer = ({question}) => {
             <div className="list-group list-group-flush"> 
                 {question.answers.length > 0 ? (
                     Object.entries(numberOccurence).map(([key, value]) =>
-                    <div className="list-group-item" k={key}>
+                    <div className="list-group-item" key={key}>
                         <div className="row gy-2 gx-3 align-items-center" >
                             <div className="col">{key}:</div>
                             <div className="col-sm-9">
