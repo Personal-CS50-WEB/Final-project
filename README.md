@@ -38,15 +38,16 @@
 ## Starting the app
 
 #### Prerequisites
-Python 3.6 or later installed.
+- Python 3.6 or later installed.
+- Node.js latest version.
 #### Steps
 1. Clone the code : https://github.com/Personal-CS50-WEB/Final-project.git
-2. pip install -r requirements.txt
-3. In the terminal, python manage.py makemigrations network to make migrations for the network app.
-4. python manage.py migrate
-5. python manage.py runserver
-6. in frontend directory, npm install 
-7. npm start
+2. Run: `pip install -r requirements.txt`
+3. Run:` python manage.py makemigrations` to make migrations.
+4. Run: `python manage.py migrate`
+5. Run: `python manage.py runserver`
+6. In frontend directory, Run: `npm install` 
+7. Run: `npm start`
 
 ## **The Backend**
 It is developed using Django REST Framework (DRF) which is an application used for rapidly building RESTful APIs based on Django models and Postgres DB. It was developed completely separate from the frontend. I was able to complete the backend and test it before starting the frontend development.
@@ -81,7 +82,7 @@ Then, Django REST Framework was used to model those entities, apply business rul
      - OptionAnswer model : Has Answer as foreign key and the option answers.
 
  
-  - Add DB diagram.
+  	![alt text](Survey_DB_Diagram.png)
    
   ### **Serializers**
   
@@ -105,18 +106,18 @@ Then, Django REST Framework was used to model those entities, apply business rul
   - DRF provides Custom ViewSet base classes that do not have the full set of ModelViewSet actions which is used in this project.
   - To create a base viewset class that provides create, list and retrieve operations, inherit from GenericViewSet, and mixin the required actions.
   - Mapping operations on entities to views:
-     - SurveyView: using DRF viewset class SurveyView is read only class that allows to list active surveys or retrieve one survey using  SurveySerializer as serializer_class.
-     - SubmissionView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, class that allows to create new record in Submission model and list submissions for one survey using SubmissionSerializer as serializer_class.
+     - SurveyView: using DRF viewset class SurveyView is read only class that allows to list active surveys or retrieve one survey using SurveySerializer as serializer_class.
+     - SubmissionView: using DRF mixins class SubmissionView extends mixins.CreateModelMixin and mixins.ListModelMixin classes that allows to create new record in Submission model and list submissions for one survey using SubmissionSerializer as serializer_class.
      - ExpiredSurveyViewSet: using DRF viewset class SurveyView is read only class that allows to list closed surveys or retrieve one survey using SurveyResultSerializer   as serializer_class.
      - UserSubmissionView: using DRF mixins class SubmissionView is read only class that allows to  list submissions for surveys the user submit and  retrieve one    submission using SubmissionSerializer as serializer_class and IsAuthenticated as permission_classes.
-     - UserSurveyView: using DRF mixins class SubmissionView is mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, class that allows user who is   Authenticated to create new  record in Survey model, list that user surveys and update deadline for surveys (using IsOwner permission class) using SurveySerializer as serializer_class.
+     - UserSurveyView: using DRF mixins class SubmissionView extends mixins.CreateModelMixin, mixins.ListModelMixin and mixins.UpdateModelMixin classes that allows   an authenticated user to create new  record in Survey model, list that user surveys, and update deadline for surveys (using IsOwner permission class) using SurveySerializer as serializer_class.
      - TypesAPIView : view allows users to get question types.
 
   
   ### **Securing the backend**
   I used Djoser for Django Rest Framework views to handle basic actions. I used JSON Web Token Authentication to secure the APIs.
   Djoser provides endpoints to enable the following:
-   - Register and activate an account by email.
+   - Register by email and activate an account.
    - Verify and refresh the access token.
    - Login, logout.
   
@@ -126,13 +127,12 @@ Finally, APIs were defined on on top of those views using the following files:
 
 The following is the list of exposed APIs for the frontend to use:
 
-    - "user/submission": "http://127.0.0.1:8000/api/user/submission/"
-    - "submission": "http://127.0.0.1:8000/api/submission/"
-    - "survey/user": "http://127.0.0.1:8000/api/survey/user/"
-    - "survey": "http://127.0.0.1:8000/api/survey/"
-    - "expiredSurvey": "http://127.0.0.1:8000/api/expiredSurvey/"
-
-   
+    - survey/user: /api/survey/user/
+    - survey: /api/survey/
+    - expiredSurvey: /api/expiredSurvey/
+    - user/submission: /api/user/submission/
+    - submission: /api/submission/
+    
 ## **The Frontend:**
  ### **React** : 
  React is a flexible JavaScript library for building user interfaces.
@@ -142,41 +142,41 @@ The following is the list of exposed APIs for the frontend to use:
 - **app.css**: Contains style for the pages.
 
 - **Container folder**: Has jsx files for main components.
-   - create_survey.jsx: Has a form with the survey fields and when it is submitted create function from actions folder will be called to call API in a post request to create a record for that new survey.
+   - create_survey.jsx: Has a form with the survey fields and when it is submitted it calls 'create' function from actions folder to call API in a post request that creates a record for that new survey.
     - home.jsx: Has the home page component that calls API to get the active surveys and render a list of those surveys using SurveyCard components from the helper folder.
-    - user_surveys.jsx:  Contains a component that calls API to get the users surveys and render those surveys using Table components from the helper folder and allows the user to edit each survey deadline or close the survey by clicking a specific button and call edit function from actions folder that calls API in a patch request to update the data.
-    - user_submissions.jsx:  Contains a component that calls API to get the users submissions on the surveys and render those surveys using Table components from the helper folder.
-    - survey_submissions.jsx:  Contains a component that calls API to get the submissions on specific surveys and render those surveys using Table components from the helper folder.
-    - submission.jsx:  Contains a component that calls API to get a submission by its id and render it using Answer components from the helper folder.
-    - results.jsx: Has the results component that calls API to get the closed surveys and render a list of those surveys using SurveyCard components from the helper folder.
-    - result.jsx: Has the result component that calls API to get a closed survey  by its id and render a result of each question in that survey using question components from the helper folder.
-    - login.jsx: Has a form for login thatcalls login function from actions folder and allows the user to login.
-    - signup.jsx: Has a form for signup that calls the login component when account created to let users login.
+    - user_surveys.jsx: Contains a component that calls API to get the users surveys and render those surveys using 'Table' components from the helper folder. Also, it allows the user to edit each survey deadline or close the survey by calling 'edit' function from actions folder that calls API in a patch request to update the data.
+    - user_submissions.jsx:  Contains a component that calls API to get the users submissions on the surveys and render those surveys using 'Table' components from the helper folder.
+    - survey_submissions.jsx:  Contains a component that calls API to get the submissions on specific surveys and render those surveys using 'Table' components from the helper folder.
+    - submission.jsx:  Contains a component that calls API to get a submission by its id and render it using 'Answer' components from the helper folder.
+    - results.jsx: Has the results component that calls API to get the closed surveys and render a list of those surveys using 'SurveyCard' components from the helper folder.
+    - result.jsx: Has the result component that calls API to get a closed survey by its id and render a result of each question in that survey using 'Question' components from the helper folder.
+    - login.jsx: Has a form for login thatcalls 'login' function from actions folder and allows the user to login.
+    - signup.jsx: Has a form for signup that calls the 'login' component when account created to let users login.
     - activate.jsx: Has a form for activating new users.
  
--  **Helper folder:** Has helper jsx files that are used in main components.
-   - create survey folder: Has two child components: SurveyInfoFields in survey_info.jsx for survey information fields and QuestionFields in question_info.jsx for each question fields.
-   -  List survey folder: Has a child component: SurveyCard in surveys.jsx that renders surveys.
-   -  User surveys folder:  Has two child components: Table in user_surveys.jsx for survey information and ModalForm in modal_form.jsx that enables the user to update each survey deadline.
-   -  Submissions folder: Has two child components: Answer in answer.jsx for one submission answers and Table in submissions.jsx for the submissions information.
-   -  Take survey folder: Has Question components in question.jsx file that has TextQuestion in text_question.jsx file, NumQuestion in num_question.jsx file, CheckboxQuestion and RadioQuestion  in choice_question.jsx file as childs components.
-   - Result folder: Has result components in result.jsx file that has TextAnswer in text_answer.jsx file, NumberAnswer in num_answer.jsx file and ChoiceAnswer in choice_answer.jsx file as childs components.
+-  **Helper folder:** Has helper jsx files that are used in main components:
+   - create survey folder: Has two child components: 'SurveyInfoFields' in 'survey_info.jsx' for survey information fields and 'QuestionFields' in 'question_info.jsx' for each question fields.
+   -  List survey folder: Has a child component 'SurveyCard' in 'surveys.jsx' that renders surveys.
+   -  User surveys folder:  Has two child components: 'Table' in 'user_surveys.jsx 'for survey information and 'ModalForm' in 'modal_form.jsx' that enables the user to update each survey deadline.
+   -  Submissions folder: Has two child components 'Answer' in 'answer.jsx' for one submission answers and 'Table' in 'submissions.jsx' for the submissions information.
+   -  Take survey folder: Has 'Question' components in 'question.jsx' file that has 'TextQuestion' in 'text_question.jsx' file, 'NumQuestion' in 'num_question.jsx' file, 'CheckboxQuestion' and 'RadioQuestion'  in 'choice_question.jsx' file as childs components.
+   - Result folder: Has 'result' components in 'result.jsx' file that has 'TextAnswer' in 'text_answer.jsx' file, 'NumberAnswer' in 'num_answer.jsx' file and 'ChoiceAnswer' in 'choice_answer.jsx' file as childs components.
 
--  **actions folder**: Has  jsx files that contain functions used in main components.
+-  **actions folder**: Has jsx files that contain functions used in main components.
    - survey.jsx: 
-       - create function that checks the access token and refresh it if needed then calls API and makes a post request with data as the body and access token in the header.
-       -  edit function that checks the access token and refreshes it if needed then calls API and makes a patch request with the new deadline and access token in the header.
-    - submit.jsx : Has a submit  function that checks the access token and refreshes it if needed then calls API and makes a post request with the submission data as the body and access token in the header.
+       - 'create' function that checks the access token and refresh it if needed then calls API and makes a post request with data as the body and access token in the header.
+       - 'edit' function that checks the access token and refreshes it if needed then calls API and makes a patch request with the new deadline and access token in the header.
+    - submit.jsx : Has 'submit'  function that checks the access token and refreshes it if needed then calls API and makes a post request with the submission data as the body and access token in the header.
     - types.js: Has types for authentication.
     - auth.jsx: Has functions used in authentication:
-       checkAuthenticated,  loud_user,  Login,  signup, verify and  logout functions
+       'checkAuthenticated', 'loud_user', 'Login', 'signup', 'verify' and 'logout' functions
 -  **Components folder**: Has a jsx file for the navbar component which has the main pages links and login/signup or log out depending on if the user is authenticated or not.
--  **Hocs folder:** Contains a layout function that does authentication checks.
+-  **Hocs folder:** Contains a 'layout' function that does authentication checks.
 -  **reducers folder:** Has a function that returns state depending on the type.
 
 ## Future work and improvements
 
-- Have categories for the survey that could sort surveys.
--  Do pagination.
-- Add unit tests for the project.
-- Notifications to survey creators by sending email about survey results when survey closes.
+- Add a category field to the survey that could be used to filter surveys.
+-  Do pagination to tables.
+- Add unit tests to the project.
+- Email notifications to survey creators about survey results when it closes.
