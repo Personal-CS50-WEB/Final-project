@@ -2,6 +2,8 @@
 
 ## Distinctiveness and Complexity
  It is a survey platform application where users can create, view, and participate in surveys. It consists of two applications that were developed independently; A backend app that was developed using Django REST framework and a Frontend app that was developed using React.js.
+ 
+### Video Demo: https://youtu.be/9wb0kEe5GDg
 
 ### Functional Requirements
   - Users can create an account using her email.
@@ -177,6 +179,7 @@ The following is the list of exposed APIs for the frontend to use:
 ## Future work and improvements
 
 - Add a category field to the survey that could be used to filter surveys.
--  Do pagination to tables.
+- Do pagination to tables.
 - Add unit tests to the project.
 - Email notifications to survey creators about survey results when it closes.
+- Improve the frontend style.
