@@ -23,7 +23,7 @@ https://youtu.be/9wb0kEe5GDg
     - A numerical question: Number and percentage of responses for each number.
     - Single and multi select: Number and percentage of each selected option. 
 
-## **Technologies used:**
+## **Technologies used**
    ### Backend:
    Django REST framework:
    - Python.
@@ -120,7 +120,7 @@ The following is the list of exposed APIs for the frontend to use:
     - user/submission: /api/user/submission/
     - submission: /api/submission/
     
-## **The Frontend:**
+## **The Frontend**
  ### **React** : 
  React is a flexible JavaScript library for building user interfaces.
  **src folder**:
