@@ -1,12 +1,12 @@
-# Survey
+# Survey Platform
 
-## Distinctiveness and Complexity
+## **Distinctiveness and Complexity**
  It is a survey platform application where users can create, view, and participate in surveys. It consists of two applications that were developed independently; A backend app that was developed using Django REST framework and a Frontend app that was developed using React.js.
  
-## Video Demo
+## **Video Demo**
 https://youtu.be/9wb0kEe5GDg
 
-## Functional Requirements
+## **Functional Requirements**
   - Users can create an account using her email.
   - Registered users can create, participate in open surveys, view results of closed surveys.
   - The creator user can set the survey deadline. After the deadline, no responses can be submitted.
@@ -23,10 +23,8 @@ https://youtu.be/9wb0kEe5GDg
     - A numerical question: Number and percentage of responses for each number.
     - Single and multi select: Number and percentage of each selected option. 
 
-## Technologies used:
-
+## **Technologies used:**
    ### Backend:
-   
    Django REST framework:
    - Python.
    - Django models.
@@ -34,11 +32,10 @@ https://youtu.be/9wb0kEe5GDg
    - postgreSQL.
    
    ### Frontend:
-   
    The web application is mobile-responsive using Javascript:
    - React js.
 
-## Starting the app
+## **Starting the app**
 
 ### Prerequisites
 - Python 3.6 or later installed.
