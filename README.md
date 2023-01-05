@@ -162,7 +162,6 @@ The following is the list of exposed APIs for the frontend to use:
 -  **reducers folder:** Has a function that returns state depending on the type.
 
 ## **Starting the app**
-
 ### Prerequisites
 - Python 3.6 or later installed.
 - Node.js latest version.
@@ -174,7 +173,6 @@ The following is the list of exposed APIs for the frontend to use:
 5. Run: `python manage.py runserver`
 6. In frontend directory, Run: `npm install` 
 7. Run: `npm start`
-
 
 ## **Future work and improvements**
 - Add a category field to the survey that could be used to filter surveys.
