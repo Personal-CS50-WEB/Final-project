@@ -3,9 +3,10 @@
 ## Distinctiveness and Complexity
  It is a survey platform application where users can create, view, and participate in surveys. It consists of two applications that were developed independently; A backend app that was developed using Django REST framework and a Frontend app that was developed using React.js.
  
-### Video Demo: https://youtu.be/9wb0kEe5GDg
+## Video Demo
+https://youtu.be/9wb0kEe5GDg
 
-### Functional Requirements
+## Functional Requirements
   - Users can create an account using her email.
   - Registered users can create, participate in open surveys, view results of closed surveys.
   - The creator user can set the survey deadline. After the deadline, no responses can be submitted.
@@ -22,9 +23,9 @@
     - A numerical question: Number and percentage of responses for each number.
     - Single and multi select: Number and percentage of each selected option. 
 
-### Technologies used:
+## Technologies used:
 
-   #### Backend:
+   ### Backend:
    
    Django REST framework:
    - Python.
@@ -32,17 +33,17 @@
    - Djoser.
    - postgreSQL.
    
-   #### Frontend:
+   ### Frontend:
    
    The web application is mobile-responsive using Javascript:
    - React js.
 
 ## Starting the app
 
-#### Prerequisites
+### Prerequisites
 - Python 3.6 or later installed.
 - Node.js latest version.
-#### Steps
+### Steps
 1. Clone the code : https://github.com/Personal-CS50-WEB/Final-project.git
 2. Run: `pip install -r requirements.txt`
 3. Run:` python manage.py makemigrations` to make migrations.
@@ -116,7 +117,7 @@ Then, Django REST Framework was used to model those entities, apply business rul
      - TypesAPIView : view allows users to get question types.
 
   
-  ### **Securing the backend**
+  ## **Securing the backend**
   I used Djoser for Django Rest Framework views to handle basic actions. I used JSON Web Token Authentication to secure the APIs.
   Djoser provides endpoints to enable the following:
    - Register by email and activate an account.
