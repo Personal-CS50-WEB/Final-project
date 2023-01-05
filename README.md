@@ -35,19 +35,6 @@ https://youtu.be/9wb0kEe5GDg
    The web application is mobile-responsive using Javascript:
    - React js.
 
-## **Starting the app**
-
-### Prerequisites
-- Python 3.6 or later installed.
-- Node.js latest version.
-### Steps
-1. Clone the code : https://github.com/Personal-CS50-WEB/Final-project.git
-2. Run: `pip install -r requirements.txt`
-3. Run:` python manage.py makemigrations` to make migrations.
-4. Run: `python manage.py migrate`
-5. Run: `python manage.py runserver`
-6. In frontend directory, Run: `npm install` 
-7. Run: `npm start`
 
 ## **The Backend**
 It is developed using Django REST Framework (DRF) which is an application used for rapidly building RESTful APIs based on Django models and Postgres DB. It was developed completely separate from the frontend. I was able to complete the backend and test it before starting the frontend development.
@@ -174,8 +161,22 @@ The following is the list of exposed APIs for the frontend to use:
 -  **Hocs folder:** Contains a 'layout' function that does authentication checks.
 -  **reducers folder:** Has a function that returns state depending on the type.
 
-## Future work and improvements
+## **Starting the app**
 
+### Prerequisites
+- Python 3.6 or later installed.
+- Node.js latest version.
+### Steps
+1. Clone the code : https://github.com/Personal-CS50-WEB/Final-project.git
+2. Run: `pip install -r requirements.txt`
+3. Run:` python manage.py makemigrations` to make migrations.
+4. Run: `python manage.py migrate`
+5. Run: `python manage.py runserver`
+6. In frontend directory, Run: `npm install` 
+7. Run: `npm start`
+
+
+## **Future work and improvements**
 - Add a category field to the survey that could be used to filter surveys.
 - Do pagination to tables.
 - Add unit tests to the project.
