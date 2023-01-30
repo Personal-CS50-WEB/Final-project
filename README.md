@@ -177,6 +177,7 @@ The following is the list of exposed APIs for the front end to use:
 - Add a category field to the survey that could be used to filter surveys.
 - Add unit tests to the project.
 - Email notifications to survey creators about survey results when it closes.
+- Do pagination to tables.
 
 ## **CSS template**
 https://www.free-css.com/
