@@ -26,7 +26,7 @@ https://youtu.be/9wb0kEe5GDg
 ## **Technologies used**
    ### Backend:
    Django REST framework:
-   - Python.
+    - Python.
    - Django models.
    - Djoser.
    - PostgreSQL.
@@ -113,10 +113,16 @@ Finally, APIs were defined on top of those views using the following files:
  - **urls.py file** : Contains the APIs paths.
 
 The following is the list of exposed APIs for the front end to use:
+	@@ -120,60 +135,47 @@ The following is the list of exposed APIs for the front end to use:
+    - user/submission: /api/user/submission/
+    - submission: /api/submission/
 
-    - survey/user: /api/survey/user/
-    - survey: /api/survey/
-	@@ -129,36 +129,36 @@ The following is the list of exposed APIs for the frontend to use:
+## **The Frontend**
+ ### **React** : 
+ React is a flexible JavaScript library for building user interfaces.
+
+ **src folder**:
+- **app.js**: Has all main components as routes.
 
 - **app.css**: Contains style for the pages.
 
@@ -153,7 +159,8 @@ The following is the list of exposed APIs for the front end to use:
 -  **Hocs folder:** Contains a 'layout' function that does authentication checks.
 -  **reducers folder:** Has a function that returns state depending on the type.
 
-	@@ -167,12 +167,12 @@ The following is the list of exposed APIs for the frontend to use:
+## **Starting the app**
+### Prerequisites
 - Python 3.6 or later installed.
 - Node.js latest version.
 ### Steps
@@ -166,10 +173,7 @@ The following is the list of exposed APIs for the front end to use:
 7. Run: `npm start`
 
 ## **Future work and improvements**
-	@@ -181,3 +181,5 @@ The following is the list of exposed APIs for the frontend to use:
-- Add unit tests to the project.
-- Email notifications to survey creators about survey results when it closes.
-
+- Add a category field to the survey that could be used to filter surveys.
 
 ## **CSS template**
 https://www.free-css.com/
