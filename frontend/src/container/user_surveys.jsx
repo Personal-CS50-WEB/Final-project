@@ -66,9 +66,11 @@ const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
         edit(newDate, surveyId, modalIndex , history, userSurveys);
     }
     return (<>
-        <div className="jumbotron">
-            <h2>Your active surveys</h2>
+        <section  className="section video" data-section="section5">
+            <div className="container">
+                <h2 className='text-light'>Your active surveys</h2>
             </div>
+        </section>
         <div className="container">
             {userSurveys.length > 0 ?
             (

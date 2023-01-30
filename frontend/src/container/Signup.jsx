@@ -30,10 +30,10 @@ const Signup = ({signup, isAuthenticated}) => {
         return <Navigate to='/login' />
     }
 
-    return (
+    return (<section className="section coming-soon" data-section="section3">
         <div className="container mt-5">
-            <h1>Sign Up</h1>
-            <p> Create your Account</p>
+            <h1 className='text-light'>Sign Up</h1>
+            <p className='text-light'> Create your Account</p>
             <form onSubmit={e => onSubmit(e)}>
                 <div className='form-group'>
                     <input
@@ -80,11 +80,11 @@ const Signup = ({signup, isAuthenticated}) => {
                 </div>
                 <button className="btn btn-primary" type="submit">Register</button>
             </form>
-            <p className="mt-3">
-                Already have an account?<Link to="/login">Sign In</Link>
+            <p className='text-light'>
+                Already have an account? <Link to="/login">Sign In</Link>
             </p>
         </div>
-    )
+    </section>)
 };    
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated

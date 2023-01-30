@@ -19,11 +19,13 @@ const Login = ({login, isAuthenticated}) => {
     if (isAuthenticated){
         return <Navigate to='/' />
     }
-    return (
+    return (<section className="section coming-soon" data-section="section3">
         <div className="container mt-5">
-            <h1>Sign In</h1>
-            <p> Sign into your Account</p>
-            <form onSubmit={e => onSubmit(e)}>
+            <div className="top-content">
+                <h1 className='text-light' >Sign In</h1>
+                <h6> Sign into your Account</h6>
+            </div>
+            <form id="contact" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
                     <input className="form-control"
                     type="email"
@@ -47,11 +49,11 @@ const Login = ({login, isAuthenticated}) => {
                 </div>
                 <button className="btn btn-primary" type="submit">Login</button>
             </form>
-            <p className="mt-3">
-                Don't have an account?<Link to="/signup">Sign Up</Link>
+            <p className='text-light'>
+                Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
         </div>
-    )
+    </section>)
 };    
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated

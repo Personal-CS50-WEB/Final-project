@@ -100,8 +100,9 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
         e.preventDefault();
         create(name, description, deadline, questions, history);
     };
-    return (<div className="container mt-5">
-        <h1>Create survey</h1>
+    return (<section id="section5" className="section video" data-section="section5">
+        <div className="container">
+        <h1 className='text-light'>Create survey</h1>
             <form onSubmit={e => onSubmit(e)}>
                 <SurveyInfoFields name={name}
                 description={description}
@@ -129,12 +130,12 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                     </div>)
                     })}
                     <button 
-                    className="btn btn-outline-primary" 
+                    className="btn btn-outline-warning col-2" 
                     type="button"
                     onClick={addQuestion}>Add question..
                     </button>
                 <button 
-                className="btn btn-primary" 
+                className="btn btn-warning" 
                 disabled={questions[0].text === ''||
                 questions[0].type ===''
                 ||
@@ -144,7 +145,7 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                 </button>
             </form>
         </div>
-    )   
+    </section>)   
 }
 export const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated

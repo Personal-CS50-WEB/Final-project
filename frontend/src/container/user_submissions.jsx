@@ -29,9 +29,11 @@ const  SurveySubmissions = ({ isAuthenticated, checkAuthenticated })  => {
         fetchData();
     }, []);    
     return (<>
-        <div className="jumbotron">
-            <h2>Survey submissions</h2>
+        <section id="section5" className="section video" data-section="section5">
+            <div className="container">
+                <h2 className='text-light'>Your submissions</h2>
             </div>
+        </section>
         <div className="container">
             {submissions.length > 0 ?
             (

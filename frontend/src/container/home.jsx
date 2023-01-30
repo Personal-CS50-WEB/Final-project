@@ -19,20 +19,34 @@ export default function ListSurveys(){
     },[]);
 
     return (<>
-        <div className="jumbotron">
-            <h2>Active surveys</h2>
-            </div>
-        <div className="container">
-            {surveys.length > 0 ?
-            (<div className="container">
-                {surveys.map((survey, i) =>(
-                    <div className="container" key={i}>
-                        <SurveyCard  survey={survey}/>
-                        <br></br>
+        <section className="section main-banner" id="section1" data-section="section1">
+            <video autoPlay  muted loop id="bg-video">
+                <source src="/assets/images/course-video.mp4" type="video/mp4" />
+            </video>
+            <div className="video-overlay header-text">
+                <div className="caption">
+                    <h2><em>Active</em> surveys</h2>
+                    <h6>A list of the active surveys to participate in </h6>
+                    <br></br>
+                    <div className="main-button">
+                        <div className="scroll-to-section"><a href="#section5">View</a></div>
                     </div>
-                ))}
-            </div> ):(<div className="empty"></div>
-            )}
-        </div>
+                </div>
+            </div>
+        </section>
+        <section id="section5" className="section video" data-section="section5">
+            <div  className="container">
+                {surveys.length > 0 ?
+                (<div className="container">
+                    {surveys.map((survey, i) =>(
+                        <div className="container" key={i}>
+                            <SurveyCard survey={survey}/>
+                            <br></br>
+                        </div>
+                    ))}
+                </div> ):(<div className="empty"></div>
+                )}
+            </div>
+        </section>
     </>)
 }
