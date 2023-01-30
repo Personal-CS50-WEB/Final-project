@@ -48,6 +48,10 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
     const  handleCallbackCheckbox = (childData) =>{
         checkbox = childData;
     }
+    let score;
+    const  handleCallbackScore = (childData) =>{
+        score = childData;
+    }
 
     const handleFormChange = (i, event, question) => {
         let index;
@@ -79,8 +83,13 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
                 integer: null
             };
             submissionAnswers[index].integer_answer = integer_answer;
-            submissionAnswers[index].integer_answer.integer = parseInt(event.target.value);
+            if( question.type === 'SCORE') {
+                submissionAnswers[index].integer_answer.integer = parseInt(score);
+            }
+            else{
+                submissionAnswers[index].integer_answer.integer = parseInt(event.target.value);
 
+            }
         // handle radio answer
         } else if (question.type === 'RADIO'){
             submissionAnswers[index].options_answers = [radio];
@@ -96,10 +105,14 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
         e.preventDefault();
         submit(id, submissionAnswers, history);
     }
-    return (
-    <div className="container mt-5">
-        <h1>Take Survey</h1>
+    return (<>
+    <section id="section5" className="section video" data-section="section5">
+            <div className="container">
+                <h2 className='text-light'>Take Survey</h2>
+            </div>
+        </section>
         <div className="container">
+            <br></br>
             {Survey?
             (<div className="container">
                 <h3>{Survey.name}</h3>
@@ -114,6 +127,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
                                 <Question  
                                 parentCallback = {handleCallback}
                                 handleCallbackCheckbox = {handleCallbackCheckbox}
+                                handleCallbackScore= {handleCallbackScore}
                                 onChange={event =>(handleFormChange(i, event, question))}
                                 question={question}
                                 i={i} />
@@ -123,7 +137,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
                 <button 
                 disabled={submissionAnswers.length !== Survey.questions.length
                 || !submissionAnswers[0]['question']}
-                className="btn btn-primary" 
+                className="btn btn-warning" 
                 type="submit">
                 Submit
                 </button>
@@ -132,7 +146,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
             </div>
             ):(<div className="empty"></div>)}
         </div>
-    </div>)
+    </>)
 }
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated

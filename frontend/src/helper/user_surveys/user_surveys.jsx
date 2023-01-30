@@ -21,19 +21,19 @@ export const Table = ({userSurveys, openModal, endSurvy}) => {
                     <td >{survey.name}</td>
                     <td>{survey.deadline}</td>
                     <td>
-                        <Link className="btn btn-primary"
+                        <Link className="btn btn-warning"
                         to='/survey/submission/' 
                         state={{ survey: survey.id }}
                         >{survey.total_submissions}
                         </Link>
                     </td>
                     <td>
-                        <button className="btn btn-primary"   
+                        <button className="btn btn-warning"  
                         onClick={e=> openModal(e, survey.id, index)}
                         >Extend deadline</button>
                     </td>
                     <td>
-                        <button className="btn btn-primary"
+                        <button className="btn btn-warning"
                         onClick={(event) => endSurvy(event, survey.id, index)} 
                         >Close survey</button>
                     </td>

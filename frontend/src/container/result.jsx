@@ -21,22 +21,25 @@ export default function Result(){
     fetchData();
     }, []); 
 
-    return (<div className="container mt-5">
+    return (<>
         {result? (<>
-            <div className="container">
-                <h1>{result.name}</h1>
-                <p className="font-weight-normal">{result.description}</p>
-                <h3 className="font-weight-normal">Total submissions: {result.submissions.length}</h3>
-                <p className="font-weight-light">closed at: {result.deadline}</p>
-            </div >
-            <div className="container">
-            {result.questions.map((question, i) =>(
-                <div className="container" key={i}>
-                    <Question question={question} />
-                    <br></br>
+            <section id="section5" className="section video" data-section="section5">
+                <div className="container">
+                    <h2 className='text-light'>{result.name}</h2>
+                    <p className=" text-light font-weight-normal">{result.description}</p>
+                    <h3 className="text-light font-weight-normal">Total submissions: {result.submissions.length}</h3>
+                    <p className="text-light font-weight-light">closed at: {result.deadline}</p>
                 </div>
-            ))}
-            </div>
+                <br></br>
+                <div className="container">
+                {result.questions.map((question, i) =>(
+                    <div className="container" key={i}>
+                        <Question question={question} />
+                        <br></br>
+                    </div>
+                ))}
+                </div>
+            </section>
         </>):(null)}
-    </div>)
+    </>)
 }

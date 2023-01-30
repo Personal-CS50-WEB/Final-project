@@ -18,7 +18,7 @@ export default function Results(){
         .catch(console.error)
     },[]);
 
-    return (<>
+    return (<section className="section video" data-section="section5">
         <div className="jumbotron">
             <h2>Closed surveys</h2>
         </div>
@@ -36,5 +36,5 @@ export default function Results(){
             <div className="empty"></div>
             )}
         </div>
-    </>)
+    </section>)
 }

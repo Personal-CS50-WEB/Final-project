@@ -6,27 +6,28 @@ import { logout } from '../actions/auth';
 const Navbar = ({ logout, isAuthenticated }) => {
     const guestLinks = () => (
         <Fragment>
-            <Link className="nav-item nav-link mr-sm-2" to="/login">Login</Link>
-            <Link className="nav-item nav-link mr-sm-2" to="/signup">Signup</Link>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Signup</Link></li>
         </Fragment>
     );
     const authLinks = () => (
-        <Link className="nav-item nav-link mr-sm-2" to="/login" onClick={logout}>Logout</Link>
+        <li><Link to="/login" onClick={logout}>Logout</Link></li>
     );
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className="navbar-brand" to="/">Survey</Link>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-                <Link className="nav-item nav-link" to="create_survey">Create survey</Link>
-                <Link className="nav-item nav-link" to="/survey/user">Your surveys</Link>
-                <Link className="nav-item nav-link" to="/submission/user">Your submissions</Link>
-                <Link className="nav-item nav-link" to="/results/">See results</Link>               
-            </div>
+    return (<header className="main-header clearfix">
+        <div className="logo">
+            <Link className="navbar-brand" to="/"><em>pollpal</em></Link>
         </div>
-        {isAuthenticated ? authLinks() : guestLinks()}
-    </nav>
-    );
+        <a href="#menu" className="menu-link"><i className="fa fa-bars"></i></a>
+        <nav  id="menu" className="main-nav" role="navigation">
+            <ul className="main-menu">
+                <li><Link to="create_survey">Create survey</Link></li>
+                <li><Link to="/survey/user">Your surveys</Link></li>
+                <li><Link to="/submission/user">Your submissions</Link></li>
+                <li><Link to="/results/">See results</Link></li>         
+                {isAuthenticated ? authLinks() : guestLinks()}
+            </ul>
+        </nav>
+    </header>);
 }
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated

@@ -29,11 +29,13 @@ const ViewSubmission = ({ isAuthenticated,  checkAuthenticated }) => {
         }
         fetchData();
         }, []); 
-    return (<div className="container mt-5">
+    return (<>
         {submission? (<>
-        <div className="jumbotron">
-            <h2>{submission.survey_data.name}</h2>
-        </div>
+        <section id="section5" className="section video" data-section="section5">
+            <div className="container">
+                <h2 className='text-light'>{submission.survey_data.name}</h2>
+            </div>
+        </section>
         <div className="container">
         {submission.submission_answers.length > 0 ?
             (<div className="container">
@@ -49,7 +51,7 @@ const ViewSubmission = ({ isAuthenticated,  checkAuthenticated }) => {
         ):(
             null
         )}
-    </div>)
+    </>)
 }
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated

@@ -34,17 +34,17 @@ export const QuestionFields = ({input, index, handleFormChange,
                 />
             </div>
                 <button 
-                className="btn btn-outline-primary mb-2"
+                className="btn btn-outline-warning col-2 mb-3"
                 type="button"
-                onClick={(e) => removeQuestion(e, index)}>Remove
+                onClick={(e) => removeQuestion(e, index)}>Remove question
                 </button>
             </div>
             { ['CHECKBOX', 'RADIO'].indexOf(input.type)> -1 ? (<>
             <div className="form-group">
                 {input['options'].map((option, i) => {
                     return (
-                        <div className="form-row" key={i}>
-                            <div className=" col">
+                        <div className="form-row  align-items-center " key={i}>
+                            <div className="col">
                                 <input
                                 className="form-control"
                                 type='text'
@@ -56,7 +56,7 @@ export const QuestionFields = ({input, index, handleFormChange,
                                 <br></br>
                             </div>
                             <button 
-                            className="btn btn-outline-primary mb-2"
+                            className="btn btn-outline-warning col-2 mb-4"
                             type="button"
                             onClick={(event) => removeOption(event, index, i )}
                             >Remove option</button>
@@ -65,7 +65,7 @@ export const QuestionFields = ({input, index, handleFormChange,
                 }
             </div>
                 <button 
-                className="btn btn-outline-primary mb-2" 
+                className="btn btn-outline-warning col-2 mb-3" 
                 type="button"
                 onClick={(event) => addOption(event, index )}
                 >Add option..</button>

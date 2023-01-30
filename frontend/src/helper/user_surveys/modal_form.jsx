@@ -29,7 +29,7 @@ export const ModalForm = ({closeModal, newDate, setNewDate, editDeadline, modalI
             <div className="modal-footer">
                 <button 
                 onClick={e => editDeadline(e, modalIndex) }
-                className="btn btn-primary">
+                className="btn btn-warning">
                     Save changes
                 </button>
             </div>

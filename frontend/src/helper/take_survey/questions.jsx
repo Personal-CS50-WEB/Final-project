@@ -3,7 +3,7 @@ import { TextQuestion } from "./text_question";
 import { RadioQuestion, CheckboxQuestion } from "./choice_question";
 import { NumQuestion } from "./num_question";
 
-export const Question = ({question , i, onChange, parentCallback, handleCallbackCheckbox  }) => {
+export const Question = ({question , i, onChange, parentCallback, handleCallbackCheckbox, handleCallbackScore  }) => {
 
     const [checkedState, setCheckedState] = useState(
         new Array(question.options.length).fill(false)
@@ -40,6 +40,13 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
         parentCallback(options);
         onChange();
     }
+    function handleScore (newRating) {
+        
+        console.log(newRating);
+        handleCallbackScore(newRating);
+        onChange();
+        
+    }
     return (
         <div className="form-group">
             {(() => {
@@ -48,7 +55,12 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
                     <TextQuestion question={question}
                     onChange={onChange} i={i}/>
                     )
-                } else if (['SCORE', 'INTEGER'].indexOf(question.type)> -1) {
+                } else if (question.type === 'SCORE') {
+                    return (
+                        <NumQuestion question={question}
+                        onChange={handleScore} i={i} />
+                    )
+                } else if (question.type === 'INTEGER') {
                     return (
                         <NumQuestion question={question}
                         onChange={onChange} i={i} />
