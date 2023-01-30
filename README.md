@@ -26,12 +26,11 @@ https://youtu.be/9wb0kEe5GDg
 ## **Technologies used**
    ### Backend:
    Django REST framework:
-   
    - Python.
    - Django models.
    - Djoser.
    - PostgreSQL.
-
+   
    ### Frontend:
    The web application is mobile-responsive using Javascript:
    - React js.
@@ -41,7 +40,7 @@ https://youtu.be/9wb0kEe5GDg
 It is developed using Django REST Framework (DRF) which is an application used for rapidly building RESTful APIs based on Django models and Postgres DB. It was developed completely separate from the front end. I was able to complete the backend and test it before starting the front-end development.
 
 But first, Let's define the entities of the system.
-
+  
   ### **Entities**
  - User: Represents the user's main information.
  - Survey: Represents survey information and a list of questions in each survey.  
@@ -52,7 +51,7 @@ But first, Let's define the entities of the system.
  - Text Answer: Represents a text answer to a question when the question type is Text.
  - Integer Answer: Represents an integer answer to a question when the question type is an integer.
  - Option Answer model: Represents an option's answer to a question when the question type is single or multi-selection.
-
+  
 Then, Django REST Framework was used to model those entities, apply business rules, develop, and expose REST APIs. To achieve that, I had to use the following components of DRF:
 
    ### **Models**
@@ -69,11 +68,11 @@ Then, Django REST Framework was used to model those entities, apply business rul
      - IntegerAnswer model: Has Answer as foreign key and the integer answer.
      - OptionAnswer model: Has Answer as foreign key and the options answers.
 
-
+ 
   	![alt text](Survey_DB_Diagram.png)
-
+   
   ### **Serializers**
-
+  
   - Using DRF provides a Serializer class which gives a way to control the output of the responses, as well as a ModelSerializer class which provides a useful shortcut for creating serializers that deal with model instances and querysets.
   - Using serializers classes to convert model instances into JSON and adding the required logic.
   - Each entity needs at least one serializer to convert model instances into JSON.
@@ -88,7 +87,7 @@ Then, Django REST Framework was used to model those entities, apply business rul
       - SurveyResultSerializer: Contains serializer class for survey model which is a nested dynamic serializer containing submissions and questions fields as children of the parent class, using that serializer in result view to represent the closed survey data.
       - SubmissionSerializer:  Contains serializer class for submission model which is nested dynamic serializer contains submission answers field as a child, SubmissionSerializer contains ‘create’ a function that handles creating a new record in the Submission model and its child Answer model and depending on question type (radio, checkbox, text, integer or score) new record in TextAnswer or IntegerAnswer or OptionAnswer will be created.
 
-
+  
   ### **Views**
   A ModelViewSet class is simply a type of class-based View, The actions provided by the ModelViewSet class are .list(), .retrieve(), .create(), .update(), .partial_update(), and .destroy().
   - DRF provides Custom ViewSet base classes that do not have the full set of ModelViewSet actions that are used in this project.
@@ -101,27 +100,30 @@ Then, Django REST Framework was used to model those entities, apply business rul
      - UserSurveyView: using DRF mixins class SubmissionView extends mixins.CreateModelMixin, mixins.ListModelMixin and mixins.UpdateModelMixin classes that allow an authenticated user to create new records in the Survey model, list the user surveys and update the deadline for surveys (using IsOwner permission class) using SurveySerializer as serializer_class.
      - TypesAPIView: view allows users to get question types.
 
-
+  
   ## **Securing the backend**
   I used Djoser for Django Rest Framework views to handle basic actions. I used JSON Web Token Authentication to secure the APIs.
   Djoser provides endpoints to enable the following:
    - Register by email and activate an account.
    - Verify and refresh the access token.
    - Login, log out.
-
+  
 Finally, APIs were defined on top of those views using the following files:
  - **routers.py file**: Contains the routes for every view.
  - **urls.py file** : Contains the APIs paths.
 
 The following is the list of exposed APIs for the front end to use:
-	@@ -120,60 +135,47 @@ The following is the list of exposed APIs for the front end to use:
+
+    - survey/user: /api/survey/user/
+    - survey: /api/survey/
+    - expiredSurvey: /api/expiredSurvey/
     - user/submission: /api/user/submission/
     - submission: /api/submission/
-
+    
 ## **The Frontend**
  ### **React** : 
  React is a flexible JavaScript library for building user interfaces.
-
+ 
  **src folder**:
 - **app.js**: Has all main components as routes.
 
@@ -139,7 +141,7 @@ The following is the list of exposed APIs for the front end to use:
     - login.jsx: Has a form for login that calls the 'login' function from the actions folder and allows the user to log in.
     - signup.jsx: Has a form for signup that calls the 'login' component when an account is created to let users log in.
     - activate.jsx: Has a form for activating new users.
-
+ 
 -  **Helper folder:** Has helper JSX files that are used in main components:
    - create survey folder: Has two child components: 'SurveyInfoFields' in 'survey_info.jsx' for survey information fields and 'QuestionFields' in 'question_info.jsx' for each question fields.
    -  List survey folder: Has a child component 'SurveyCard' in 'surveys.jsx' that renders surveys.
@@ -175,9 +177,10 @@ The following is the list of exposed APIs for the front end to use:
 
 ## **Future work and improvements**
 - Add a category field to the survey that could be used to filter surveys.
+- Do pagination to tables.
 - Add unit tests to the project.
 - Email notifications to survey creators about survey results when it closes.
-- Do pagination to tables.
+- Improve the frontend style.
 
 ## **CSS template**
 https://www.free-css.com/
