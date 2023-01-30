@@ -26,7 +26,8 @@ https://youtu.be/9wb0kEe5GDg
 ## **Technologies used**
    ### Backend:
    Django REST framework:
-    - Python.
+   
+   - Python.
    - Django models.
    - Djoser.
    - PostgreSQL.
