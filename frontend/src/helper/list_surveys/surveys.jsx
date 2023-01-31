@@ -11,10 +11,10 @@ export const SurveyCard = ({survey}) => {
                 <p className="card-text">{survey.description}</p>
                 {total_submissions? (<>
                     <p>{survey.total_submissions}</p><div className="main-button">
-                        <Link to={`/survey/result/${survey.id}`}>See {survey.name} result</Link></div>
+                        <Link to={`/results/${survey.id}`}>See {survey.name} result</Link></div>
                         </>
                     ):(<div className="main-button">
-                        <Link to={`/survey/${survey.id}`}>Take survey</Link></div>
+                        <Link to={`${survey.id}`}>Take survey</Link></div>
                     )}
                 <br></br>
                 <p>Expires in {survey.deadline}</p>

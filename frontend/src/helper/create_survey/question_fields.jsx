@@ -70,6 +70,6 @@ export const QuestionFields = ({input, index, handleFormChange,
                 onClick={(event) => addOption(event, index )}
                 >Add option..</button>
             </>
-        ) : (console.log(input))}
+        ) : (null)}
     </div>);
 }

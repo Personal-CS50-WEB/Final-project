@@ -6,8 +6,8 @@ import { logout } from '../actions/auth';
 const Navbar = ({ logout, isAuthenticated }) => {
     const guestLinks = () => (
         <Fragment>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/signup">Signup</Link></li>
+            <li><Link to="login">Login</Link></li>
+            <li><Link to="signup">Signup</Link></li>
         </Fragment>
     );
     const authLinks = () => (
@@ -21,9 +21,9 @@ const Navbar = ({ logout, isAuthenticated }) => {
         <nav  id="menu" className="main-nav" role="navigation">
             <ul className="main-menu">
                 <li><Link to="create_survey">Create survey</Link></li>
-                <li><Link to="/survey/user">Your surveys</Link></li>
-                <li><Link to="/submission/user">Your submissions</Link></li>
-                <li><Link to="/results/">See results</Link></li>         
+                <li><Link to="user/surveys">Your surveys</Link></li>
+                <li><Link to="submissions">Your submissions</Link></li>
+                <li><Link to="results">See results</Link></li>         
                 {isAuthenticated ? authLinks() : guestLinks()}
             </ul>
         </nav>

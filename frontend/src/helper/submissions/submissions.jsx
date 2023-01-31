@@ -22,12 +22,12 @@ export const Table = ({submissions}) => {
                     <th scope="row">{index}</th>
                     {submission.user_data? (<td>
                         <Link className="btn btn-link"
-                        to={`/submission/${submission.id}`}
+                        to={`/submissions/${submission.id}`}
                         >{submission.user_data.username}
                         </Link>
                     </td>):(<td>
                         <Link className="btn btn-link"
-                        to={`/submission/${submission.id}`}
+                        to={`/submissions/${submission.id}`}
                         >{submission.survey_data.name}
                         </Link>
                     </td>)}

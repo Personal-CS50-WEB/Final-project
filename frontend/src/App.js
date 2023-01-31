@@ -18,25 +18,28 @@ import SurveySubmissions from "./container/surveysubmissions";
 import Results from "./container/results";
 import Result from "./container/result";
 
-const App = () => (
+const App = () => {
+  if (window.location.protocol === "file:") {
+    window.history.pushState({}, "", "/");
+  }
+  return(
   <Provider store={store}>
     <Layout>
         <Routes>
-          <Route  path="/" element={<ListSurveys />} />
+          <Route  exact path="/" element={<ListSurveys />} />
           <Route  path="/login" element={<Login />} />
           <Route  path="/signup" element={<Signup />} />
-          <Route  path="/survey/user" element={<UserSurveys />} />
-          <Route  path="/submission/user" element={<UserSubmissions />} />
-          <Route  path="/survey/submission/" element={<SurveySubmissions />} />
+          <Route  path="/user/surveys" element={<UserSurveys />} />
+          <Route  path="/submissions" element={<UserSubmissions />} />
+          <Route  path="/survey/submissions/" element={<SurveySubmissions />} />
           <Route  path="/create_survey" element={<CreateSurvey />} />
-          <Route  path="/survey/:id" element={<TakeSurvey />} />
-          <Route  path="/submission/:id" element={<ViewSubmission />} />
+          <Route  path="/:id" element={<TakeSurvey />} />
+          <Route  path="/submissions/:id" element={<ViewSubmission />} />
           <Route  path="/results" element={<Results />} />
-          <Route  path="/survey/result/:id" element={<Result />} />
+          <Route  path="/results/:id" element={<Result />} />
           <Route exact path='/activate/:uid/:token' compoelementnent={<Activate />} />
         </Routes>
     </Layout>
-  </Provider>
-  );
-
+  </Provider>)
+  };
 export default App;

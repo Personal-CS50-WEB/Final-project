@@ -22,7 +22,7 @@ export const Table = ({userSurveys, openModal, endSurvy}) => {
                     <td>{survey.deadline}</td>
                     <td>
                         <Link className="btn btn-warning"
-                        to='/survey/submission/' 
+                        to='/survey/submissions' 
                         state={{ survey: survey.id }}
                         >{survey.total_submissions}
                         </Link>
