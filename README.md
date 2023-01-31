@@ -180,7 +180,6 @@ The following is the list of exposed APIs for the front end to use:
 - Do pagination to tables.
 - Add unit tests to the project.
 - Email notifications to survey creators about survey results when it closes.
-- Improve the frontend style.
 
 ## **CSS template**
 https://www.free-css.com/
