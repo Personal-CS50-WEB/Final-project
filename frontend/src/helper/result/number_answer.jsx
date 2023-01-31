@@ -22,9 +22,11 @@ export const NumberAnswer = ({question}) => {
                     Object.entries(numberOccurence).map(([key, value]) =>
                     <div className="list-group-item" key={key}>
                         <div className="row gy-2 gx-3 align-items-center" >
-                        {question.type === 'SCORE' ? (Array.apply(null, { length: key }).map((e, i)  =>
-                        <span className="star" key={i}>&#9733;</span>)): 
-                        ( <div className="col">{key}:</div>)}
+                        {question.type === 'SCORE' ? (<div className="col-sm-2">
+                            {Array.apply(null, { length: key }).map((e, i)  =>
+                                <span className="star" key={i}>&#9733;</span>)}</div>): 
+                                (<div className="col-sm-3">{key}:</div>)
+                            }
                             <div className="col-sm-9">
                                 <ProgressBar variant="info" 
                                 now={Math.round(100 * value / intSum)} 
