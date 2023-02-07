@@ -11,19 +11,19 @@ export  const create = (name, description, deadline, questions, history) => asyn
         }
     }
         const body = JSON.stringify({ name, description, deadline, questions });
+        console.log(body)
         try {
             // call api to create survey
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/survey/user/`, body, config)
             if (res.data) {
-
-                history("/survey/user", {state: res.data});
+                history("/user/surveys", {state: res.data});
             }
         }catch(err){
             alert(err);
         }
 };
 
-export  const edit = (deadline, id,  index,history, userSurveys) => async dispatch => {
+export  const edit = (deadline, id,  index, history, userSurveys) => async dispatch => {
     // check token before call api to update survey
     await dispatch(checkAuthenticated());
     let config = {

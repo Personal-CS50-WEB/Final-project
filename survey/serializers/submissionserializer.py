@@ -65,7 +65,7 @@ class SubmissionSerializer(dynamicserializer.DynamicFieldsModelSerializer):
                     if options_answer:
                         answer = Answer.objects.create(submission=submission, question=question)
                         for option_data in options_answer:
-                            # create Answer record for each choise
+                            # create Answer record for each choice
                             OptionAnswer.objects.create(answer=answer, **option_data)
             return submission 
             

@@ -17,7 +17,7 @@ export  const submit = (survey, submission_answers, history) => async dispatch =
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/submission/`, body, config)
             if (res.data) {
                 console.log(res.data)
-                history("/submission/user", {state: res.data});
+                history("/submissions", {state: res.data});
             }
         }catch(err){
             console.log(err)
