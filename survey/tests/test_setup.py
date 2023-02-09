@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 
 
 class TestSetup(TestCase):
+    
     def setUp(self):
         self.client = Client()
         User = get_user_model()

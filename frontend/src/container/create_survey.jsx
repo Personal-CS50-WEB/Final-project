@@ -100,7 +100,10 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
         e.preventDefault();
         create(name, description, deadline, questions, history);
     };
-    return (<section id="section5" className="section video" data-section="section5">
+    return (<section id="section5" 
+    className="section page"
+    data-section="section5"
+    data-testid='create-survey'>
         <div className="container">
         <h1 className='text-light'>Create survey</h1>
             <form onSubmit={e => onSubmit(e)}>

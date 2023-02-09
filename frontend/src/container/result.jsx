@@ -23,7 +23,8 @@ export default function Result(){
 
     return (<>
         {result? (<>
-            <section id="section5" className="section video" data-section="section5">
+            <section id="section5"  data-testid='survey-result'
+            className="section page" data-section="section5">
                 <div className="container">
                     <h2 className='text-light'>{result.name}</h2>
                     <p className=" text-light font-weight-normal">{result.description}</p>

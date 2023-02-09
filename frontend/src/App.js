@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserSurveys from "./container/user_surveys";
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
 import ListSurveys from "./container/home";
 import UserSubmissions from "./container/user_submissions";
 import CreateSurvey from "./container/create_survey";
@@ -19,9 +19,6 @@ import Results from "./container/results";
 import Result from "./container/result";
 
 const App = () => {
-  if (window.location.protocol === "file:") {
-    window.history.pushState({}, "", "/");
-  }
   return(
   <Provider store={store}>
     <Layout>

@@ -31,7 +31,7 @@ const ViewSubmission = ({ isAuthenticated,  checkAuthenticated }) => {
         }, []); 
     return (<>
         {submission? (<>
-        <section id="section5" className="section video" data-section="section5">
+        <section id="section5" className="section page" data-section="section5">
             <div className="container">
                 <h2 className='text-light'>{submission.survey_data.name}</h2>
             </div>

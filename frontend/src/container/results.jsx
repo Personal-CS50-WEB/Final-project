@@ -18,7 +18,7 @@ export default function Results(){
         .catch(console.error)
     },[]);
 
-    return (<section className="section video" data-section="section5">
+    return (<section className="section page" data-testid='survey-results' data-section="section5">
         <div className="jumbotron">
             <h2>Closed surveys</h2>
         </div>

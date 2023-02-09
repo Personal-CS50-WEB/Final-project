@@ -30,7 +30,7 @@ const  SurveySubmissions = ({ isAuthenticated, checkAuthenticated })  => {
         fetchData();
     }, []);    
     return (<>
-        <section id="section5" className="section video" data-section="section5">
+        <section id="section5" className="section page" data-section="section5">
             <div className="container">
                 <h2 className='text-light'>Survey submissions</h2>
             </div>

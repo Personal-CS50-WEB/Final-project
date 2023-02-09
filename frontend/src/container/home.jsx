@@ -34,7 +34,7 @@ export default function ListSurveys(){
                 </div>
             </div>
         </section>
-        <section id="section5" className="section video" data-section="section5">
+        <section id="section5" className="section page" data-section="section5">
             <div  className="container">
                 {surveys.length > 0 ?
                 (<div className="container">

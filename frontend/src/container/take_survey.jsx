@@ -106,7 +106,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
         submit(id, submissionAnswers, history);
     }
     return (<>
-    <section id="section5" className="section video" data-section="section5">
+    <section id="section5" className="section page" data-section="section5">
             <div className="container">
                 <h2 className='text-light'>Take Survey</h2>
             </div>

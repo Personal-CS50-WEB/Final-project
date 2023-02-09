@@ -30,7 +30,7 @@ const Signup = ({signup, isAuthenticated}) => {
         return <Navigate to='/login' />
     }
 
-    return (<section className="section coming-soon" data-section="section3">
+    return (<section className="section login" data-section="section3">
         <div className="container mt-5">
             <h1 className='text-light'>Sign Up</h1>
             <p className='text-light'> Create your Account</p>
