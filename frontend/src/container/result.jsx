@@ -21,9 +21,9 @@ export default function Result(){
     fetchData();
     }, []); 
 
-    return (<>
-        {result? (<>
-            <section id="section5"  data-testid='survey-result'
+    return (<div data-testid='survey-result'>
+        {result? (<> {console.log(result)}
+            <section id="section5" 
             className="section page" data-section="section5">
                 <div className="container">
                     <h2 className='text-light'>{result.name}</h2>
@@ -42,5 +42,5 @@ export default function Result(){
                 </div>
             </section>
         </>):(null)}
-    </>)
+    </div>)
 }

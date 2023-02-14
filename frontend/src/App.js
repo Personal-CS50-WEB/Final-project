@@ -29,7 +29,7 @@ const App = () => {
           <Route  path="/user/surveys" element={<UserSurveys />} />
           <Route  path="/submissions" element={<UserSubmissions />} />
           <Route  path="/survey/submissions/" element={<SurveySubmissions />} />
-          <Route  path="/create_survey" element={<CreateSurvey />} />
+          <Route  exact path="/create_survey" element={<CreateSurvey />} />
           <Route  path="/:id" element={<TakeSurvey />} />
           <Route  path="/submissions/:id" element={<ViewSubmission />} />
           <Route  path="/results" element={<Results />} />

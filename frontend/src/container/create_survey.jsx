@@ -113,6 +113,7 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                 <div className="form-group">
                 <label>Deadline</label>
                 <Datetime
+                data-testid='Deadline'
                 value={deadline}
                 isValidDate={isValidDate}
                 utc={true}
@@ -133,11 +134,13 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                     </div>)
                     })}
                     <button 
+                    data-testid='Add question..'
                     className="btn btn-outline-warning col-2" 
                     type="button"
                     onClick={addQuestion}>Add question..
                     </button>
                 <button 
+                data-testid='submit'
                 className="btn btn-warning" 
                 disabled={questions[0].text === ''||
                 questions[0].type ===''

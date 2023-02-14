@@ -25,7 +25,7 @@ export const NumberAnswer = ({question}) => {
                         {question.type === 'SCORE' ? (<div className="col-sm-2">
                             {Array.apply(null, { length: key }).map((e, i)  =>
                                 <span className="star" key={i}>&#9733;</span>)}</div>): 
-                                (<div className="col-sm-3">{key}:</div>)
+                                (<div className="col">{key}:</div>)
                             }
                             <div className="col-sm-9">
                                 <ProgressBar variant="info" 

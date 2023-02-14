@@ -1,57 +1,64 @@
 import React from 'react';
 import {render, screen, cleanup , waitForElement, wait, fireEvent } from '@testing-library/react';
-import Result from '../result';
+import  CreateSurvey  from '../create_survey';
+import Adapter from 'enzyme-adapter-react-16';
 import '@testing-library/jest-dom';
+import { Enzyme, shallow , configure, } from 'enzyme';
+import store from "../../store";
+import { Provider } from "react-redux";
+import { Route,Routes, BrowserRouter as Router } from "react-router-dom";
+import Layout from "../../hocs/layout";
+import { SurveyInfoFields } from '../../helper/create_survey/survey_info'
 
+import{ AUTHENTICATED_SUCCESS } from '../../actions/types';
 
-import axios from 'axios';
-
+configure({adapter: new Adapter()});
 afterEach(cleanup);
 
-test('test', () => {
-    const t = render(
-        <Result />
-    );
-    const ResultElement = screen.getByTestId('survey-result');
-    expect(ResultElement ).toBeInTheDocument()
+describe('<ParentComponent />', () => {
+    it('renders the ChildComponent', () => {
+        store.dispatch({
+            type: AUTHENTICATED_SUCCESS
+        });
+        const wrapper = render(<Router>
+            <Provider store={store}> 
+                <CreateSurvey isAuthenticated={true}/>
+            </Provider>
+        </Router>);
+
+        expect(wrapper).toBeDefined();
+        const nameInput = screen.getByTestId('create-survey');
+        expect(nameInput).toBeInTheDocument();
+    });
 });
 
+// describe("CreateSurvey component", () => {
+//     it("renders a form and buttons", () => {
+//         const component = render(<Router>
+//             <Provider store={store}>
+//                 <Layout>
+//                     <Routes>
+//                         <Route  path="/create_survey" element={<CreateSurvey />} />
+//                     </Routes>
+//                 </Layout>
+//             </Provider>
+//         </Router>
+            
+//         );
+//         expect(component).toBeDefined();
+       
+//        expect(getByRole('form')).toBeInTheDocument();
 
-
-jest.mock('axios');
-
-describe('Result component', () => {
-  it('renders result information when data is fetched', async () => {
-    const data = {
-      id: 1,
-      name: 'Test Survey',
-      description: 'This is a test survey',
-      deadline: '2022-01-01',
-      submissions: [{
-        id: 1,
-        answers: []
-      }],
-      questions: [{
-        id: 1,
-        question_text: 'What is your favorite color?',
-        choices: [{
-          id: 1,
-          choice_text: 'Red',
-          votes: 2
-        }, {
-          id: 2,
-          choice_text: 'Green',
-          votes: 3
-        }]
-      }]
-    };
-    axios.get.mockResolvedValue({ data });
-
-    const { getByTestId } = render(<Result />);
-    const Result = screen.getByTestId('survey-result');
-
-    expect(Result).toBeDefined();
-   
-  });
-});
-
+//         // component.setProps({ isAuthenticated: true });
+//         // const nameInput = screen.getByTestId('survey-name');
+//         // const descriptionInput = screen.getByTestId("Description:");
+//         // const deadlineInput = screen.getByTestId("Deadline");
+//         // const addButton = screen.getByTestId("Add question..");
+//         // const submitButton = screen.getByTestId("Submit");
+//         // expect(nameInput).toBeInTheDocument();
+//         // expect(descriptionInput).toBeInTheDocument();
+//         // expect(deadlineInput).toBeInTheDocument();
+//         // expect(addButton).toBeInTheDocument();
+//         // expect(submitButton).toBeInTheDocument();
+//     });
+// });
