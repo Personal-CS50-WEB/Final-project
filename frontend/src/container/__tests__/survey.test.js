@@ -6,59 +6,94 @@ import '@testing-library/jest-dom';
 import { Enzyme, shallow , configure, } from 'enzyme';
 import store from "../../store";
 import { Provider } from "react-redux";
-import { Route,Routes, BrowserRouter as Router } from "react-router-dom";
-import Layout from "../../hocs/layout";
-import { SurveyInfoFields } from '../../helper/create_survey/survey_info'
-
+import { Navigate } from 'react-router-dom';
+import {  BrowserRouter as Router } from "react-router-dom";
 import{ AUTHENTICATED_SUCCESS } from '../../actions/types';
+import{create} from '../../actions/survey';
 
 configure({adapter: new Adapter()});
+
 afterEach(cleanup);
 
-describe('<ParentComponent />', () => {
-    it('renders the ChildComponent', () => {
+const mockSurveyData = {
+    name: 'Test Survey',
+    description: 'This is a test survey.',
+    deadline: new Date('2023-02-28T12:00:00Z'),
+    questions: [
+        { text: 'Question 1', type: 'TEXT-ANSWER' },
+        { text: 'Question 2', type: 'RADIO', options: [{ option: 'Option 1' }, { option: 'Option 2' }] },
+    ],
+};
+const mockCreate = jest.fn();
+
+
+describe('CreateSurvey', () => {
+    let wrapper, surveyName, descriptionInput, addButton, submitButton, questionFields;
+    
+
+    beforeEach(() => {
         store.dispatch({
             type: AUTHENTICATED_SUCCESS
         });
-        const wrapper = render(<Router>
+        wrapper = render(<Router>
             <Provider store={store}> 
-                <CreateSurvey isAuthenticated={true}/>
+                <CreateSurvey create={mockCreate} isAuthenticated={true}/>
             </Provider>
         </Router>);
 
-        expect(wrapper).toBeDefined();
-        const nameInput = screen.getByTestId('create-survey');
-        expect(nameInput).toBeInTheDocument();
+        surveyName = screen.getByTestId('survey-name');
+        descriptionInput = screen.getByTestId('Description');
+        addButton = screen.getByTestId("Add question..");
+        submitButton = screen.getByTestId("submit");
+        questionFields = document.querySelectorAll('.QuestionFields');
     });
+
+    it('renders login form when isAuthenticated false', () => {
+        const wrapper = shallow(<Router>
+            <Provider store={store}> 
+                <CreateSurvey isAuthenticated={false}/>
+            </Provider>
+        </Router>);
+        expect(wrapper.find(Navigate)).toBeDefined();
+    });
+
+    it('renders without crashing when isAuthenticated true', () => {
+        expect(wrapper).toBeTruthy();
+        const component = screen.getByTestId('create-survey');
+        expect(component).toBeInTheDocument();
+    });
+
+    it('should add question', () => {
+        fireEvent.click(addButton);
+        questionFields = document.querySelectorAll('.QuestionFields');
+        expect(questionFields.length).toEqual(2);
+        
+    });
+    it('should remove second question', () => {
+        fireEvent.click(addButton);
+        const removeButton = screen.getByTestId(`Remove question ${1}`);
+        expect(removeButton).toBeInTheDocument();
+        fireEvent.click(removeButton);
+        expect(questionFields.length).toEqual(1);
+    });
+    it('renders the form and submits it with valid data', () => {
+        // Fill in the survey info fields.
+        fireEvent.change(surveyName, { target: { value: mockSurveyData.name } });
+        fireEvent.change(descriptionInput, { target: { value: mockSurveyData.description } });
+        // Set the survey deadline.
+        const deadlineInput = document.querySelector('.Deadline');
+        expect(deadlineInput).toBeInTheDocument();
+        fireEvent.change(deadlineInput, { target: { value: mockSurveyData.deadline } });
+
+        
+        const question1TypeSelect = questionFields.querySelector('[name="type"]');
+        const question1TextInput = questionFields.querySelector('[name="text"]');
+
+        fireEvent.change(question1TypeSelect, { target: { value: mockSurveyData.questions[0].type } });
+        fireEvent.change(question1TextInput, { target: { value: mockSurveyData.questions[0].text } });
+
+        // Add the survey questions.
+        fireEvent.click(addQuestionButton);
+        });
+    
 });
-
-// describe("CreateSurvey component", () => {
-//     it("renders a form and buttons", () => {
-//         const component = render(<Router>
-//             <Provider store={store}>
-//                 <Layout>
-//                     <Routes>
-//                         <Route  path="/create_survey" element={<CreateSurvey />} />
-//                     </Routes>
-//                 </Layout>
-//             </Provider>
-//         </Router>
-            
-//         );
-//         expect(component).toBeDefined();
-       
-//        expect(getByRole('form')).toBeInTheDocument();
-
-//         // component.setProps({ isAuthenticated: true });
-//         // const nameInput = screen.getByTestId('survey-name');
-//         // const descriptionInput = screen.getByTestId("Description:");
-//         // const deadlineInput = screen.getByTestId("Deadline");
-//         // const addButton = screen.getByTestId("Add question..");
-//         // const submitButton = screen.getByTestId("Submit");
-//         // expect(nameInput).toBeInTheDocument();
-//         // expect(descriptionInput).toBeInTheDocument();
-//         // expect(deadlineInput).toBeInTheDocument();
-//         // expect(addButton).toBeInTheDocument();
-//         // expect(submitButton).toBeInTheDocument();
-//     });
-// });

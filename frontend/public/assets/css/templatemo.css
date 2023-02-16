@@ -78,6 +78,7 @@ a.menu-link { display: none; }
     -ms-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
+    display: none;
   }
   .js nav[role="navigation"] {
     overflow: hidden;
@@ -125,6 +126,10 @@ a.menu-link { display: none; }
     }
   }
 }
+nav.show {
+  display: block;
+}
+
 @media screen and (max-width: 1050px) {
   .main-header .logo {
       padding-left: 30px!important;

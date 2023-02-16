@@ -1,9 +1,9 @@
 import React from "react";
 
-export const QuestionFields = ({input, index, handleFormChange, 
+export const QuestionFields = ({input, index, handleFormChange, questions,
     questionsType, removeQuestion,
     handleOptionChange, removeOption,addOption}) => {
-    return (<div className="form">
+    return (<div className="QuestionFields" >
         <div className="form-row">
             <div className="col">
                 <select
@@ -36,6 +36,8 @@ export const QuestionFields = ({input, index, handleFormChange,
                 <button 
                 className="btn btn-outline-warning col-2 mb-3"
                 type="button"
+                data-testid={`Remove question ${index}`}
+                disabled={questions.length === 1}
                 onClick={(e) => removeQuestion(e, index)}>Remove question
                 </button>
             </div>

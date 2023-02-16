@@ -19,7 +19,7 @@ const Login = ({login, isAuthenticated}) => {
     if (isAuthenticated){
         return <Navigate to='/' />
     }
-    return (<section className="section login" data-section="section3">
+    return (<section className="section login" data-testid='login form' data-section="section3">
         <div className="container mt-5">
             <div className="top-content">
                 <h1 className='text-light' >Sign In</h1>

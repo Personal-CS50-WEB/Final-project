@@ -113,18 +113,19 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                 <div className="form-group">
                 <label>Deadline</label>
                 <Datetime
-                data-testid='Deadline'
                 value={deadline}
                 isValidDate={isValidDate}
                 utc={true}
                 name ='deadline'
                 onChange={setDeadline}
+                className="Deadline"
                 />
                 </div>
                 {questions.map((input, index) => {
                     return (<div key={index}>
                         <QuestionFields input={input}
                         index={index}
+                        questions={questions}
                         handleFormChange={handleFormChange}
                         questionsType={questionsType}
                         removeQuestion={removeQuestion}

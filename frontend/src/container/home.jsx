@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from 'axios';
 import {SurveyCard} from "../helper/list_surveys/surveys";
 
 export default function ListSurveys(){
+    const myRef = useRef(null);
+
     const [ surveys, setSurvey ] = useState([]);
     const config = {
         headers: {
@@ -17,7 +19,9 @@ export default function ListSurveys(){
         .then(res => setSurvey(res.data))
         .catch(console.error)
     },[]);
-
+    const scrollToDiv = () => {
+        myRef.current.scrollIntoView({ behavior: 'smooth' });
+    };
     return (<>
         <section className="section main-banner" id="section1" data-section="section1">
             <video autoPlay  muted loop id="bg-video">
@@ -29,12 +33,17 @@ export default function ListSurveys(){
                     <h6>A list of the active surveys to participate in </h6>
                     <br></br>
                     <div className="main-button">
-                        <div className="scroll-to-section"><a href="#section5">View</a></div>
+                        <div className="scroll-to-section">
+                            <button onClick={scrollToDiv}
+                            className="btn btn-warning">
+                                View
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="section5" className="section page" data-section="section5">
+        <section id="section5" ref={myRef} className="section page" data-section="section5">
             <div  className="container">
                 {surveys.length > 0 ?
                 (<div className="container">
