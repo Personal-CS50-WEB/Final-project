@@ -9,7 +9,7 @@ export const Table = ({userSurveys, openModal, endSurvy}) => {
                     <th scope="col">Number</th>
                     <th scope="col">Survey</th>
                     <th scope="col">Deadline</th>
-                    <th scope="col">Sumissions</th>
+                    <th scope="col">Submissions</th>
                     <th scope="col">Edit</th>
                     <th scope="col"></th>    
                 </tr>

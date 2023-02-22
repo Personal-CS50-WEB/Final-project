@@ -24,7 +24,8 @@ const Navbar = ({ logout, isAuthenticated }) => {
         <div className="logo">
             <Link className="navbar-brand" to="/"><em>pollpal</em></Link>
         </div>
-        <a onClick={showNamItems} className="menu-link"><i className="fa fa-bars"></i></a>
+        <a onClick={showNamItems} className="menu-link"><li className="fa fa-bars"></li></a>
+
         <nav ref={myRef}  id="menu" className="main-nav" role="navigation">
             <ul className="main-menu">
                 <li><Link onClick={showNamItems} to="create_survey">Create survey</Link></li>

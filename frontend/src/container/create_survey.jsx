@@ -144,7 +144,7 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                 data-testid='submit'
                 className="btn btn-warning" 
                 disabled={questions[0].text === ''||
-                questions[0].type ===''
+                questions[0].type === ''
                 ||
                 inputFields.name === ''}
                 type="submit">

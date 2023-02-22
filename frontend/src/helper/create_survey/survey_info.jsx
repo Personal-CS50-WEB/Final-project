@@ -7,6 +7,7 @@ export const SurveyInfoFields = ({name, description, onChange }) => {
         <label>Survey name</label>
             <input className="form-control"
             data-testid='survey-name'
+          id='survey-name'
             type='text'
             name='name'
             placeholder='Survey name'

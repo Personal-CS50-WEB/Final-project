@@ -22,7 +22,7 @@ export default function Result(){
     }, []); 
 
     return (<div data-testid='survey-result'>
-        {result? (<> {console.log(result)}
+        {result? (<>
             <section id="section5" 
             className="section page" data-section="section5">
                 <div className="container">
