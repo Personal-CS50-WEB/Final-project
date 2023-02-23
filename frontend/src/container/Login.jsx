@@ -39,6 +39,7 @@ const Login = ({login, isAuthenticated}) => {
                 <div className="form-group">
                     <input className="form-control"
                     type="password"
+                    autoComplete="off"
                     placeholder="password"
                     name="password"
                     value={password}

@@ -60,6 +60,7 @@ const Signup = ({signup, isAuthenticated}) => {
                     <input className="form-control"
                     type="password"
                     placeholder="Password*"
+                    autoComplete="off"
                     name="password"
                     value={password}
                     onChange={e => onChange(e)}
@@ -71,6 +72,7 @@ const Signup = ({signup, isAuthenticated}) => {
                     <input className="form-control"
                     type="password"
                     placeholder="Confirm_password*"
+                    autoComplete="off"
                     name="re_password"
                     value={re_password}
                     onChange={e => onChange(e)}
