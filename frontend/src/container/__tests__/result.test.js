@@ -84,7 +84,7 @@ test('test choice answers calculation', () => {
         "text": "what is your favorite pet?"
     }
     const answers = render(
-        <ChoiceAnswer  question= {data} />
+        <ChoiceAnswer question= {data} />
     );
     const Result = screen.getByTestId('choice-result');
 

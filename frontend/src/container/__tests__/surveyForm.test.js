@@ -36,7 +36,7 @@ describe('CreateSurvey', () => {
         });
         wrapper = render(<Router>
             <Provider store={store}> 
-                <CreateSurvey create={create} isAuthenticated={true} deadline={mockSurveyData.deadline}/>
+                <CreateSurvey create={create} isAuthenticated={true}/>
             </Provider>
         </Router>);
 

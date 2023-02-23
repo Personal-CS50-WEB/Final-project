@@ -106,7 +106,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'final.wsgi.application'
 
-django_heroku.settings(locals())
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -180,3 +180,4 @@ TIME_ZONE='UTC'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000'
 ]
+django_heroku.settings(locals())
