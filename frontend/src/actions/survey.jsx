@@ -37,7 +37,7 @@ export  const edit = (deadline, id,  index, history, userSurveys) => async dispa
          // call api to update survey
         const res = await axios.patch(`${process.env.REACT_APP_API_URL}/api/survey/user/${id}/`, body, config)
         if (res.data && history) {
-            history("/survey/user", {state: userSurveys[index].deadline = res.data.deadline});
+            history("/user/surveys", {state: userSurveys[index].deadline = res.data.deadline});
         }
     }catch(err){
         alert(err);
