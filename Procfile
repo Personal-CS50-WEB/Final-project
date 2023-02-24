@@ -1,2 +1,2 @@
-release: python manage.py migrate
-web: gunicorn <pollpall>.wsgi --log-file -
+
+web: gunicorn final.wsgi --log-file -
