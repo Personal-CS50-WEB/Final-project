@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, screen, cleanup , waitForElement, wait, fireEvent } from '@testing-library/react';
+import {render, screen, cleanup, fireEvent } from '@testing-library/react';
 import  CreateSurvey  from '../create_survey';
 import Adapter from 'enzyme-adapter-react-16';
 import '@testing-library/jest-dom';
@@ -10,6 +10,7 @@ import { Navigate } from 'react-router-dom';
 import {  BrowserRouter as Router } from "react-router-dom";
 import{ AUTHENTICATED_SUCCESS } from '../../actions/types';
 import { create } from '../../actions/survey';
+
 configure({adapter: new Adapter()});
 
 afterEach(cleanup);
