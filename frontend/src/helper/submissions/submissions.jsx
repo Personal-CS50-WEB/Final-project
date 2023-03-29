@@ -19,7 +19,7 @@ export const Table = ({submissions}) => {
             <tbody>
                 {submissions.map((submission, index) =>(  
                 <tr key= {index}>
-                    <th scope="row">{index}</th>
+                    <th scope="row">{parseInt(index) + 1}</th>
                     {submission.user_data? (<td>
                         <Link className="btn btn-link"
                         to={`/submissions/${submission.id}`}

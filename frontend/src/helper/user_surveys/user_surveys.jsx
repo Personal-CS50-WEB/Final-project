@@ -17,7 +17,7 @@ export const Table = ({userSurveys, openModal, endSurvy}) => {
             <tbody>
                 {userSurveys.map((survey, index) =>(  
                 <tr key= {index}>
-                    <th scope="row">{index}</th>
+                    <th scope="row">{parseInt(index) + 1}</th>
                     <td >{survey.name}</td>
                     <td>{survey.deadline}</td>
                     <td>

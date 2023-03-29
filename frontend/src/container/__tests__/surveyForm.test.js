@@ -1,17 +1,12 @@
 import React from 'react';
 import {render, screen, cleanup, fireEvent } from '@testing-library/react';
 import  CreateSurvey  from '../create_survey';
-import Adapter from 'enzyme-adapter-react-16';
 import '@testing-library/jest-dom';
-import { Enzyme, shallow , configure, } from 'enzyme';
 import store from "../../store";
 import { Provider } from "react-redux";
-import { Navigate } from 'react-router-dom';
 import {  BrowserRouter as Router } from "react-router-dom";
 import{ AUTHENTICATED_SUCCESS } from '../../actions/types';
 import { create } from '../../actions/survey';
-
-configure({adapter: new Adapter()});
 
 afterEach(cleanup);
 
@@ -30,7 +25,9 @@ jest.mock('../../actions/survey', () => ({
 
 describe('CreateSurvey', () => {
     let wrapper, surveyName, descriptionInput, addButton, submitButton, questionFields;
-    
+
+    afterEach(cleanup);
+
     beforeEach(() => {
         store.dispatch({
             type: AUTHENTICATED_SUCCESS
@@ -46,15 +43,6 @@ describe('CreateSurvey', () => {
         addButton = screen.getByTestId("Add question..");
         submitButton = screen.getByTestId("submit");
         questionFields = document.querySelectorAll('.QuestionFields');
-    });
-
-    it('renders login form when isAuthenticated false', () => {
-        const wrapper = shallow(<Router>
-            <Provider store={store}> 
-                <CreateSurvey isAuthenticated={false}/>
-            </Provider>
-        </Router>);
-        expect(wrapper.find(Navigate)).toBeDefined();
     });
 
     it('renders without crashing when isAuthenticated true', () => {
@@ -82,7 +70,7 @@ describe('CreateSurvey', () => {
         fireEvent.change(descriptionInput, { target: { value: "" } });
         
         const deadlineInput = document.querySelector('.Deadline').querySelector("input");
-        fireEvent.change(deadlineInput, { target: { value: "2021-01-01" } });
+        fireEvent.change(deadlineInput, { target: { value: "02/25/2021 2:03 PM" } });
 
         const question1TypeSelect = questionFields[0].querySelector('[name="type"]');
         fireEvent.change(question1TypeSelect, { target: { value: "" } });
@@ -114,3 +102,4 @@ describe('CreateSurvey', () => {
         });
     
 });
+
