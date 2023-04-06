@@ -162,6 +162,28 @@ The following is the list of exposed APIs for the front end to use:
 -  **Hocs folder:** Contains a 'layout' function that does authentication checks.
 -  **reducers folder:** Has a function that returns state depending on the type.
 
+## **Unit Testing**
+It is important to have unit tests in a software application as it helps to catch bugs early in the development cycle, and it ensures that new changes don't break existing functionality.
+
+### Frontend Unit Testing
+
+For the frontend, I have used Jest and React Testing Library for unit testing. Jest is a testing framework that is used to test JavaScript code, while React Testing Library is a library that is used to test React components.
+
+I have written tests to ensure that the component renders correctly and that it behaves as expected for different use cases.
+I have also written tests for the Redux store to ensure that the state is updated correctly when actions are dispatched.
+To run the tests, simply run the following command in the frontend directory:
+
+`npm test`
+These unit tests provide a solid foundation for the application, and they help to ensure that the application is working correctly and that new changes do not break existing functionality.
+
+### Backend Unit Testing
+
+For the backend, I have used Django's built-in test framework, which is based on Python's unittest module, to write and run tests. I have tested API endpoint for survey.
+
+To run the tests, simply run the following command in the backend directory:
+
+`python manage.py test`
+
 ## **Starting the app**
 ### Prerequisites
 - Python 3.6 or later installed.
