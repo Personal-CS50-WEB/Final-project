@@ -174,7 +174,7 @@ I have also written tests for the Redux store to ensure that the state is update
 To run the tests, simply run the following command in the frontend directory:
 
 `npm test`
-These unit tests provide a solid foundation for the application, and they help to ensure that the application is working correctly and that new changes do not break existing functionality.
+
 
 ### Backend Unit Testing
 
@@ -183,6 +183,8 @@ For the backend, I have used Django's built-in test framework, which is based on
 To run the tests, simply run the following command in the backend directory:
 
 `python manage.py test`
+
+These unit tests provide a solid foundation for the application, and they help to ensure that the application is working correctly and that new changes do not break existing functionality.
 
 ## **Starting the app**
 ### Prerequisites
