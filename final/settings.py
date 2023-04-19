@@ -92,7 +92,7 @@ ROOT_URLCONF = 'final.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [], # os.path.join(BASE_DIR, 'build')
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,6 +116,14 @@ environ.Env.read_env()
 ...
 # Your secret key
 SECRET_KEY = env("SECRET_KEY")
+AWS_ACCESS_KEY_ID = env("Access_key_ID")
+AWS_SECRET_ACCESS_KEY = env("Secret_access_key")
+AWS_STORAGE_BUCKET_NAME = 'survey-frontend-react'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+STATIC_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 ...
 DATABASES = {
     'default': {
@@ -166,11 +174,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend', 'build', 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'frontend', 'build', 'static'),
+# ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -182,4 +190,4 @@ TIME_ZONE='UTC'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000'
 ]
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
