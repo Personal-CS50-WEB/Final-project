@@ -107,6 +107,7 @@ export const login = (email, password) => async dispatch => {
         });
         dispatch(loud_user());
     } catch(err){
+        alert(err);
         dispatch({
             type: LOGIN_FAIL
         });
