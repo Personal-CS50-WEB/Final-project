@@ -113,7 +113,7 @@ environ.Env.read_env()
 SECRET_KEY = env("SECRET_KEY")
 AWS_ACCESS_KEY_ID = env("Access_key_ID")
 AWS_SECRET_ACCESS_KEY = env("Secret_access_key")
-AWS_STORAGE_BUCKET_NAME = 'survey-frontend-react'
+AWS_STORAGE_BUCKET_NAME = 'pollpal'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 STATIC_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
@@ -183,6 +183,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TIME_ZONE='UTC'
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000','http://survey-frontend-react1.s3-website-us-west-2.amazonaws.com'
+    'http://localhost:3000','http://pollpal.s3-website-us-west-2.amazonaws.com'
 ]
 # django_heroku.settings(locals())
