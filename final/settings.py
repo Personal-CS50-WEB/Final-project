@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [ 'localhost','127.0.0.1', 'pollpal-env15.eba-pjirpmtt.us-west-2.elasticbeanstalk.com', '172.31.29.211']
+ALLOWED_HOSTS = [ 'localhost','127.0.0.1', 'pollpal-env15.eba-pjirpmtt.us-west-2.elasticbeanstalk.com', '172.31.29.211', '172.31.12.231']
 
 
 # Application definition
