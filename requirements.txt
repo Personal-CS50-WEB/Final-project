@@ -55,4 +55,4 @@ virtualenv==20.16.6
 virtualenv-clone==0.5.7
 zipp==3.11.0
 whitenoise==6.3.0
-google-cloud-storage==1.26.0
+django-storages==1.13.2
