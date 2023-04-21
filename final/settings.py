@@ -124,11 +124,11 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("RDS_DB_NAME"),
-        'USER': env("RDS_USERNAME"),
-        'PASSWORD': env("RDS_PASSWORD"),
-        'HOST': env("RDS_HOSTNAME"),
-        'PORT': env("RDS_PORT"),
+        'NAME': env("DB_NAME"),
+        'USER': env("DB_USER"),
+        'PASSWORD': env("DB_PASSWORD"),
+        'HOST': env("DB_PORT"),
+        'PORT': env("DB_HOST"),
     }
 }
 db_from_env = dj_database_url.config(conn_max_age=600)
