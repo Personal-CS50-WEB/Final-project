@@ -29,7 +29,7 @@ ALLOWED_HOSTS = [ 'localhost','127.0.0.1', 'pollpal-env15.eba-pjirpmtt.us-west-2
 # Application definition
 
 INSTALLED_APPS = [
-    'storages',
+    # 'storages',
     'survey',
     'corsheaders',
     'rest_framework',
