@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [ 'localhost','127.0.0.1', 'pollpal-env15.eba-pjirpmtt.us-west-2
 # Application definition
 
 INSTALLED_APPS = [
+    'storages',
     'survey',
     'corsheaders',
     'rest_framework',
@@ -123,11 +124,11 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
+        'NAME': env("RDS_DB_NAME"),
+        'USER': env("RDS_USERNAME"),
+        'PASSWORD': env("RDS_PASSWORD"),
+        'HOST': env("RDS_HOSTNAME"),
+        'PORT': env("RDS_PORT"),
     }
 }
 db_from_env = dj_database_url.config(conn_max_age=600)
