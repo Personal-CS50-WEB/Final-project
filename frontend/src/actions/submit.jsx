@@ -21,6 +21,6 @@ export  const submit = (survey, submission_answers, history) => async dispatch =
             }
         }catch(err){
             console.log(err)
-            alert(err);
+            alert('You already submitted this survey before');
         }
 };

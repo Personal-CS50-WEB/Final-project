@@ -4,7 +4,7 @@ import { Link} from 'react-router-dom';
 export const Table = ({userSurveys, openModal, endSurvy}) => {
     return (
         <table className="table table-hover">
-            <thead>
+            <thead className='text-light'>
                 <tr>
                     <th scope="col">Number</th>
                     <th scope="col">Survey</th>
@@ -17,9 +17,9 @@ export const Table = ({userSurveys, openModal, endSurvy}) => {
             <tbody>
                 {userSurveys.map((survey, index) =>(  
                 <tr key= {index}>
-                    <th scope="row">{parseInt(index) + 1}</th>
-                    <td >{survey.name}</td>
-                    <td>{survey.deadline}</td>
+                    <th className='text-light' scope="row">{parseInt(index) + 1}</th>
+                    <td className='text-light' >{survey.name}</td>
+                    <td className='text-light'>{survey.deadline}</td>
                     <td>
                         <Link className="btn btn-warning"
                         to='/survey/submissions' 

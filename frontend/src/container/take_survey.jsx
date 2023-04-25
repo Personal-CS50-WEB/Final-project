@@ -114,7 +114,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
         <div className="container">
             <br></br>
             {Survey?
-            (<div className="container">
+            (<div className="container text-light">
                 <h3>{Survey.name}</h3>
                 <br></br>
                 <p className="font-weight-normal">{Survey.description}</p>

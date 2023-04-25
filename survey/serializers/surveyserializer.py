@@ -42,7 +42,7 @@ class SurveySerializer(dynamicserializer.DynamicFieldsModelSerializer):
     # user can update just deadline
     def update(self, instance, validated_data):
         instance.deadline = validated_data.get('deadline', instance.deadline)
-        if validated_data.get('deadline') < datetime.datetime.now(tz=timezone.utc):
+        if validated_data.get('deadline') < datetime.datetime.now(tz=timezone.utc) - timedelta(minutes=5):
             raise SuspiciousOperation()
         # do nothing to instance other fields
         instance.save()

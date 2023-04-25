@@ -4,7 +4,7 @@ import { Link} from 'react-router-dom';
 export const Table = ({submissions}) => {
     return (
         <table className="table table-hover">
-            <thead>
+            <thead className='text-light' >
                 <tr>
                     <th scope="col">Number</th>
                         {submissions[0].user_data? (
@@ -19,7 +19,7 @@ export const Table = ({submissions}) => {
             <tbody>
                 {submissions.map((submission, index) =>(  
                 <tr key= {index}>
-                    <th scope="row">{parseInt(index) + 1}</th>
+                    <th className='text-light' scope="row">{parseInt(index) + 1}</th>
                     {submission.user_data? (<td>
                         <Link className="btn btn-link"
                         to={`/submissions/${submission.id}`}
@@ -31,7 +31,7 @@ export const Table = ({submissions}) => {
                         >{submission.survey_data.name}
                         </Link>
                     </td>)}
-                    <td >{submission.timecreated}</td>
+                    <td className='text-light'>{submission.timecreated}</td>
                 </tr> 
                 ))}    
             </tbody>

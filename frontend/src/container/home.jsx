@@ -44,11 +44,11 @@ export default function ListSurveys(){
             </div>
         </section>
         <section id="section5" ref={myRef} className="section page" data-section="section5">
-            <div  className="container">
+            <div className="container">
                 {surveys.length > 0 ?
                 (<div className="container">
                     {surveys.map((survey, i) =>(
-                        <div className="container" key={i}>
+                        <div className="container text-light" key={i}>
                             <SurveyCard survey={survey}/>
                             <br></br>
                         </div>
