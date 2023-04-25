@@ -111,7 +111,7 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                 description={description}
                 onChange={onChange} />
                 <div className="form-group">
-                <label>Deadline</label>
+                <label className='text-light' >Deadline</label>
                 <Datetime
                 value={deadline}
                 isValidDate={isValidDate}

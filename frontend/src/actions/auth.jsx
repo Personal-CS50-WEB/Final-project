@@ -128,7 +128,7 @@ export const signup = (username, email, password, re_password) => async dispatch
             payload: res.data
         });
     } catch (err) {
-        alert(err);
+        alert('please choose strong password');
         dispatch({
             type: SIGNUP_FAIL
         })
