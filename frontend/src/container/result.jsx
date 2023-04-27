@@ -20,7 +20,6 @@ export default function Result(){
     }
     fetchData();
     }, []); 
-
     return (<div data-testid='survey-result'>
         {result? (<>
             <section id="section5" 
@@ -29,7 +28,9 @@ export default function Result(){
                     <h2 className='text-light'>{result.name}</h2>
                     <p className=" text-light font-weight-normal">{result.description}</p>
                     <h3 className="text-light font-weight-normal">Total submissions: {result.submissions.length}</h3>
-                    <p className="text-light font-weight-light">closed at: {result.deadline}</p>
+                    <p className="text-light font-weight-light">
+                        closed at: {new Date(result.deadline).toLocaleDateString()} {new Date(result.deadline).toLocaleTimeString()}
+                    </p>
                 </div>
                 <br></br>
                 <div className="container">

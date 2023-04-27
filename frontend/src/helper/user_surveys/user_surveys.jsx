@@ -19,7 +19,7 @@ export const Table = ({userSurveys, openModal, endSurvy}) => {
                 <tr key= {index}>
                     <th className='text-light' scope="row">{parseInt(index) + 1}</th>
                     <td className='text-light' >{survey.name}</td>
-                    <td className='text-light'>{survey.deadline}</td>
+                    <td className='text-light'>{new Date(survey.deadline).toLocaleDateString()} {new Date(survey.deadline).toLocaleTimeString()}</td>
                     <td>
                         <Link className="btn btn-warning"
                         to='/survey/submissions' 
