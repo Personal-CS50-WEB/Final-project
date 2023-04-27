@@ -96,9 +96,10 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
     //survey name and description
     const { name, description } = inputFields;
     const onChange = e => setInputFields({ ...inputFields, [e.target.name]: e.target.value});
+    const [error, setError] = useState(null);
     const onSubmit = e => {
         e.preventDefault();
-        create(name, description, deadline, questions, history);
+        create(name, description, deadline, questions, history, setError);
     };
     return (<section id="section5" 
     className="section page"
@@ -151,6 +152,7 @@ const CreateSurvey = ({ create, isAuthenticated  }) => {
                 Submit
                 </button>
             </form>
+            {error && <div className="alert alert-danger">{error}</div>}
         </div>
     </section>)   
 }

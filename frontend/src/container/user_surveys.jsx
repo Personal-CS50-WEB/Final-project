@@ -9,7 +9,7 @@ import { style } from "../helper/user_surveys/style";
 import { Table } from "../helper/user_surveys/user_surveys";
 import { ModalForm } from "../helper/user_surveys/modal_form";
 
-const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
+const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated, user })  =>{
     //if not authenticated return to login page
     if (!isAuthenticated){
             return <Navigate to='/login' />
@@ -50,7 +50,7 @@ const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
     }
 
     const [newDate, setNewDate] = useState(new Date());
-
+    const [error, setError] = useState(null);
     // when user click end survey
     const endSurvy = (event, id, i) => {
         event.preventDefault();
@@ -62,13 +62,12 @@ const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
     //when user click save changes
     const editDeadline = (event, modalIndex) => {
         event.preventDefault();
-        closeModal();
-        edit(newDate, surveyId, modalIndex , history, userSurveys);
+        edit(newDate, surveyId, modalIndex , history, userSurveys, setError, closeModal);
     }
     return (<>
         <section  className="section page" data-section="section5">
             <div className="container">
-                <h2 className='text-light'>Your active surveys</h2>
+                <h2 className='text-light'>{user? (user.username.charAt(0).toUpperCase() + user.username.slice(1)):('Your')} active surveys</h2>
             </div>
         </section>
         <div className="container">
@@ -87,6 +86,7 @@ const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
             >
                 <ModalForm closeModal={closeModal}
                 newDate={newDate}
+                error={error}
                 setNewDate={setNewDate}
                 editDeadline={editDeadline}
                 modalIndex={modalIndex}/>
@@ -100,6 +100,7 @@ const UserSurveys = ({ isAuthenticated, edit, checkAuthenticated })  =>{
     </>)
 }
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
 });
 export default connect(mapStateToProps, {  edit, checkAuthenticated })(UserSurveys); 

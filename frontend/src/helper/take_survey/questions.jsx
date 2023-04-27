@@ -19,12 +19,10 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
         
         if (!checkedState[optionIndex]) {
             prev.splice(itemIndex, 1);
-            console.log(itemIndex, optionIndex,e.target.value);
         } else if(checkedState[optionIndex]) {
         prev.push({option: e.target.value});
         }
         setOptions_answers([...prev]);
-        console.log(options_answers);
         handleCallbackCheckbox(options_answers);
         onChange();
     };
@@ -41,8 +39,6 @@ export const Question = ({question , i, onChange, parentCallback, handleCallback
         onChange();
     }
     function handleScore (newRating) {
-        
-        console.log(newRating);
         handleCallbackScore(newRating);
         onChange();
         

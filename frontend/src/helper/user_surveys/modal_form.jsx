@@ -1,7 +1,7 @@
 import React from "react";
 import Datetime from 'react-datetime';
 
-export const ModalForm = ({closeModal, newDate, setNewDate, editDeadline, modalIndex}) => {
+export const ModalForm = ({closeModal, newDate, setNewDate, editDeadline, modalIndex, error}) => {
     return (
         <div className="modal-content">
             <div className="modal-header">
@@ -33,6 +33,7 @@ export const ModalForm = ({closeModal, newDate, setNewDate, editDeadline, modalI
                     Save changes
                 </button>
             </div>
+            {error && <div className="alert alert-danger">{error}</div>}
         </div>
     );
 };

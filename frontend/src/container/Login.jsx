@@ -8,12 +8,12 @@ const Login = ({login, isAuthenticated}) => {
         email: '',
         password: ''
     });
-
+    const [error, setError] = useState(null);
     const { email, password } = formData;
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value});
     const onSubmit = e => {
         e.preventDefault();
-        login(email, password);
+        login(email, password, setError);
     };
     // is user authanticated
     if (isAuthenticated){
@@ -25,6 +25,7 @@ const Login = ({login, isAuthenticated}) => {
                 <h1 className='text-light' >Sign In</h1>
                 <h6> Sign into your Account</h6>
             </div>
+            {error && <div className="alert alert-danger">{error}</div>}
             <form id="contact" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
                     <input className="form-control"

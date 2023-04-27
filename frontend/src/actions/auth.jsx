@@ -92,7 +92,7 @@ export const loud_user = () => async dispatch => {
     }
 };
 
-export const login = (email, password) => async dispatch => {
+export const login = (email, password, setError) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -107,13 +107,14 @@ export const login = (email, password) => async dispatch => {
         });
         dispatch(loud_user());
     } catch(err){
-        alert(err);
+        
+        setError(err.response.data.detail);
         dispatch({
             type: LOGIN_FAIL
         });
     }
 };
-export const signup = (username, email, password, re_password) => async dispatch => {
+export const signup = (username, email, password, re_password, setAccountCreated, setError) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -122,15 +123,15 @@ export const signup = (username, email, password, re_password) => async dispatch
     const body = JSON.stringify({ username, email, password, re_password });
     try {
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body, config);
-
+        setAccountCreated(true);
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: res.data
         });
     } catch (err) {
-        alert('please choose strong password');
+        setError(err.response.data);
         dispatch({
-            type: SIGNUP_FAIL
+            type: SIGNUP_FAIL,
         })
     }
 };

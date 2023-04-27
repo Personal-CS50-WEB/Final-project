@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import {  Navigate  } from "react-router-dom";
 import { Table } from "../helper/submissions/submissions";
 
-const  SurveySubmissions = ({ isAuthenticated, checkAuthenticated })  => {
+const  SurveySubmissions = ({ isAuthenticated, checkAuthenticated, user })  => {
 
     // redirect user tto login page if not authenticated
     if (!isAuthenticated){
@@ -31,7 +31,7 @@ const  SurveySubmissions = ({ isAuthenticated, checkAuthenticated })  => {
     return (<>
         <section id="section5" className="section page" data-section="section5">
             <div className="container">
-                <h2 className='text-light'>Your submissions</h2>
+                <h2 className='text-light'>{user? (user.username.charAt(0).toUpperCase() + user.username.slice(1)):('Your')} submissions</h2>
             </div>
         </section>
         <div className="container">
@@ -49,6 +49,7 @@ const  SurveySubmissions = ({ isAuthenticated, checkAuthenticated })  => {
     </>)
 }
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
 });
 export default connect(mapStateToProps, { checkAuthenticated })(SurveySubmissions); 

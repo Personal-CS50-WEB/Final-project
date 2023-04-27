@@ -16,7 +16,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
     const [submissionAnswers, SetSubmissionAnswers] = useState([{
         question: ''
     }]); 
-    
+    const [error, setError] = useState(null);
     useEffect(() => {
     async function fetchData() {
       // call api for user surveys
@@ -103,7 +103,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        submit(id, submissionAnswers, history);
+        submit(id, submissionAnswers, history, setError);
     }
     return (<>
     <section id="section5" className="section page" data-section="section5">
@@ -143,6 +143,7 @@ const  TakeSurvey = ({ isAuthenticated, submit }) => {
                 </button>
                 </form>
                 <p className="font-weight-light">Expires at: {Survey.deadline}</p>
+                {error && <div className="alert alert-danger">{error}</div>}
             </div>
             ):(<div className="empty"></div>)}
         </div>

@@ -13,15 +13,16 @@ const Signup = ({signup, isAuthenticated}) => {
     });
 
     const { name, email, password, re_password } = formData;
-
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const [errorDetails, setError] = useState({});
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value.replace(/\s/g, '') });
     const onSubmit = e => {
         e.preventDefault();
         if (password === re_password) {
-            signup(name, email, password, re_password);
-            setAccountCreated(true);
+            signup(name, email, password, re_password, setAccountCreated, setError);
+            
         }
     };
+    
     // is user authanticated
     if (isAuthenticated){
         return <Navigate to='/' />
@@ -30,11 +31,22 @@ const Signup = ({signup, isAuthenticated}) => {
         return <Navigate to='/login' />
     }
 
+        
     return (<section className="section login" data-section="section3">
         <div className="container mt-5">
             <h1 className='text-light'>Sign Up</h1>
             <p className='text-light'> Create your Account</p>
+            
             <form onSubmit={e => onSubmit(e)}>
+                {Object.keys(errorDetails).length > 0 &&<div className="alert alert-danger">
+                    <ul>
+                    {Object.keys(errorDetails).map((key) => (
+                        errorDetails[key].map((message) => (
+                        <li key={message}>{message}</li>
+                        ))
+                    ))}
+                    </ul></div>
+                }
                 <div className='form-group'>
                     <input
                         className='form-control'
