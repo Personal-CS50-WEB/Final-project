@@ -4,9 +4,7 @@
  It is a survey platform where users can create, view, and participate in surveys. It consists of two applications that were developed independently; A backend app that was developed using Django REST framework and a frontend app that was developed using React.js.
 
  http://pollpal.s3-website-us-west-2.amazonaws.com
- 
-## **Video Demo**
-https://youtu.be/9wb0kEe5GDg
+
 
 ## **Functional Requirements**
   - Users can create an account using their email.
